@@ -1,0 +1,194 @@
+{
+  "Chemical Reactions and Equations": [
+    {
+      "q": "Which of the following is a balanced equation for the reaction: $\\text{Mg} + \\text{O}_2 \\to \\text{MgO}$?",
+      "options": ["$\\text{Mg} + \\text{O}_2 \\to \\text{MgO}$", "$2\\text{Mg} + \\text{O}_2 \\to 2\\text{MgO}$", "$\\text{Mg} + 2\\text{O}_2 \\to 2\\text{MgO}$", "$2\\text{Mg} + 2\\text{O}_2 \\to 2\\text{MgO}$"],
+      "answer": 1
+    },
+    {
+      "q": "A reaction where a single substance breaks down is called:",
+      "options": ["Combination", "Decomposition", "Displacement", "Double Displacement"],
+      "answer": 1
+    }
+  ],
+  "Acids, Bases and Salts": [
+    {
+      "q": "A solution turns red litmus blue. Its pH is likely to be:",
+      "options": ["2", "5", "7", "10"],
+      "answer": 3
+    },
+    {
+      "q": "Chemical formula of Washing Soda is:",
+      "options": ["$\\text{NaCl}$", "$\\text{Na}_2\\text{CO}_3 \\cdot 10\\text{H}_2\\text{O}$", "$\\text{NaHCO}_3$", "$\\text{Ca(OH)}_2$"],
+      "answer": 1
+    }
+  ],
+  "Metals and Non-metals": [
+    {
+      "q": "Which metal is stored in kerosene?",
+      "options": ["Calcium", "Gold", "Sodium", "Iron"],
+      "answer": 2
+    },
+    {
+      "q": "The best conductor of heat and electricity is:",
+      "options": ["Tungsten", "Copper", "Mercury", "Silver"],
+      "answer": 3
+    }
+  ],
+  "Carbon and Its Compounds": [
+    {
+      "q": "The functional group in alcohol is:",
+      "options": ["$- \\text{COOH}$", "$- \\text{OH}$", "$- \\text{CHO}$", "$- \\text{CO}$"],
+      "answer": 1
+    },
+    {
+      "q": "The phenomenon of forming multiple bonds with other carbon atoms is called:",
+      "options": ["Catenation", "Polymerization", "Substitution", "Isomerism"],
+      "answer": 0
+    }
+  ],
+  "Periodic Classification of Elements": [
+    {
+      "q": "Elements in the same group of the Periodic Table have the same number of:",
+      "options": ["Protons", "Neutrons", "Valence electrons", "Shells"],
+      "answer": 2
+    },
+    {
+      "q": "Who proposed the basis for the modern periodic table?",
+      "options": ["Dobereiner", "Newlands", "Mendeleev", "Moseley"],
+      "answer": 3
+    }
+  ],
+  "Life Processes": [
+    {
+      "q": "Which organelle performs photosynthesis in plants?",
+      "options": ["Mitochondria", "Vacuole", "Chloroplast", "Nucleus"],
+      "answer": 2
+    },
+    {
+      "q": "The breakdown of glucose in the absence of oxygen is called:",
+      "options": ["Aerobic respiration", "Anaerobic respiration", "Fermentation", "Glycolysis"],
+      "answer": 1
+    }
+  ],
+  "Control and Coordination": [
+    {
+      "q": "Which part of the human brain controls balance and posture?",
+      "options": ["Cerebrum", "Cerebellum", "Medulla", "Hypothalamus"],
+      "answer": 1
+    },
+    {
+      "q": "The hormone responsible for the fight or flight response is:",
+      "options": ["Insulin", "Adrenaline", "Thyroxine", "Testosterone"],
+      "answer": 1
+    }
+  ],
+  "How do Organisms Reproduce?": [
+    {
+      "q": "Binary fission is a method of asexual reproduction found in:",
+      "options": ["Yeast", "Amoeba", "Ferns", "Humans"],
+      "answer": 1
+    },
+    {
+      "q": "The transfer of pollen grains from the anther to the stigma is called:",
+      "options": ["Fertilization", "Pollination", "Germination", "Budding"],
+      "answer": 1
+    }
+  ],
+  "Heredity and Evolution": [
+    {
+      "q": "The factor that controls a specific characteristic is known as a:",
+      "options": ["Chromatid", "Gene", "Allele", "Locus"],
+      "answer": 1
+    },
+    {
+      "q": "The theory of natural selection was proposed by:",
+      "options": ["Lamarck", "Mendel", "Darwin", "Watson"],
+      "answer": 2
+    }
+  ],
+  "Light – Reflection and Refraction": [
+    {
+      "q": "The center of a reflecting surface of a spherical mirror is called:",
+      "options": ["Focus", "Pole", "Center of curvature", "Aperture"],
+      "answer": 1
+    },
+    {
+      "q": "Which lens is also known as a converging lens?",
+      "options": ["Concave lens", "Convex lens", "Plano-concave lens", "Cylindrical lens"],
+      "answer": 1
+    }
+  ],
+  "Human Eye and Colourful World": [
+    {
+      "q": "The least distance of distinct vision for a normal human eye is about:",
+      "options": ["10 cm", "25 cm", "50 cm", "1 m"],
+      "answer": 1
+    },
+    {
+      "q": "Dispersion of light occurs due to:",
+      "options": ["Reflection", "Refraction", "Scattering", "Total internal reflection"],
+      "answer": 1
+    }
+  ],
+  "Electricity": [
+    {
+      "q": "The unit of electric current is:",
+      "options": ["Ohm", "Volt", "Ampere", "Coulomb"],
+      "answer": 2
+    },
+    {
+      "q": "The resistance of a conductor is directly proportional to its:",
+      "options": ["Length", "Area of cross-section", "Temperature", "Voltage"],
+      "answer": 0
+    }
+  ],
+  "Magnetic Effects of Electric Current": [
+    {
+      "q": "Which rule is used to find the direction of the magnetic field due to a straight current-carrying conductor?",
+      "options": ["Fleming's Left-Hand Rule", "Fleming's Right-Hand Rule", "Right-Hand Thumb Rule", "Oersted's Rule"],
+      "answer": 2
+    },
+    {
+      "q": "An electric generator converts:",
+      "options": ["Electrical to mechanical energy", "Mechanical to electrical energy", "Chemical to electrical energy", "Heat to electrical energy"],
+      "answer": 1
+    }
+  ],
+  "Sources of Energy": [
+    {
+      "q": "Which is a non-conventional source of energy?",
+      "options": ["Coal", "Petroleum", "Solar energy", "Natural gas"],
+      "answer": 2
+    },
+    {
+      "q": "Biogas is mainly composed of:",
+      "options": ["$\\text{CO}_2$", "Methane", "Hydrogen", "Oxygen"],
+      "answer": 1
+    }
+  ],
+  "Our Environment": [
+    {
+      "q": "The major cause of ozone layer depletion is:",
+      "options": ["$\\text{CO}_2$", "CFCs", "$\\text{NO}_2$", "$\\text{SO}_2$"],
+      "answer": 1
+    },
+    {
+      "q": "Food chains begin with:",
+      "options": ["Herbivores", "Carnivores", "Producers", "Decomposers"],
+      "answer": 2
+    }
+  ],
+  "Sustainable Management of Natural Resources": [
+    {
+      "q": "The 3Rs for sustainable living are:",
+      "options": ["Reduce, Reuse, Recycle", "Run, Restore, Rebuild", "Remove, Repair, Refill", "Reuse, Realize, Reduce"],
+      "answer": 0
+    },
+    {
+      "q": "Which of these is a biotic component of the environment?",
+      "options": ["Water", "Soil", "Plants", "Temperature"],
+      "answer": 2
+    }
+  ]
+}

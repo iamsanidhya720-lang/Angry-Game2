@@ -1,0 +1,237 @@
+[
+  {
+    "chapter": "Matter in Our Surroundings",
+    "questions": [
+      {
+        "q": "Which of the following is an example of matter?",
+        "options": ["Light", "Heat", "Cold", "Stone"],
+        "answer": 3
+      },
+      {
+        "q": "Matter is made up of:",
+        "options": ["Atoms", "Waves", "Energy", "Heat"],
+        "answer": 0
+      },
+      {
+        "q": "Which of these has definite volume but no definite shape?",
+        "options": ["Solid", "Liquid", "Gas", "Plasma"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Is Matter Around Us Pure?",
+    "questions": [
+      {
+        "q": "Pure substances have:",
+        "options": ["Uniform composition", "Variable composition", "Mixtures", "Impurities"],
+        "answer": 0
+      },
+      {
+        "q": "Salt is an example of:",
+        "options": ["Pure substance", "Mixture", "Alloy", "Compound"],
+        "answer": 0
+      },
+      {
+        "q": "Air is a:",
+        "options": ["Mixture", "Pure substance", "Compound", "Element"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Atoms and Molecules",
+    "questions": [
+      {
+        "q": "What is the smallest unit of an element that can take part in a chemical reaction?",
+        "options": ["Molecule", "Atom", "Ion", "Proton"],
+        "answer": 1
+      },
+      {
+        "q": "The law of conservation of mass was given by:",
+        "options": ["Dalton", "Lavoisier", "Proust", "Rutherford"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Structure of the Atom",
+    "questions": [
+      {
+        "q": "Which subatomic particle has no charge?",
+        "options": ["Electron", "Proton", "Neutron", "Positron"],
+        "answer": 2
+      },
+      {
+        "q": "Who discovered the electron?",
+        "options": ["J.J. Thomson", "Ernest Rutherford", "Neils Bohr", "James Chadwick"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "The Fundamental Unit of Life",
+    "questions": [
+      {
+        "q": "The powerhouse of the cell is:",
+        "options": ["Nucleus", "Ribosome", "Mitochondria", "Vacuole"],
+        "answer": 2
+      },
+      {
+        "q": "Cell theory was proposed by:",
+        "options": ["Robert Hooke", "Leeuwenhoek", "Schleiden and Schwann", "Virchow"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Tissues",
+    "questions": [
+      {
+        "q": "Xylem is a type of:",
+        "options": ["Simple permanent tissue", "Complex permanent tissue", "Meristematic tissue", "Epithelial tissue"],
+        "answer": 1
+      },
+      {
+        "q": "Tendon connects:",
+        "options": ["Muscle to bone", "Bone to bone", "Nerve to muscle", "Skin to muscle"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Diversity in Living Organisms",
+    "questions": [
+      {
+        "q": "The scientific name of an organism is written in which language?",
+        "options": ["English", "Greek", "Latin", "French"],
+        "answer": 2
+      },
+      {
+        "q": "Fungi belong to the kingdom:",
+        "options": ["Monera", "Protista", "Fungi", "Plantae"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Motion",
+    "questions": [
+      {
+        "q": "Rate of change of velocity is called:",
+        "options": ["Speed", "Displacement", "Acceleration", "Distance"],
+        "answer": 2
+      },
+      {
+        "q": "The area under the velocity-time graph represents:",
+        "options": ["Velocity", "Acceleration", "Displacement", "Time"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Force and Laws of Motion",
+    "questions": [
+      {
+        "q": "Newton's first law of motion defines:",
+        "options": ["Force and inertia", "Momentum", "Action and reaction", "Weight"],
+        "answer": 0
+      },
+      {
+        "q": "Unit of momentum is:",
+        "options": ["N", "J", "kg·m/s", "W"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Gravitation",
+    "questions": [
+      {
+        "q": "The value of acceleration due to gravity (g) is highest at:",
+        "options": ["Equator", "Poles", "Center of Earth", "Same everywhere"],
+        "answer": 1
+      },
+      {
+        "q": "What is the force responsible for tides in the sea?",
+        "options": ["Earth's rotation", "Moon's gravitational pull", "Wind", "Ocean currents"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Work and Energy",
+    "questions": [
+      {
+        "q": "The unit of work is:",
+        "options": ["Watt", "Newton", "Joule", "Pascal"],
+        "answer": 2
+      },
+      {
+        "q": "Energy possessed by a body due to its position is:",
+        "options": ["Kinetic energy", "Potential energy", "Thermal energy", "Chemical energy"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Sound",
+    "questions": [
+      {
+        "q": "Sound travels fastest in:",
+        "options": ["Air", "Water", "Vacuum", "Steel"],
+        "answer": 3
+      },
+      {
+        "q": "The number of oscillations per unit time is called:",
+        "options": ["Wavelength", "Amplitude", "Frequency", "Speed"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Why Do We Fall Ill?",
+    "questions": [
+      {
+        "q": "Disease-causing microorganisms are called:",
+        "options": ["Antibodies", "Pathogens", "Vaccines", "Vectors"],
+        "answer": 1
+      },
+      {
+        "q": "AIDS is caused by:",
+        "options": ["Bacteria", "Virus", "Protozoa", "Fungi"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Natural Resources",
+    "questions": [
+      {
+        "q": "The process of nitrogen fixation is carried out by:",
+        "options": ["Fungi", "Bacteria", "Algae", "Virus"],
+        "answer": 1
+      },
+      {
+        "q": "Acid rain is primarily caused by oxides of:",
+        "options": ["Carbon and Oxygen", "Nitrogen and Sulfur", "Hydrogen and Nitrogen", "Carbon and Sulfur"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Improvement in Food Resources",
+    "questions": [
+      {
+        "q": "Which nutrient is provided by carbohydrates and fats?",
+        "options": ["Protein", "Vitamins", "Energy", "Minerals"],
+        "answer": 2
+      },
+      {
+        "q": "The practice of growing two or more crops simultaneously in the same field is called:",
+        "options": ["Crop rotation", "Mixed cropping", "Inter-cropping", "Fallow"],
+        "answer": 1
+      }
+    ]
+  }
+]
