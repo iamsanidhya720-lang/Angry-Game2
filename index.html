@@ -427,7 +427,6 @@ function normalizeName(name) {
 
 async function loadExternalData(grade, subject) {
   // Construct filename: e.g., physicsclass11.json
-  // Based on your screenshot, filenames are correct (biologyclass11.json), so no typo fix needed.
   let fileName = `${subject.toLowerCase()}class${grade}.json`;
 
   console.log(`Loading: ${fileName}`);
@@ -442,22 +441,34 @@ async function loadExternalData(grade, subject) {
     // 1. Extract the List of Chapters from inconsistent JSON structures
     let rawChapters = [];
     
+    // Check if the root is an array (e.g., Class 9 style)
     if (Array.isArray(json)) {
       rawChapters = json;
-    } else if (json.chapters) {
-      rawChapters = json.chapters;
-    } else if (json.class_12_chemistry_mcqs) {
-      rawChapters = json.class_12_chemistry_mcqs;
     } else {
-      // Fallback: Check keys (Class 10 Science style)
-      // We assume keys are chapter names
-      Object.keys(json).forEach(key => {
-        const val = json[key];
-        // If it looks like a list of questions, treat 'key' as chapter name
-        if(Array.isArray(val)) {
-           rawChapters.push({ chapter: key, questions: val });
+      // SMART DETECTION: Scan all keys to find the one containing the chapters array
+      // This handles "class_12_physics_mcqs", "class_11_physics_mcqs", "chapters", etc.
+      const keys = Object.keys(json);
+      let foundArray = false;
+      
+      for (const key of keys) {
+        // If it's an array and looks like it might contain chapters
+        if (Array.isArray(json[key]) && json[key].length > 0) {
+            rawChapters = json[key];
+            foundArray = true;
+            break;
         }
-      });
+      }
+
+      // Fallback: If no explicit array was found, treat root keys as chapter names (Class 10 Science style)
+      if (!foundArray) {
+        Object.keys(json).forEach(key => {
+          const val = json[key];
+          // If the value is an array (list of questions), treat 'key' as chapter name
+          if(Array.isArray(val)) {
+             rawChapters.push({ chapter: key, questions: val });
+          }
+        });
+      }
     }
 
     // 2. Process and Store
@@ -484,7 +495,6 @@ async function loadExternalData(grade, subject) {
       });
 
       // Store using the normalized key for matching
-      // We assume if normalization collides, we append, but usually they are unique per file
       const normKey = normalizeName(rawName);
       if(cleanQuestions.length > 0) {
         QUESTION_DATABASE[normKey] = cleanQuestions;
@@ -527,7 +537,6 @@ async function initializeGameSession() {
     matchFound = targetKey;
   } else {
     // 2. Try Partial Match (In case one is a substring of the other)
-    // efficient for small datasets like a chapter list
     const dbKeys = Object.keys(QUESTION_DATABASE);
     matchFound = dbKeys.find(key => key.includes(targetKey) || targetKey.includes(key));
   }
