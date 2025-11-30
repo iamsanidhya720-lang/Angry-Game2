@@ -10,7 +10,7 @@
       box-sizing: border-box; 
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif; /* Changed to Inter for modern feel */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
@@ -27,7 +27,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(8px);
       z-index: 1000;
       display: flex;
@@ -37,11 +37,11 @@
 
     .dashboard-card {
       background: white;
-      padding: 30px; /* Reduced padding for mobile */
+      padding: 40px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.3);
       width: 90%;
-      max-width: 450px; /* Max width slightly reduced */
+      max-width: 500px;
       text-align: center;
       animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -54,25 +54,24 @@
     .dashboard-card h1 {
       color: #2c3e50;
       margin-bottom: 25px;
-      font-size: 24px; /* Reduced font size for mobile */
+      font-size: 28px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       text-align: left;
     }
 
     .form-group label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       font-weight: bold;
       color: #555;
-      font-size: 14px;
     }
 
     select {
       width: 100%;
-      padding: 10px; /* Reduced padding for mobile */
+      padding: 12px;
       border: 2px solid #ddd;
       border-radius: 8px;
       font-size: 16px;
@@ -88,12 +87,12 @@
       background: #2ecc71;
       color: white;
       border: none;
-      padding: 12px 30px; /* Reduced padding */
-      font-size: 18px;
+      padding: 15px 40px;
+      font-size: 20px;
       border-radius: 50px;
       cursor: pointer;
       font-weight: bold;
-      margin-top: 20px;
+      margin-top: 10px;
       transition: transform 0.2s, background 0.2s;
       box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
     }
@@ -115,47 +114,36 @@
       position: absolute;
       top: 10px; left: 10px; right: 10px;
       display: flex; justify-content: space-between;
-      align-items: flex-start;
       z-index: 10; pointer-events: none;
     }
     .top-bar > * { pointer-events: auto; }
 
     .chapter-badge {
       background: #34495e; color: #fff;
-      padding: 6px 12px; border-radius: 15px;
+      padding: 8px 15px; border-radius: 20px;
       font-weight: bold; margin-bottom: 5px;
-      font-size: 12px;
     }
 
     .instructions {
       background: rgba(0,0,0,0.7); color: #fff;
-      padding: 8px; border-radius: 8px; font-size: 12px;
+      padding: 10px; border-radius: 10px; font-size: 14px;
     }
 
     .score-display {
       background: rgba(255,255,255,0.9);
-      padding: 8px 15px; border-radius: 15px;
-      font-size: 18px; /* Reduced font size */
-      font-weight: bold;
+      padding: 10px 25px; border-radius: 15px;
+      font-size: 24px; font-weight: bold;
     }
 
     .question-area {
-      position: absolute; top: 10px; left: 50%;
+      position: absolute; top: 20px; left: 50%;
       transform: translateX(-50%);
-      text-align: center; font-size: 16px; font-weight: bold; /* Reduced font size */
+      text-align: center; font-size: 20px; font-weight: bold;
       background: rgba(255,255,255,0.98);
-      padding: 15px 25px;
-      border-radius: 12px;
-      width: 90%; /* Increased width for mobile */
-      max-width: 800px; z-index: 10;
+      padding: 20px 40px; border-radius: 16px;
+      width: 80%; max-width: 800px; z-index: 10;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    /* Adjusted top margin on smaller screens to prevent overlap */
-    @media (max-width: 600px) {
-        .top-bar { top: 70px; }
-        .question-area { top: 20px; font-size: 14px; padding: 10px 15px; }
-    }
-
 
     .ground {
       position: absolute; bottom: 0; left: 0;
@@ -164,11 +152,8 @@
       border-top: 5px dashed #228B22;
     }
 
-    /* Slingshot position is now percentage-based */
     .slingshot {
-      position: absolute; 
-      left: 10%; /* Responsive position */
-      bottom: 80px;
+      position: absolute; left: 100px; bottom: 80px;
       width: 80px; height: 140px; z-index: 2;
     }
     .slingshot::before, .slingshot::after {
@@ -182,27 +167,17 @@
     canvas:active { cursor: grabbing; }
 
     .options {
-      position: absolute; 
-      right: 2%; /* Responsive position */
-      top: 150px;
-      display: flex; flex-direction: column; gap: 10px; /* Reduced gap */
-      z-index: 8;
+      position: absolute; right: 5%; top: 150px;
+      display: flex; flex-direction: column; gap: 15px; z-index: 8;
     }
 
     .option {
-      width: 180px; /* Reduced width for mobile */
-      min-height: 60px; /* Reduced min-height */
+      width: 220px; min-height: 70px;
       background: #e67e22; border: 4px solid #d35400;
       color: #fff; font-weight: bold; padding: 10px;
       display: flex; align-items: center; justify-content: center;
       text-align: center; border-radius: 12px;
       transition: transform 0.2s;
-      font-size: 14px;
-    }
-
-    /* Media query for slightly larger screens */
-    @media (min-width: 768px) {
-        .option { width: 220px; min-height: 70px; font-size: 16px; gap: 15px; }
     }
     
     /* Correct answer color */
@@ -232,24 +207,23 @@
     }
 
     .controls {
-      position: absolute; bottom: 10px; left: 50%;
-      transform: translateX(-50%); display: flex; gap: 10px; /* Reduced gap */
-      z-index: 10;
+      position: absolute; bottom: 30px; left: 50%;
+      transform: translateX(-50%); display: flex; gap: 15px; z-index: 10;
     }
     button.control-btn {
-      padding: 8px 18px; /* Reduced padding */
-      border-radius: 20px;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 3px 5px rgba(0,0,0,0.2);
-      font-size: 14px;
+      padding: 10px 25px; border-radius: 25px; border: none;
+      font-weight: bold; cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     }
     .reset { background: #FF6347; color: white; }
     .home { background: #3498db; color: white; }
     .pause { background: #FFD700; color: #333; }
     
     .confetti { position: absolute; pointer-events: none; font-size: 30px; z-index: 100; }
+    @keyframes confettiFall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
     @keyframes fall {
       0% { top: 0; opacity: 1; }
       100% { top: 100%; opacity: 0; }
@@ -258,17 +232,17 @@
     /* --- FOOTER CREDITS --- */
     .footer-credits {
       position: absolute;
-      bottom: 10px; /* Adjusted bottom position */
-      left: 10px; /* Adjusted left position */
+      bottom: 20px;
+      left: 20px;
       z-index: 200;
       display: flex;
-      gap: 8px; /* Reduced gap */
+      gap: 12px;
       align-items: center;
     }
 
     .footer-icon {
-      width: 35px; /* Reduced size */
-      height: 35px;
+      width: 40px;
+      height: 40px;
       background: rgba(255, 255, 255, 0.95);
       border-radius: 50%;
       display: flex;
@@ -277,67 +251,22 @@
       text-decoration: none;
       color: #333;
       transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       cursor: pointer;
       position: relative;
     }
 
     .footer-icon:hover {
-      transform: translateY(-2px) scale(1.05);
+      transform: translateY(-4px) scale(1.1);
       background: #fff;
-      color: #3498db;
+      color: #007bff;
     }
 
     .footer-icon svg {
-      width: 18px; /* Reduced SVG size */
-      height: 18px;
+      width: 20px;
+      height: 20px;
       fill: currentColor;
     }
-
-    /* --- MODAL STYLES (For QR Code) --- */
-    .modal-overlay {
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.85);
-        backdrop-filter: blur(6px);
-        z-index: 2000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .modal-content {
-        background: #fff;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        width: 90%;
-        max-width: 380px;
-    }
-    .modal-content h2 { 
-        margin-bottom: 15px; 
-        color: #3498db; 
-        font-size: 22px;
-    }
-    .modal-content p { 
-        margin-bottom: 20px; 
-        color: #555; 
-        font-size: 14px;
-    }
-    .modal-close-btn {
-        background: #e74c3c;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 50px;
-        cursor: pointer;
-        margin-top: 20px;
-        font-weight: bold;
-        transition: background 0.2s;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .modal-close-btn:hover { background: #c0392b; }
-
   </style>
 </head>
 <body>
@@ -391,7 +320,7 @@
   <div class="footer-credits">
     <!-- Instagram -->
     <a href="https://instagram.com" target="_blank" class="footer-icon" title="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM12 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
     
     <!-- LinkedIn -->
@@ -404,9 +333,8 @@
       <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
     </a>
 
-    <!-- Donate Icon (Triggers Modal) -->
-    <!-- The UPI link has been replaced by a JavaScript call to show the QR modal -->
-    <a onclick="showModal('qrModal')" class="footer-icon" title="Donate via UPI Scanner">
+    <!-- Donate ID (UPI Link) -->
+    <a href="upi://pay?pa=8412982887@fam&pn=Sanidhya&cu=INR" class="footer-icon" title="Donate via UPI">
       <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
     </a>
   </div>
@@ -419,20 +347,10 @@
   <div class="ground"></div>
 </div>
 
-<!-- QR CODE MODAL -->
-<div id="qrModal" style="display:none;" class="modal-overlay">
-  <div class="modal-content">
-    <h2>Scan to Donate 🙏</h2>
-    <p>Thank you for supporting the creation of quality study tools!</p>
-    <!-- Your provided image link -->
-    <img src="https://i.ibb.co/BdzWqWm/Screenshot-2025-11-30-163215.png" alt="UPI QR Code Scanner" style="width: 100%; max-width: 300px; height: auto; border-radius: 10px;">
-    <button onclick="hideModal('qrModal')" class="modal-close-btn">Close</button>
-  </div>
-</div>
-
-
 <script>
 // --- SYLLABUS DATA (Dropdowns) ---
+// Note: These names match your filenames generally. 
+// "Physics" corresponds to "physicsclass11.json", etc.
 const SYLLABUS_DATA = {
   9: {
     science: ["Matter in Our Surroundings", "Is Matter Around Us Pure?", "Atoms and Molecules", "Structure of the Atom", "The Fundamental Unit of Life", "Tissues", "Diversity in Living Organisms", "Motion", "Force and Laws of Motion", "Gravitation", "Work and Energy", "Sound", "Why Do We Fall Ill?", "Natural Resources", "Improvement in Food Resources"],
@@ -462,15 +380,8 @@ let currentQIndex = 0;
 let score = 0;
 let paused = false;
 
-// Dynamic slingshot X position (calculated in resize)
-let slingshotX = 140; 
-
 // --- INITIALIZATION ---
-function initDashboard() { 
-  updateSubjects(); 
-  // Initial calculation of slingshot position and canvas size
-  window.dispatchEvent(new Event('resize')); 
-}
+function initDashboard() { updateSubjects(); }
 
 function updateSubjects() {
   const grade = document.getElementById('gradeSelect').value;
@@ -585,9 +496,7 @@ async function loadExternalData(grade, subject) {
 
   } catch (e) {
     console.error(e);
-    // Use a custom message box instead of alert()
-    const alertMsg = `Error loading ${fileName}. Make sure the file exists and is valid JSON.`;
-    document.getElementById('question').innerText = alertMsg;
+    alert(`Error loading ${fileName}.\nMake sure the file exists and is valid JSON.`);
     return false;
   }
 }
@@ -614,9 +523,10 @@ async function initializeGameSession() {
   activeQuestions = QUESTION_DATABASE[targetKey];
 
   if (!activeQuestions || activeQuestions.length === 0) {
+    // Debug helper
     console.log("Looking for:", targetKey);
     console.log("Available keys:", Object.keys(QUESTION_DATABASE));
-    document.getElementById('question').innerText = `Could not find questions for "${chapterName}". Try checking the JSON file chapter names.`;
+    alert(`Could not find questions for "${chapterName}".\nTry checking the JSON file chapter names.`);
     return;
   }
 
@@ -635,33 +545,24 @@ birdImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Angry_B
 let birdLoaded = false;
 birdImg.onload = () => birdLoaded = true;
 
-// Dynamic Slingshot height is 150px from bottom (height of slingshot container is 140px + some spacing)
-let currentSlingshotY = window.innerHeight - 150; 
+const slingshotX = 140;
+let currentSlingshotY = window.innerHeight - 150;
 let bird = { x: slingshotX, y: currentSlingshotY, r: 25, vx: 0, vy: 0, launched: false, dragging: false };
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-
-  // Responsive Slingshot X position: 10% of screen width + half the slingshot's base width (80px / 2 = 40px)
-  slingshotX = window.innerWidth * 0.10 + 40; 
   currentSlingshotY = window.innerHeight - 150;
-
-  // Snap bird back to correct slingshot height/position on resize if not launched/dragging
-  if (!bird.launched && !bird.dragging) {
-      bird.x = slingshotX;
-      bird.y = currentSlingshotY;
-  }
+  // Snap bird back to correct slingshot height on resize if not launched/dragging
+  if (!bird.launched && !bird.dragging) bird.y = currentSlingshotY;
 });
-initDashboard(); // Call init here to set up initial slingshotX
+window.dispatchEvent(new Event('resize'));
 
 function loadCurrentQuestion() {
   document.querySelectorAll('.option').forEach(e => e.remove()); // Clear old
   if (currentQIndex >= activeQuestions.length) {
-    // Use a modal or in-game message instead of alert()
-    document.getElementById('question').innerHTML = `🎉 Chapter Complete! Final Score: ${score}. <span style="color:#2ecc71;">Select a new chapter from the Menu!</span>`;
-    paused = true;
-    spawnConfetti('🎉');
+    alert(`🎉 Chapter Complete! Score: ${score}`);
+    showDashboard();
     return;
   }
 
@@ -679,17 +580,12 @@ function loadCurrentQuestion() {
 }
 
 function handleStart(x, y) {
-  // Check if click is near the slingshot base position
-  const dy = currentSlingshotY;
-  if (Math.hypot(x - slingshotX, y - dy) < 60 && !bird.launched) {
-      bird.dragging = true;
-      // Set canvas cursor to grabbing
-      canvas.style.cursor = 'grabbing';
-  }
+  const dy = window.innerHeight - 150;
+  if (Math.hypot(x - slingshotX, y - dy) < 60 && !bird.launched) bird.dragging = true;
 }
 function handleMove(x, y) {
   if (bird.dragging) {
-    const dy = currentSlingshotY;
+    const dy = window.innerHeight - 150;
     const dist = Math.hypot(x - slingshotX, y - dy);
     const max = 120;
     if (dist > max) {
@@ -704,23 +600,11 @@ function handleMove(x, y) {
 function handleEnd() {
   if (bird.dragging) {
     bird.dragging = false;
-    canvas.style.cursor = 'grab';
-
-    // Only launch if pulled back significantly
-    const pullDistance = Math.hypot(slingshotX - bird.x, currentSlingshotY - bird.y);
-
-    if (pullDistance > 10) {
-        bird.launched = true;
-        const dy = currentSlingshotY;
-        // Calculate initial velocity based on how far the bird was pulled back
-        // Multiplier adjusted slightly for responsiveness on different screen sizes
-        const velocityMultiplier = window.innerWidth < 600 ? 0.30 : 0.35; 
-        bird.vx = (slingshotX - bird.x) * velocityMultiplier;
-        bird.vy = (dy - bird.y) * velocityMultiplier;
-    } else {
-        // Snap back if not pulled far enough
-        resetBird();
-    }
+    bird.launched = true;
+    const dy = window.innerHeight - 150;
+    // Calculate initial velocity based on how far the bird was pulled back
+    bird.vx = (slingshotX - bird.x) * 0.35;
+    bird.vy = (dy - bird.y) * 0.35;
   }
 }
 
@@ -752,39 +636,33 @@ function detectCollision() {
       bird.vx = 0; bird.vy = 0;
 
       if (chosen === correct) {
+        // Correct Hit: Turn green and advance
         opt.classList.add('correct');
         score += 10;
         document.getElementById('score').innerText = score;
-        spawnConfetti('✅');
-        setTimeout(() => { 
-            currentQIndex++; 
-            resetBird(); 
-            loadCurrentQuestion(); 
-            if(!paused) animate(); // Restart animation loop if question changed
-        }, 1500);
+        spawnConfetti('🎉');
+        setTimeout(() => { currentQIndex++; resetBird(); loadCurrentQuestion(); }, 1500);
       } else {
+        // Wrong Hit: Shake and display wrong color (red)
         opt.classList.add('hit');
+        // Briefly show the correct answer in green before resetting
         const correctOpt = document.querySelector(`.option[data-index='${correct}']`);
         if (correctOpt) correctOpt.classList.add('correct');
 
         spawnConfetti('❌');
         setTimeout(() => {
+            // Remove temporary feedback classes before reset
             opts.forEach(o => { o.classList.remove('hit'); o.classList.remove('correct'); });
             resetBird();
-            if(!paused) animate(); // Restart animation loop if question failed
         }, 1500);
       }
     }
   });
 
   // Out of bounds check (below ground or too far left/right)
-  // Stop bird's movement and reset if it hits the ground/flies off
   if (bird.launched && !collisionHandled && (bird.y > canvas.height - 80 || bird.x > canvas.width || bird.x < -50)) {
     collisionHandled = true;
-    setTimeout(() => {
-        resetBird();
-        if(!paused) animate(); // Restart animation loop if bird flew off
-    }, 500);
+    setTimeout(resetBird, 500);
   }
 }
 
@@ -793,9 +671,8 @@ function drawTrajectory() {
     if (!bird.dragging) return;
 
     // Calculate initial velocity based on current drag
-    const velocityMultiplier = window.innerWidth < 600 ? 0.30 : 0.35; 
-    const initialVx = (slingshotX - bird.x) * velocityMultiplier;
-    const initialVy = (currentSlingshotY - bird.y) * velocityMultiplier;
+    const initialVx = (slingshotX - bird.x) * 0.35;
+    const initialVy = (currentSlingshotY - bird.y) * 0.35;
 
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     const totalTime = 120; // Number of dots
@@ -803,7 +680,10 @@ function drawTrajectory() {
 
     for (let t = 0; t < totalTime; t += timeStep) {
         // Simplified projectile motion equations
-        const dx = bird.x + initialVx * t;
+        const vx = initialVx;
+        const vy = initialVy + 0.6 * t; // 0.6 is the gravity used in the physics loop
+        
+        const dx = bird.x + vx * t;
         const dy = bird.y + initialVy * t + 0.5 * 0.6 * t * t; // d = initialV*t + 0.5*a*t^2
 
         // Stop drawing if the dot goes off-screen or below the ground
@@ -837,39 +717,9 @@ function resetGameFull() {
   animate();
 }
 
-function resetGame() { 
-    // If launched, reset bird and restart animation loop if paused
-    if(bird.launched) {
-        resetBird();
-        if(paused) togglePause(); // Unpause if paused by flying out of bounds
-    } else {
-        // If still in slingshot, just snap it back
-        resetBird();
-    }
-}
-
-function showDashboard() { 
-  document.getElementById('dashboard').style.display = 'flex'; 
-  document.getElementById('game-ui').style.display = 'none'; 
-  paused = true; 
-}
-function togglePause() { 
-  paused = !paused; 
-  document.querySelector('.pause').innerText = paused ? "Resume" : "Pause"; 
-  if(!paused) animate(); 
-}
-
-// --- MODAL FUNCTIONS ---
-function showModal(id) { 
-    document.getElementById(id).style.display = 'flex'; 
-    paused = true; // Pause game when modal is open
-}
-function hideModal(id) { 
-    document.getElementById(id).style.display = 'none'; 
-    paused = false; // Resume game when modal is closed
-    animate(); // Ensure the animation loop restarts if it was paused
-}
-
+function resetGame() { resetBird(); }
+function showDashboard() { document.getElementById('dashboard').style.display = 'flex'; document.getElementById('game-ui').style.display = 'none'; paused = true; }
+function togglePause() { paused = !paused; document.querySelector('.pause').innerText = paused ? "Resume" : "Pause"; if(!paused) animate(); }
 
 function spawnConfetti(char) {
   for(let i=0; i<15; i++) {
@@ -887,22 +737,20 @@ function spawnConfetti(char) {
 function animate() {
   if (paused) return;
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  const dy = currentSlingshotY; 
+  const dy = currentSlingshotY; // Renamed for clarity
 
   // Draw Trajectory if dragging
   drawTrajectory();
 
   // Draw Band (Back)
-  if (bird.dragging || (!bird.launched && (Math.abs(bird.x - slingshotX) > 1 || Math.abs(bird.y - dy) > 1))) {
+  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
     ctx.beginPath(); ctx.lineWidth = 6; ctx.strokeStyle = '#5d4037';
-    // Draw from the back stick (slingshotX - 40 is roughly the left stick based on CSS left:10% and width:80)
-    ctx.moveTo(slingshotX - 40, dy); 
-    ctx.lineTo(bird.x, bird.y); ctx.stroke();
+    ctx.moveTo(slingshotX - 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
   }
 
   // Physics
   if (bird.launched) {
-    bird.vy += 0.3; bird.x += bird.vx; bird.y += bird.vy; bird.vx *= 0.985;
+    bird.vy += 0.6; bird.x += bird.vx; bird.y += bird.vy; bird.vx *= 0.995;
     detectCollision();
   }
 
@@ -915,17 +763,15 @@ function animate() {
   ctx.restore();
 
   // Draw Band (Front)
-  if (bird.dragging || (!bird.launched && (Math.abs(bird.x - slingshotX) > 1 || Math.abs(bird.y - dy) > 1))) {
-    // Draw from the front stick
-    ctx.beginPath(); 
-    ctx.moveTo(slingshotX + 40, dy); 
-    ctx.lineTo(bird.x, bird.y); ctx.stroke();
+  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
+    ctx.beginPath(); ctx.moveTo(slingshotX + 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
   }
 
   requestAnimationFrame(animate);
 }
 
+// Start
+initDashboard();
 </script>
 </body>
 </html>
-
