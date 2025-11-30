@@ -267,22 +267,6 @@
       height: 20px;
       fill: currentColor;
     }
-
-    /* Tooltip logic for Copy ID */
-    .footer-icon.copy-btn:active::after {
-      content: "Copied!";
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #333;
-      color: white;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      white-space: nowrap;
-      pointer-events: none;
-    }
   </style>
 </head>
 <body>
@@ -349,10 +333,10 @@
       <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
     </a>
 
-    <!-- Donate ID (Click to Copy) -->
-    <div class="footer-icon copy-btn" onclick="navigator.clipboard.writeText('8412982887@fam')" title="Click to Copy Donate ID: 8412982887@fam">
-      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
-    </div>
+    <!-- Donate ID (UPI Link) -->
+    <a href="upi://pay?pa=8412982887@fam&pn=Sanidhya&cu=INR" class="footer-icon" title="Donate via UPI">
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
+    </a>
   </div>
 
   <div class="controls">
