@@ -237,7 +237,7 @@
       z-index: 200;
       display: flex;
       gap: 12px;
-      align-items: center;
+      align-items: flex-end; /* Align items to the bottom */
     }
 
     .footer-icon {
@@ -266,6 +266,39 @@
       width: 20px;
       height: 20px;
       fill: currentColor;
+    }
+
+    /* --- NEW DONATE SCANNER STYLES --- */
+    .donate-scanner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-left: 20px; /* Space it out from the circular icons */
+    }
+
+    .donate-scanner-img {
+        width: 60px; /* Small size for the footer area */
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: transform 0.2s, opacity 0.2s;
+        cursor: pointer;
+    }
+
+    .donate-scanner-img:hover {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+
+    .donate-scanner-label {
+        font-size: 10px;
+        font-weight: bold;
+        color: #333;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2px 6px;
+        border-radius: 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
   </style>
 </head>
@@ -316,7 +349,7 @@
   <canvas id="game"></canvas>
   <div class="options" id="options"></div>
 
-  <!-- FOOTER OVERLAY -->
+  <!-- FOOTER OVERLAY: Now includes the Donation QR Code -->
   <div class="footer-credits">
     <!-- Instagram -->
     <a href="https://instagram.com" target="_blank" class="footer-icon" title="Instagram">
@@ -337,6 +370,21 @@
     <a href="upi://pay?pa=8412982887@fam&pn=Sanidhya&cu=INR" class="footer-icon" title="Donate via UPI">
       <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
     </a>
+
+    <!-- NEW: Donate Scanner Photo -->
+    <div class="donate-scanner-container">
+        <!-- The user provided the image link within an <a> tag pointing to imgbb.com, 
+             so we will wrap the image in an anchor tag that opens the full image,
+             allowing them to scan it easily. -->
+        <a href="https://i.ibb.co/BdzWqWm/Screenshot-2025-11-30-163215.png" target="_blank" title="Click to view full-size scanner for donation">
+            <img 
+                src="https://i.ibb.co/BdzWqWm/Screenshot-2025-11-30-163215.png" 
+                alt="Donation Scanner QR Code" 
+                class="donate-scanner-img"
+            />
+        </a>
+        <span class="donate-scanner-label">Donate Me!</span>
+    </div>
   </div>
 
   <div class="controls">
