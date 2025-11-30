@@ -267,6 +267,25 @@
       height: 20px;
       fill: currentColor;
     }
+
+    /* QR Code Scanner Style */
+    .footer-qr {
+      height: 50px; 
+      width: auto;
+      border-radius: 8px;
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      cursor: pointer;
+      background: white;
+    }
+    
+    .footer-qr:hover {
+      transform: scale(4); /* Zoom effect for easier scanning */
+      transform-origin: bottom left;
+      z-index: 300;
+      border-color: #2ecc71;
+    }
   </style>
 </head>
 <body>
@@ -335,8 +354,11 @@
 
     <!-- Donate ID (UPI Link) -->
     <a href="upi://pay?pa=8412982887@fam&pn=Sanidhya&cu=INR" class="footer-icon" title="Donate via UPI">
-      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31zm-6-15.35c0-1.74-1.41-3.15-3.15-3.15-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 0-1.74-1.41-3.15-3.15-3.15zM16.5 3c-1.74 0-3.15 1.41-3.15 3.15 0 1.74 1.41 3.15 3.15 3.15 1.74 0 3.15-1.41 3.15-3.15 0-1.74-1.41-3.15-3.15-3.15z"/></svg>
     </a>
+
+    <!-- QR Code Scanner -->
+    <img src="https://i.ibb.co/yBR5XjNg/Screenshot-2025-11-30-170740.png" class="footer-qr" alt="Donate Scanner" title="Scan to Donate">
   </div>
 
   <div class="controls">
