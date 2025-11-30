@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>NEET 2026 Last Hope</title>
+  <title>Study Slingshot - Universal Loader</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* --- CSS STYLES --- */
@@ -33,794 +33,805 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: opacity 0.5s ease;
+      flex-direction: column;
     }
 
     .dashboard-card {
       background: white;
       padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      width: 90%;
-      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       text-align: center;
-      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      max-width: 90%;
+      width: 400px;
     }
 
     .dashboard-card h1 {
-      color: #2c3e50;
-      margin-bottom: 25px;
-      font-size: 28px;
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 10px;
     }
 
-    .form-group {
+    .dashboard-card p {
       margin-bottom: 20px;
+      color: #666;
+    }
+
+    .select-group {
+      margin-bottom: 15px;
       text-align: left;
     }
 
-    .form-group label {
+    .select-group label {
       display: block;
-      margin-bottom: 8px;
       font-weight: bold;
-      color: #555;
+      margin-bottom: 5px;
+      color: #444;
     }
 
-    select {
+    .select-group select {
       width: 100%;
-      padding: 12px;
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-      outline: none;
-      transition: border-color 0.3s;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      font-size: 1em;
+      appearance: none; /* Remove default styling */
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23333'%3e%3cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      background-size: 16px;
     }
 
-    select:focus {
-      border-color: #3498db;
-    }
 
     .start-btn {
-      background: #2ecc71;
+      background-color: #e53935; /* Red, Angry Birds style */
       color: white;
       border: none;
-      padding: 15px 40px;
-      font-size: 20px;
-      border-radius: 50px;
+      padding: 12px 25px;
+      border-radius: 8px;
       cursor: pointer;
+      font-size: 1.1em;
       font-weight: bold;
-      margin-top: 10px;
-      transition: transform 0.2s, background 0.2s;
-      box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+      transition: background-color 0.3s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(229, 57, 53, 0.4);
     }
 
     .start-btn:hover {
-      background: #27ae60;
+      background-color: #c62828;
       transform: translateY(-2px);
     }
 
-    .start-btn:disabled {
-      background: #95a5a6;
-      cursor: not-allowed;
-    }
-
     /* --- GAME UI STYLES --- */
-    #game-ui { display: none; }
-
-    .top-bar {
-      position: absolute;
-      top: 10px; left: 10px; right: 10px;
-      display: flex; justify-content: space-between;
-      z-index: 10; pointer-events: none;
-    }
-    .top-bar > * { pointer-events: auto; }
-
-    .chapter-badge {
-      background: #34495e; color: #fff;
-      padding: 8px 15px; border-radius: 20px;
-      font-weight: bold; margin-bottom: 5px;
-    }
-
-    .instructions {
-      background: rgba(0,0,0,0.7); color: #fff;
-      padding: 10px; border-radius: 10px; font-size: 14px;
-    }
-
-    .score-display {
-      background: rgba(255,255,255,0.9);
-      padding: 10px 25px; border-radius: 15px;
-      font-size: 24px; font-weight: bold;
-    }
-
-    .question-area {
-      position: absolute; top: 20px; left: 50%;
-      transform: translateX(-50%);
-      text-align: center; font-size: 20px; font-weight: bold;
-      background: rgba(255,255,255,0.98);
-      padding: 20px 40px; border-radius: 16px;
-      width: 80%; max-width: 800px; z-index: 10;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .ground {
-      position: absolute; bottom: 0; left: 0;
-      width: 100%; height: 80px;
-      background: linear-gradient(180deg, #7CFC00 0%, #32CD32 100%);
-      border-top: 5px dashed #228B22;
-    }
-
-    .slingshot {
-      position: absolute; left: 100px; bottom: 80px;
-      width: 80px; height: 140px; z-index: 2;
-    }
-    .slingshot::before, .slingshot::after {
-      content: ''; position: absolute; width: 12px; height: 140px;
-      background: #8B4513; bottom: 0;
-    }
-    .slingshot::before { left: 0; border-radius: 6px 6px 0 0; }
-    .slingshot::after { right: 0; border-radius: 6px 6px 0 0; }
-
-    canvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: grab; }
-    canvas:active { cursor: grabbing; }
-
-    .options {
-      position: absolute; right: 5%; top: 150px;
-      display: flex; flex-direction: column; gap: 15px; z-index: 8;
-    }
-
-    .option {
-      width: 220px; min-height: 70px;
-      background: #e67e22; border: 4px solid #d35400;
-      color: #fff; font-weight: bold; padding: 10px;
-      display: flex; align-items: center; justify-content: center;
-      text-align: center; border-radius: 12px;
-      transition: transform 0.2s;
-    }
-    
-    /* Correct answer color */
-    .option.correct {
-      background: #27ae60; 
-      border-color: #2ecc71;
-      animation: correctPulse 0.5s 3;
-    }
-
-    /* Wrong answer color */
-    .option.hit {
-      animation: shake 0.5s; 
-      background: #e74c3c; 
-      border-color: #c0392b;
-    }
-
-    @keyframes correctPulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-
-    .controls {
-      position: absolute; bottom: 30px; left: 50%;
-      transform: translateX(-50%); display: flex; gap: 15px; z-index: 10;
-    }
-    button.control-btn {
-      padding: 10px 25px; border-radius: 25px; border: none;
-      font-weight: bold; cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    }
-    .reset { background: #FF6347; color: white; }
-    .home { background: #3498db; color: white; }
-    .pause { background: #FFD700; color: #333; }
-    
-    .confetti { position: absolute; pointer-events: none; font-size: 30px; z-index: 100; }
-    @keyframes confettiFall {
-      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-    }
-    @keyframes fall {
-      0% { top: 0; opacity: 1; }
-      100% { top: 100%; opacity: 0; }
-    }
-
-    /* --- FOOTER CREDITS --- */
-    .footer-credits {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 200;
-      display: flex;
-      gap: 12px;
-      /* --- FIX: Align all items (circular icons and scanner) to the center vertically --- */
-      align-items: center; 
-    }
-
-    .footer-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      color: #333;
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      cursor: pointer;
+    #game-container {
       position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .footer-icon:hover {
-      transform: translateY(-4px) scale(1.1);
-      background: #fff;
-      color: #007bff;
+    #canvas {
+      display: block;
+      background: transparent;
+      width: 100%;
+      height: 100%;
     }
 
-    .footer-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: currentColor;
+    #question-area {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 15px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      min-width: 400px;
+      text-align: center;
+      z-index: 50;
     }
 
-    /* --- NEW DONATE SCANNER STYLES --- */
-    .donate-scanner-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2px; /* Reduced gap slightly */
-        margin-left: 15px; /* Adjust spacing from the circular icons */
-        /* Center the content within the container itself */
-        justify-content: center; 
+    #question-text {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #1e88e5; /* Blue for question */
     }
 
-    .donate-scanner-img {
-        width: 60px; /* Small size for the footer area */
-        height: auto;
+    #game-info {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px 15px;
         border-radius: 8px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: transform 0.2s, opacity 0.2s;
-        cursor: pointer;
+        font-size: 0.9em;
+        z-index: 50;
     }
 
-    .donate-scanner-img:hover {
-        transform: scale(1.05);
-        opacity: 0.9;
+    /* --- Target/Box Styles (options) --- */
+    .box {
+      background: #4caf50; /* Green for target */
+      color: white;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 3px solid #388e3c;
+      transition: all 0.2s ease-out;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
 
-    .donate-scanner-label {
-        font-size: 10px;
-        font-weight: bold;
-        color: #333;
-        background: rgba(255, 255, 255, 0.9);
-        padding: 1px 6px; /* Adjusted padding */
-        border-radius: 4px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    .box.hit {
+        animation: hitEffect 0.5s ease-out forwards;
+    }
+
+    @keyframes hitEffect {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2) rotate(5deg); opacity: 0.8; }
+      100% { transform: scale(0); opacity: 0; }
+    }
+
+    /* --- Confetti Effect (Simple Fall) --- */
+    @keyframes fall {
+      to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-<!-- DASHBOARD -->
-<div id="dashboard">
-  <div class="dashboard-card">
-    <h1>📚 NEET 2026 Survivor</h1>
-    
-    <div class="form-group">
-      <label>Select Grade:</label>
-      <select id="gradeSelect" onchange="updateSubjects()">
-        <option value="9">Class 9</option>
-        <option value="10">Class 10</option>
-        <option value="11">Class 11</option>
-        <option value="12">Class 12</option>
-      </select>
+  <div id="game-container">
+    <div id="game-info">
+        Level: <span id="level-display">1</span> | Score: <span id="score-display">0</span>
     </div>
-
-    <div class="form-group">
-      <label>Select Subject:</label>
-      <select id="subjectSelect" onchange="updateChapters()"></select>
+    <div id="question-area">
+      <p id="question-text">Loading game questions...</p>
     </div>
-
-    <div class="form-group">
-      <label>Select Chapter:</label>
-      <select id="chapterSelect"></select>
-    </div>
-
-    <button class="start-btn" onclick="initializeGameSession()">Start Studying 🚀</button>
-  </div>
-</div>
-
-<!-- GAME UI -->
-<div id="game-ui">
-  <div class="top-bar">
-    <div class="info-panel">
-      <div class="chapter-badge" id="current-chapter-display">Chapter</div>
-      <div class="instructions">Drag & Release to Hit Answer!</div>
-    </div>
-    <div class="score-display">Score: <span id="score">0</span></div>
+    <canvas id="canvas"></canvas>
   </div>
 
-  <div class="question-area" id="question"></div>
-
-  <div class="slingshot"></div>
-  <canvas id="game"></canvas>
-  <div class="options" id="options"></div>
-
-  <!-- FOOTER OVERLAY: Now includes the Donation QR Code -->
-  <div class="footer-credits">
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/sanidhya.bt/?hl=en" target="_blank" class="footer-icon" title="Instagram">
-      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-    </a>
-    
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/sanidhya-sangle-b7a1a032a/" target="_blank" class="footer-icon" title="LinkedIn">
-      <svg viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h5v-8.306c0-4.613 6.111-4.956 6.111 0v8.306h5v-10.332c0-8.242-9.332-7.85-11.143-3.623v-2.045z"/></svg>
-    </a>
-
-    <!-- Email -->
-    <a href="mailto:iamsanidhya.720@gmail.com" class="footer-icon" title="Email: iamsanidhya.720@gmail.com">
-      <svg viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/></svg>
-    </a>
-
-    <!-- NEW: Donate Scanner Photo -->
-    <div class="donate-scanner-container">
-        <!-- The user provided the image link within an <a> tag pointing to imgbb.com, 
-             so we will wrap the image in an anchor tag that opens the full image,
-             allowing them to scan it easily. -->
-        <a href="https://i.ibb.co/yBR5XjNg/Screenshot-2025-11-30-170740.png" target="_blank" title="Click to view full-size scanner for donation">
-            <img 
-                src="https://i.ibb.co/yBR5XjNg/Screenshot-2025-11-30-170740.png" 
-                alt="Donation Scanner QR Code" 
-                class="donate-scanner-img"
-            />
-        </a>
-        <span class="donate-scanner-label">Donate Me!</span>
-    </div>
-  </div>
-
-  <div class="controls">
-    <button class="control-btn home" onclick="showDashboard()">Menu</button>
-    <button class="control-btn reset" onclick="resetGame()">Reset Bird</button>
-    <button class="control-btn pause" onclick="togglePause()">Pause</button>
-  </div>
-  <div class="ground"></div>
-</div>
-
-<script>
-// --- SYLLABUS DATA (Dropdowns) ---
-// Note: These names match your filenames generally. 
-// "Physics" corresponds to "physicsclass11.json", etc.
-const SYLLABUS_DATA = {
-  9: {
-    science: ["Matter in Our Surroundings", "Is Matter Around Us Pure?", "Atoms and Molecules", "Structure of the Atom", "The Fundamental Unit of Life", "Tissues", "Diversity in Living Organisms", "Motion", "Force and Laws of Motion", "Gravitation", "Work and Energy", "Sound", "Why Do We Fall Ill?", "Natural Resources", "Improvement in Food Resources"],
-    history: ["The French Revolution", "Socialism in Europe", "Nazism and the Rise of Hitler", "Forest Society and Colonialism", "Pastoralists in the Modern World"],
-    geography: ["India - Size and Location", "Physical Features of India", "Drainage", "Climate", "Natural Vegetation and Wildlife", "Population"],
-    civics: ["What is Democracy? Why Democracy?", "Constitutional Design", "Electoral Politics", "Working of Institutions", "Democratic Rights"],
-    economics: ["The Story of Village Palampur", "People as Resource", "Poverty as a Challenge", "Food Security in India"]
-  },
-  10: {
-    science: ["Chemical Reactions and Equations", "Acids, Bases and Salts", "Metals and Non-metals", "Carbon and Its Compounds", "Periodic Classification of Elements", "Life Processes", "Control and Coordination", "How do Organisms Reproduce?", "Heredity and Evolution", "Light – Reflection and Refraction", "Human Eye and Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Sources of Energy", "Our Environment", "Sustainable Management of Natural Resources"]
-  },
-  11: {
-    physics: ["Units and Measurements", "Motion in a Straight Line", "Motion in a Plane", "Laws of Motion", "Work, Energy and Power", "System of Particles and Rotational Motion", "Gravitation", "Mechanical Properties of Solids", "Mechanical Properties of Fluids", "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory", "Oscillations", "Waves"],
-    chemistry: ["Some Basic Concepts of Chemistry", "Structure of Atom", "Classification of Elements", "Chemical Bonding", "States of Matter", "Thermodynamics", "Equilibrium", "Redox Reactions", "Hydrogen", "s-Block Elements", "p-Block Elements", "Organic Chemistry: Basic Principles", "Hydrocarbons", "Environmental Chemistry"],
-    biology: ["The Living World", "Biological Classification", "Plant Kingdom", "Animal Kingdom", "Morphology of Flowering Plants", "Anatomy of Flowering Plants", "Structural Organisation in Animals", "Cell: The Unit of Life", "Biomolecules", "Cell Cycle and Cell Division", "Transport in Plants", "Mineral Nutrition", "Photosynthesis in Higher Plants", "Respiration in Plants", "Plant Growth and Development", "Digestion and Absorption", "Breathing and Exchange of Gases", "Body Fluids and Circulation", "Excretory Products and their Elimination", "Locomotion and Movement", "Neural Control and Coordination", "Chemical Coordination and Integration"]
-  },
-  12: {
-    physics: ["Electric Charges and Fields", "Electrostatic Potential and Capacitance", "Current Electricity", "Moving Charges and Magnetism", "Magnetism and Matter", "Electromagnetic Induction", "Alternating Current", "Electromagnetic Waves", "Ray Optics and Optical Instruments", "Wave Optics", "Dual Nature of Radiation and Matter", "Atoms", "Nuclei", "Semiconductor Electronics"],
-    chemistry: ["Solid State", "Solutions", "Electrochemistry", "Chemical Kinetics", "Surface Chemistry", "Isolation of Elements", "The p-Block Elements", "The d- and f- Block Elements", "Coordination Compounds", "Haloalkanes and Haloarenes", "Alcohols, Phenols and Ethers", "Aldehydes, Ketones and Carboxylic Acids", "Organic Compounds Containing Nitrogen", "Biomolecules", "Polymers", "Chemistry in Everyday Life"],
-    biology: ["Reproduction in Organisms", "Sexual Reproduction in Flowering Plants", "Human Reproduction", "Reproductive Health", "Principles of Inheritance and Variation", "Molecular Basis of Inheritance", "Evolution", "Human Health and Disease", "Strategies for Enhancement in Food Production", "Microbes in Human Welfare", "Biotechnology: Principles and Processes", "Biotechnology and its Applications", "Organisms and Populations", "Ecosystem", "Biodiversity and Conservation", "Environmental Issues"]
-  }
-};
-
-let QUESTION_DATABASE = {};
-let activeQuestions = [];
-let currentQIndex = 0;
-let score = 0;
-let paused = false;
-
-// --- INITIALIZATION ---
-function initDashboard() { updateSubjects(); }
-
-function updateSubjects() {
-  const grade = document.getElementById('gradeSelect').value;
-  const subSelect = document.getElementById('subjectSelect');
-  subSelect.innerHTML = "";
-  
-  const subjects = Object.keys(SYLLABUS_DATA[grade] || {});
-  subjects.forEach(sub => {
-    const opt = document.createElement("option");
-    opt.value = sub;
-    opt.text = sub.charAt(0).toUpperCase() + sub.slice(1);
-    subSelect.appendChild(opt);
-  });
-  updateChapters();
-}
-
-function updateChapters() {
-  const grade = document.getElementById('gradeSelect').value;
-  const sub = document.getElementById('subjectSelect').value;
-  const chapSelect = document.getElementById('chapterSelect');
-  chapSelect.innerHTML = "";
-  
-  const chapters = SYLLABUS_DATA[grade]?.[sub] || [];
-  chapters.forEach(c => {
-    const opt = document.createElement("option");
-    opt.value = c;
-    opt.text = c;
-    chapSelect.appendChild(opt);
-  });
-}
-
-// --- SMART DATA LOADING (The Fix) ---
-
-// Helper: Normalize names to match (Remove "1. ", "2. ", lowercase, trim)
-function normalizeName(name) {
-  if (!name) return "";
-  // Remove leading numbers like "1. ", "10. "
-  let clean = name.replace(/^\d+\.\s*/, '');
-  // Remove special chars and lowercase for comparison
-  return clean.toLowerCase().replace(/[^a-z0-9]/g, '');
-}
-
-async function loadExternalData(grade, subject) {
-  // Try mapping common typo filenames if needed, otherwise standard
-  let fileName = `${subject.toLowerCase()}class${grade}.json`;
-  if (subject === 'biology' && grade == '11') fileName = 'bilologyclass11.json'; // Handling your specific typo
-  if (subject === 'biology' && grade == '12') fileName = 'bilologyclass12.json'; // Handling your specific typo
-
-  console.log(`Loading: ${fileName}`);
-
-  try {
-    const res = await fetch(fileName);
-    if (!res.ok) throw new Error("File not found");
-    const json = await res.json();
-    
-    QUESTION_DATABASE = {}; // Reset
-
-    // 1. Extract the List of Chapters from inconsistent JSON structures
-    let rawChapters = [];
-    
-    if (Array.isArray(json)) {
-      // Format: Class 9 (Root is Array)
-      rawChapters = json;
-    } else if (json.chapters) {
-      // Format: Class 11 (Root Object has 'chapters')
-      rawChapters = json.chapters;
-    } else if (json.class_12_chemistry_mcqs) {
-      // Format: Class 12 Chem specific
-      rawChapters = json.class_12_chemistry_mcqs;
-    } else {
-      // Fallback: Check keys (Class 10 Science style)
-      Object.keys(json).forEach(key => {
-        if(Array.isArray(json[key])) {
-           rawChapters.push({ chapter: key, questions: json[key] });
-        }
-      });
-    }
-
-    // 2. Process and Normalize Content
-    rawChapters.forEach(item => {
-      // Get chapter name (handles "1. Some Chapter" vs "Some Chapter")
-      const rawName = item.chapter || item.chapterName;
-      const normalizedKey = normalizeName(rawName); 
+  <!-- Dashboard for Game Selection -->
+  <div id="dashboard">
+    <div class="dashboard-card">
+      <h1>Study Slingshot</h1>
+      <p>Select your subject and chapter to start the game!</p>
       
-      // Get questions array (handles "questions" vs "mcqs")
-      const qArray = item.questions || item.mcqs || [];
+      <div id="selection-area">
+        <!-- Dropdowns will be inserted here by JavaScript -->
+        <p>Loading question data...</p>
+      </div>
       
-      // Normalize Questions
-      const cleanQuestions = qArray.map(qObj => {
-        const qText = qObj.q || qObj.question;
-        const options = qObj.options || [];
-        
-        // Handle Answer: Convert String Answer to Index if needed
-        let ansIndex = -1;
-        if (typeof qObj.answer === 'number') {
-          ansIndex = qObj.answer;
-        } else if (typeof qObj.answer === 'string') {
-          // If answer is "Mole", find index of "Mole" in options
-          // Use loose comparison and trim
-          ansIndex = options.findIndex(opt => opt.trim().toLowerCase() === qObj.answer.trim().toLowerCase());
-        }
+      <button class="start-btn" id="start-game-btn" disabled>Start Game</button>
+      <p id="loading-message" style="margin-top: 10px; color: #ff9800;">Please wait while questions load...</p>
+    </div>
+  </div>
 
-        return { q: qText, options: options, answer: ansIndex };
-      });
+  <script>
+    // --- CANVAS AND CONTEXT SETUP ---
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
-      // Store using the normalized key for fuzzy matching later
-      QUESTION_DATABASE[normalizedKey] = cleanQuestions;
-    });
+    let animationFrameId;
+    let paused = false;
+    let score = 0;
+    let level = 1;
 
-    console.log("Database Loaded:", Object.keys(QUESTION_DATABASE));
-    return true;
+    // --- GAME STATE VARIABLES ---
+    let allQuestionsData = {}; // Stores all fetched questions (Subject -> Class -> Chapter -> Questions[])
+    let currentQuestions = []; // The array of questions for the current chapter
+    let currentQuestionIndex = 0;
+    let targetBoxes = []; // Array of DOM elements for options
+    let correctOptionIndex = -1; // Index of the correct option
 
-  } catch (e) {
-    console.error(e);
-    alert(`Error loading ${fileName}.\nMake sure the file exists and is valid JSON.`);
-    return false;
-  }
-}
+    // --- BIRD & SLINGSHOT CONFIG ---
+    let slingshotX = 100;
+    let currentSlingshotY = canvas.height / 2; // Will be set on resize
+    const maxDragDistance = 150;
+    const birdRadius = 20;
 
-async function initializeGameSession() {
-  const grade = document.getElementById('gradeSelect').value;
-  const subject = document.getElementById('subjectSelect').value;
-  const chapterName = document.getElementById('chapterSelect').value;
-  const btn = document.querySelector('.start-btn');
-  
-  if (!chapterName) return alert("Select a chapter!");
+    let bird = {
+      x: slingshotX - 20,
+      y: 0, // Will be initialized
+      radius: birdRadius,
+      color: '#e53935', // Angry Bird Red
+      vx: 0,
+      vy: 0,
+      launched: false,
+      dragging: false,
+      dead: false,
+      launchPoint: { x: 0, y: 0 }
+    };
 
-  btn.innerText = "Loading...";
-  btn.disabled = true;
-
-  const loaded = await loadExternalData(grade, subject);
-  btn.innerText = "Start Studying 🚀";
-  btn.disabled = false;
-
-  if (!loaded) return;
-
-  // Fuzzy Match the selected chapter name to the loaded keys
-  const targetKey = normalizeName(chapterName);
-  activeQuestions = QUESTION_DATABASE[targetKey];
-
-  if (!activeQuestions || activeQuestions.length === 0) {
-    // Debug helper
-    console.log("Looking for:", targetKey);
-    console.log("Available keys:", Object.keys(QUESTION_DATABASE));
-    alert(`Could not find questions for "${chapterName}".\nTry checking the JSON file chapter names.`);
-    return;
-  }
-
-  // Start
-  document.getElementById('current-chapter-display').innerText = chapterName;
-  document.getElementById('dashboard').style.display = 'none';
-  document.getElementById('game-ui').style.display = 'block';
-  resetGameFull();
-}
-
-// --- GAME ENGINE (Physics & Logic) ---
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
-let birdImg = new Image();
-birdImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Angry_Birds_red.svg/512px-Angry_Birds_red.svg.png";
-let birdLoaded = false;
-birdImg.onload = () => birdLoaded = true;
-
-const slingshotX = 140;
-let currentSlingshotY = window.innerHeight - 150;
-let bird = { x: slingshotX, y: currentSlingshotY, r: 25, vx: 0, vy: 0, launched: false, dragging: false };
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  currentSlingshotY = window.innerHeight - 150;
-  // Snap bird back to correct slingshot height on resize if not launched/dragging
-  if (!bird.launched && !bird.dragging) bird.y = currentSlingshotY;
-});
-window.dispatchEvent(new Event('resize'));
-
-function loadCurrentQuestion() {
-  document.querySelectorAll('.option').forEach(e => e.remove()); // Clear old
-  if (currentQIndex >= activeQuestions.length) {
-    alert(`🎉 Chapter Complete! Score: ${score}`);
-    showDashboard();
-    return;
-  }
-
-  const q = activeQuestions[currentQIndex];
-  document.getElementById('question').innerHTML = `<strong>Q${currentQIndex+1}:</strong> ${q.q}`;
-  
-  const cont = document.getElementById('options');
-  q.options.forEach((optText, i) => {
-    const div = document.createElement('div');
-    div.className = 'option';
-    div.innerHTML = optText;
-    div.dataset.index = i;
-    cont.appendChild(div);
-  });
-}
-
-function handleStart(x, y) {
-  const dy = window.innerHeight - 150;
-  if (Math.hypot(x - slingshotX, y - dy) < 60 && !bird.launched) bird.dragging = true;
-}
-function handleMove(x, y) {
-  if (bird.dragging) {
-    const dy = window.innerHeight - 150;
-    const dist = Math.hypot(x - slingshotX, y - dy);
-    const max = 120;
-    if (dist > max) {
-      // Limit drag distance
-      bird.x = slingshotX + (x - slingshotX)/dist * max;
-      bird.y = dy + (y - dy)/dist * max;
-    } else {
-      bird.x = x; bird.y = y;
-    }
-  }
-}
-function handleEnd() {
-  if (bird.dragging) {
-    bird.dragging = false;
-    bird.launched = true;
-    const dy = window.innerHeight - 150;
-    // Calculate initial velocity based on how far the bird was pulled back
-    bird.vx = (slingshotX - bird.x) * 0.35;
-    bird.vy = (dy - bird.y) * 0.35;
-  }
-}
-
-// Touch/Mouse Events
-canvas.addEventListener('mousedown', e => handleStart(e.clientX, e.clientY));
-window.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
-window.addEventListener('mouseup', handleEnd);
-canvas.addEventListener('touchstart', e => { e.preventDefault(); handleStart(e.touches[0].clientX, e.touches[0].clientY); }, {passive:false});
-window.addEventListener('touchmove', e => { if(bird.dragging) e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive:false});
-window.addEventListener('touchend', handleEnd);
-
-let collisionHandled = false;
-function detectCollision() {
-  if (collisionHandled) return;
-  const opts = document.querySelectorAll('.option');
-  opts.forEach(opt => {
-    const rect = opt.getBoundingClientRect();
-    // Clamp bird's position to the nearest point on the option box
-    const cx = Math.max(rect.left, Math.min(bird.x, rect.right));
-    const cy = Math.max(rect.top, Math.min(bird.y, rect.bottom));
-    
-    // Check if distance between bird center and clamped point is less than bird radius
-    if (Math.hypot(bird.x - cx, bird.y - cy) < bird.r) {
-      collisionHandled = true;
+    // --- UTILITY FUNCTIONS ---
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
       
-      const correct = activeQuestions[currentQIndex].answer;
-      const chosen = parseInt(opt.dataset.index);
+      // Update slingshot Y position
+      currentSlingshotY = canvas.height - 100;
+      slingshotX = canvas.width * 0.1;
 
-      bird.vx = 0; bird.vy = 0;
-
-      if (chosen === correct) {
-        // Correct Hit: Turn green and advance
-        opt.classList.add('correct');
-        score += 10;
-        document.getElementById('score').innerText = score;
-        spawnConfetti('🎉');
-        setTimeout(() => { currentQIndex++; resetBird(); loadCurrentQuestion(); }, 1500);
-      } else {
-        // Wrong Hit: Shake and display wrong color (red)
-        opt.classList.add('hit');
-        // Briefly show the correct answer in green before resetting
-        const correctOpt = document.querySelector(`.option[data-index='${correct}']`);
-        if (correctOpt) correctOpt.classList.add('correct');
-
-        spawnConfetti('❌');
-        setTimeout(() => {
-            // Remove temporary feedback classes before reset
-            opts.forEach(o => { o.classList.remove('hit'); o.classList.remove('correct'); });
-            resetBird();
-        }, 1500);
+      // Re-initialize bird position if not launched
+      if (!bird.launched) {
+        bird.x = slingshotX - birdRadius;
+        bird.y = currentSlingshotY;
+        bird.launchPoint = { x: bird.x, y: bird.y };
+      }
+      
+      // Redraw everything on resize
+      if (!paused) {
+        if (animationFrameId) cancelAnimationFrame(animationFrameId);
+        animate();
       }
     }
-  });
+    
+    // --- DASHBOARD LOGIC (MODIFIED FOR SELECTION) ---
 
-  // Out of bounds check (below ground or too far left/right)
-  if (bird.launched && !collisionHandled && (bird.y > canvas.height - 80 || bird.x > canvas.width || bird.x < -50)) {
-    collisionHandled = true;
-    setTimeout(resetBird, 500);
-  }
-}
-
-// --- TRAJECTORY PATH CALCULATION ---
-function drawTrajectory() {
-    if (!bird.dragging) return;
-
-    // Calculate initial velocity based on current drag
-    const initialVx = (slingshotX - bird.x) * 0.35;
-    const initialVy = (currentSlingshotY - bird.y) * 0.35;
-
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-    const totalTime = 120; // Number of dots
-    const timeStep = 1;
-
-    for (let t = 0; t < totalTime; t += timeStep) {
-        // Simplified projectile motion equations
-        const vx = initialVx;
-        const vy = initialVy + 0.6 * t; // 0.6 is the gravity used in the physics loop
+    // Function to fetch questions data from questions.json
+    async function fetchQuestionsData() {
+        const loadingMessage = document.getElementById('loading-message');
+        const startButton = document.getElementById('start-game-btn');
+        loadingMessage.textContent = 'Fetching questions from questions.json...';
         
-        const dx = bird.x + vx * t;
-        const dy = bird.y + initialVy * t + 0.5 * 0.6 * t * t; // d = initialV*t + 0.5*a*t^2
-
-        // Stop drawing if the dot goes off-screen or below the ground
-        if (dy > canvas.height - 80 || dx > canvas.width || dx < 0) {
-            break; 
+        // --- START: External Data Fetch Logic ---
+        try {
+            // Assumes questions.json is in the same directory and structured correctly
+            const response = await fetch('questions.json');
+            
+            // Check if the file was found and the fetch was successful
+            if (!response.ok) {
+                // If the response is not OK (e.g., 404 Not Found)
+                if (response.status === 404) {
+                     throw new Error('questions.json file not found. Please ensure it is uploaded and named exactly "questions.json".');
+                }
+                throw new Error(`Network response was not ok, status: ${response.status}`);
+            }
+            
+            allQuestionsData = await response.json();
+            console.log("Questions data loaded successfully from questions.json.");
+            
+        } catch (error) {
+            console.error("Error fetching question data:", error.message);
+            loadingMessage.textContent = `Error: Could not load questions. ${error.message}`;
+            startButton.disabled = true;
+            // Clear allQuestionsData to prevent proceeding with incomplete data
+            allQuestionsData = {}; 
+            return;
         }
+        // --- END: External Data Fetch Logic ---
 
-        // Draw dot
-        ctx.beginPath();
-        ctx.arc(dx, dy, 3, 0, Math.PI * 2);
-        ctx.fill();
+        // If data is loaded, setup the dropdowns
+        if (Object.keys(allQuestionsData).length > 0) {
+            setupSelectionUI();
+            startButton.disabled = false;
+            loadingMessage.textContent = 'Data loaded. Ready to play!';
+        } else {
+            // This handles cases where the JSON file was empty or malformed after fetching
+            loadingMessage.textContent = 'Questions file loaded but contains no data. Cannot start game.';
+            startButton.disabled = true;
+        }
     }
-}
 
-function resetBird() {
-  // Clear any temporary feedback colors before reset
-  document.querySelectorAll('.option').forEach(o => { o.classList.remove('hit'); o.classList.remove('correct'); });
+    function setupSelectionUI() {
+        const selectionArea = document.getElementById('selection-area');
+        selectionArea.innerHTML = ''; // Clear initial message
 
-  bird.x = slingshotX; 
-  bird.y = currentSlingshotY;
-  bird.vx = 0; bird.vy = 0;
-  bird.launched = false; bird.dragging = false;
-  collisionHandled = false;
-}
+        // 1. Subject Dropdown
+        const subjects = Object.keys(allQuestionsData);
+        if (subjects.length === 0) return;
 
-function resetGameFull() {
-  score = 0; currentQIndex = 0; paused = false;
-  document.getElementById('score').innerText = 0;
-  resetBird();
-  loadCurrentQuestion();
-  animate();
-}
+        const subjectGroup = createDropdownGroup('subject', 'Subject:');
+        subjects.forEach(sub => {
+            subjectGroup.select.add(new Option(sub, sub));
+        });
+        selectionArea.appendChild(subjectGroup.div);
+        
+        // 2. Class Dropdown (Initially populate based on first subject)
+        const classGroup = createDropdownGroup('class', 'Class:');
+        selectionArea.appendChild(classGroup.div);
 
-function resetGame() { resetBird(); }
-function showDashboard() { document.getElementById('dashboard').style.display = 'flex'; document.getElementById('game-ui').style.display = 'none'; paused = true; }
-function togglePause() { paused = !paused; document.querySelector('.pause').innerText = paused ? "Resume" : "Pause"; if(!paused) animate(); }
+        // 3. Chapter Dropdown (Initially empty)
+        const chapterGroup = createDropdownGroup('chapter', 'Chapter:');
+        selectionArea.appendChild(chapterGroup.div);
 
-function spawnConfetti(char) {
-  for(let i=0; i<15; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti';
-    el.innerText = char;
-    el.style.left = Math.random()*window.innerWidth + 'px';
-    el.style.top = '-20px';
-    el.style.animation = `fall 2s linear forwards`;
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 2000);
-  }
-}
+        // Event Listeners for cascading updates
+        subjectGroup.select.addEventListener('change', () => updateClassDropdown(subjectGroup.select.value));
+        classGroup.select.addEventListener('change', () => updateChapterDropdown(subjectGroup.select.value, classGroup.select.value));
 
-function animate() {
-  if (paused) return;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  const dy = currentSlingshotY; // Renamed for clarity
+        // Initial population
+        updateClassDropdown(subjectGroup.select.value);
+    }
 
-  // Draw Trajectory if dragging
-  drawTrajectory();
+    function createDropdownGroup(id, labelText) {
+        const div = document.createElement('div');
+        div.className = 'select-group';
 
-  // Draw Band (Back)
-  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
-    ctx.beginPath(); ctx.lineWidth = 6; ctx.strokeStyle = '#5d4037';
-    ctx.moveTo(slingshotX - 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
-  }
+        const label = document.createElement('label');
+        label.setAttribute('for', id);
+        label.textContent = labelText;
 
-  // Physics
-  if (bird.launched) {
-    bird.vy += 0.6; bird.x += bird.vx; bird.y += bird.vy; bird.vx *= 0.995;
-    detectCollision();
-  }
+        const select = document.createElement('select');
+        select.id = id;
+        select.name = id;
 
-  // Draw Bird
-  ctx.save();
-  ctx.translate(bird.x, bird.y);
-  if (bird.launched) ctx.rotate(Math.atan2(bird.vy, bird.vx));
-  if (birdLoaded) ctx.drawImage(birdImg, -bird.r, -bird.r, bird.r*2, bird.r*2);
-  else { ctx.fillStyle = 'red'; ctx.beginPath(); ctx.arc(0,0,bird.r,0,Math.PI*2); ctx.fill(); }
-  ctx.restore();
+        div.appendChild(label);
+        div.appendChild(select);
+        return { div, select };
+    }
 
-  // Draw Band (Front)
-  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
-    ctx.beginPath(); ctx.moveTo(slingshotX + 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
-  }
+    function updateClassDropdown(selectedSubject) {
+        const classSelect = document.getElementById('class');
+        classSelect.innerHTML = ''; // Clear existing options
+        
+        const classes = Object.keys(allQuestionsData[selectedSubject] || {});
+        classes.forEach(cls => {
+            classSelect.add(new Option(cls, cls));
+        });
 
-  requestAnimationFrame(animate);
-}
+        // Trigger chapter update for the newly selected class/subject combination
+        updateChapterDropdown(selectedSubject, classSelect.value);
+    }
 
-// Start
-initDashboard();
-</script>
+    function updateChapterDropdown(selectedSubject, selectedClass) {
+        const chapterSelect = document.getElementById('chapter');
+        chapterSelect.innerHTML = ''; // Clear existing options
+
+        const chapters = Object.keys(allQuestionsData[selectedSubject]?.[selectedClass] || {});
+        chapters.forEach(chp => {
+            chapterSelect.add(new Option(chp.replace(/_/g, ' '), chp)); // Display friendly name, use key for data
+        });
+    }
+
+
+    function setupDashboard() {
+      // Setup the start button listener after data is loaded
+      document.getElementById('start-game-btn').addEventListener('click', () => {
+        const subject = document.getElementById('subject').value;
+        const className = document.getElementById('class').value;
+        const chapter = document.getElementById('chapter').value;
+        
+        if (subject && className && chapter && allQuestionsData[subject][className][chapter]) {
+            const questions = allQuestionsData[subject][className][chapter];
+            startGame(questions);
+        } else {
+            console.error("Invalid selection or missing questions.");
+        }
+      });
+      
+      // Start fetching the data immediately
+      fetchQuestionsData();
+    }
+
+    // --- GAME CONTROL FUNCTIONS (MODIFIED) ---
+
+    // Replaced the original startGame with one that accepts question data
+    function startGame(questionsArray) {
+      if (questionsArray.length === 0) {
+        // Use a modal or custom UI instead of alert()
+        console.error("No questions for this chapter!");
+        const questionText = document.getElementById('question-text');
+        questionText.textContent = "Error: No questions found for this selection!";
+        setTimeout(() => questionText.textContent = "Please select a different chapter on the start screen.", 3000);
+        
+        // Re-show dashboard to select a different chapter
+        document.getElementById('dashboard').style.display = 'flex';
+        document.getElementById('dashboard').style.opacity = '1';
+        return;
+      }
+
+      currentQuestions = questionsArray;
+      currentQuestionIndex = 0;
+      score = 0;
+      level = 1;
+
+      document.getElementById('dashboard').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('dashboard').style.display = 'none';
+        paused = false;
+        nextQuestion();
+        animate();
+      }, 500); // Wait for transition
+    }
+
+    function resetBird() {
+      bird.x = slingshotX - bird.radius;
+      bird.y = currentSlingshotY;
+      bird.vx = 0;
+      bird.vy = 0;
+      bird.launched = false;
+      bird.dead = false;
+      bird.dragging = false;
+      bird.launchPoint = { x: bird.x, y: bird.y };
+      
+      // Ensure boxes are visible for the new question
+      targetBoxes.forEach(box => box.style.opacity = '1');
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex >= currentQuestions.length) {
+        // Chapter Complete
+        gameEnd(true);
+        return;
+      }
+      
+      const questionData = currentQuestions[currentQuestionIndex];
+      
+      // Display the question on the main screen
+      document.getElementById('question-text').textContent = questionData.question;
+      
+      document.getElementById('level-display').textContent = currentQuestionIndex + 1;
+      document.getElementById('score-display').textContent = score;
+
+      correctOptionIndex = questionData.correct; // Store correct index
+      
+      createTargetBoxes(questionData.options);
+      resetBird();
+    }
+
+
+    function gameEnd(win) {
+        paused = true;
+        let finalMessage = win ? 
+            `Chapter Complete! Great work! Final Score: ${score}` : 
+            `Game Over! You finished ${currentQuestionIndex} questions. Final Score: ${score}`;
+        
+        document.getElementById('dashboard').style.display = 'flex';
+        document.getElementById('dashboard').style.opacity = '1';
+
+        const dashboardCard = document.querySelector('.dashboard-card');
+        dashboardCard.innerHTML = `
+            <h1>${win ? 'Chapter Complete!' : 'Game Over'}</h1>
+            <p>${finalMessage}</p>
+            <button class="start-btn" onclick="window.location.reload()">Play Again</button>
+        `;
+    }
+
+    // --- TARGET RENDERING (MODIFIED) ---
+
+    function createTargetBoxes(options) {
+      targetBoxes.forEach(box => box.remove()); // Clear old boxes
+      targetBoxes = [];
+
+      const container = document.getElementById('game-container');
+      
+      // Define positions for targets (adjust Y based on screen height)
+      const positions = [
+        { x: canvas.width * 0.75, y: canvas.height * 0.75 },
+        { x: canvas.width * 0.85, y: canvas.height * 0.60 },
+        { x: canvas.width * 0.70, y: canvas.height * 0.45 },
+        { x: canvas.width * 0.88, y: canvas.height * 0.30 },
+      ];
+      
+      options.forEach((optionText, index) => {
+        const pos = positions[index % positions.length];
+        const box = document.createElement('div');
+        box.className = 'box';
+        box.textContent = optionText;
+        box.style.position = 'absolute';
+        box.style.left = `${pos.x}px`;
+        box.style.top = `${pos.y}px`;
+        box.style.width = '150px';
+        box.style.height = '50px';
+        box.dataset.optionIndex = index;
+        
+        container.appendChild(box);
+        targetBoxes.push(box);
+      });
+    }
+
+    // --- GAME CORE LOGIC ---
+
+    function drawSlingshot() {
+      ctx.fillStyle = '#6d4c41'; // Brown base
+      ctx.beginPath();
+      ctx.moveTo(slingshotX - 30, currentSlingshotY + 30);
+      ctx.lineTo(slingshotX + 30, currentSlingshotY + 30);
+      ctx.lineTo(slingshotX + 20, currentSlingshotY);
+      ctx.lineTo(slingshotX - 20, currentSlingshotY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Draw Slingshot Prongs
+      ctx.strokeStyle = '#5d4037';
+      ctx.lineWidth = 6;
+
+      ctx.beginPath();
+      ctx.moveTo(slingshotX - 20, currentSlingshotY);
+      ctx.lineTo(slingshotX - 20, currentSlingshotY - 50);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(slingshotX + 20, currentSlingshotY);
+      ctx.lineTo(slingshotX + 20, currentSlingshotY - 50);
+      ctx.stroke();
+    }
+
+    function drawBird() {
+      ctx.fillStyle = bird.color;
+      ctx.beginPath();
+      ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Eyes (simple)
+      ctx.fillStyle = 'white';
+      ctx.beginPath();
+      ctx.arc(bird.radius * 0.4, -bird.radius * 0.3, bird.radius * 0.3, 0, Math.PI * 2);
+      ctx.arc(-bird.radius * 0.4, -bird.radius * 0.3, bird.radius * 0.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    function drawTrajectory() {
+      if (!bird.dragging) return;
+
+      // Draw dashed trajectory line
+      ctx.strokeStyle = 'rgba(0, 0, 0, 0.4)';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.moveTo(bird.launchPoint.x, bird.launchPoint.y);
+      ctx.lineTo(bird.x, bird.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    function drawBand(x1, y1, x2, y2) {
+      ctx.lineWidth = 6;
+      ctx.strokeStyle = '#5d4037';
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+    }
+
+    // --- COLLISION AND GAME LOGIC ---
+
+    function checkHit(birdX, birdY, box) {
+      const rect = box.getBoundingClientRect();
+      const boxX = rect.left + rect.width / 2;
+      const boxY = rect.top + rect.height / 2;
+
+      const dx = birdX - boxX;
+      const dy = birdY - boxY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Collision if center distance is less than bird radius + a small margin
+      return distance < bird.radius + 15;
+    }
+
+    function detectCollision() {
+      if (bird.dead) return;
+
+      for (let i = 0; i < targetBoxes.length; i++) {
+        const box = targetBoxes[i];
+        if (box.style.opacity === '0') continue; // Already hit or disappeared
+
+        if (checkHit(bird.x, bird.y, box)) {
+          bird.dead = true;
+          bird.launched = false; // Stop physics
+          
+          const optionIndex = parseInt(box.dataset.optionIndex);
+          
+          if (optionIndex === correctOptionIndex) {
+            // Correct Hit!
+            box.style.background = '#43a047'; // Darker green for correct hit
+            box.classList.add('hit'); // Animate out
+            score += 100;
+            currentQuestionIndex++;
+            
+            // Wait for hit animation then load next question
+            setTimeout(() => {
+              targetBoxes.forEach(b => b.remove()); // Clean up
+              targetBoxes = [];
+              nextQuestion();
+            }, 500);
+            confettiEffect(15);
+            
+          } else {
+            // Incorrect Hit
+            box.style.background = '#d32f2f'; // Red for incorrect hit
+            
+            // Display the correct answer briefly
+            targetBoxes[correctOptionIndex].style.background = '#0d47a1'; // Blue/Correct Highlight
+            
+            // Wait, then reset bird/end game
+            setTimeout(() => {
+                gameEnd(false); // Game Over on incorrect answer
+            }, 1000); 
+          }
+          return;
+        }
+      }
+      
+      // Bird flew off screen
+      if (bird.x > canvas.width || bird.y > canvas.height || bird.x < 0) {
+        if (bird.launched) {
+            bird.dead = true;
+            bird.launched = false;
+            
+            // Missed all targets, show correct answer then Game Over
+            targetBoxes[correctOptionIndex].style.background = '#0d47a1'; // Highlight correct answer
+            
+            setTimeout(() => {
+                gameEnd(false); // Game Over on a miss
+            }, 1500);
+        }
+      }
+    }
+
+    function confettiEffect(count) {
+      for (let i = 0; i < count; i++) {
+        const el = document.createElement('div');
+        el.style.width = el.style.height = '10px';
+        el.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        el.style.position = 'absolute';
+        el.style.borderRadius = '50%';
+        el.style.zIndex = '999';
+        el.style.left = bird.x + 'px';
+        el.style.top = bird.y + 'px';
+        
+        // Add a slight random starting velocity for visual effect
+        const vx = (Math.random() - 0.5) * 5;
+        const vy = (Math.random() - 0.5) * 5;
+        
+        let x = bird.x;
+        let y = bird.y;
+
+        function fallAnimation() {
+            if (y > window.innerHeight) {
+                el.remove();
+                return;
+            }
+            // Simple physics: small drag, gravity
+            const gravity = 0.5;
+            x += vx;
+            y += vy + gravity;
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            requestAnimationFrame(fallAnimation);
+        }
+        
+        document.body.appendChild(el);
+        fallAnimation();
+      }
+    }
+
+    function animate() {
+      if (paused) return;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      const dy = currentSlingshotY; // Renamed for clarity
+
+      // Draw Trajectory if dragging
+      drawTrajectory();
+
+      // Draw Band (Back)
+      if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
+        drawBand(slingshotX - 20, dy - 50, bird.x, bird.y); // Attach to the left prong
+      }
+
+      // Physics
+      if (bird.launched) {
+        bird.vy += 0.6; 
+        bird.x += bird.vx; 
+        bird.y += bird.vy; 
+        bird.vx *= 0.995; // Apply minor air resistance
+        
+        detectCollision();
+      }
+      
+      // Bird goes off screen/dies
+      if (bird.dead) {
+          // Do not draw the bird if it's dead, let the reset logic handle next step
+      } else {
+        // Draw Bird
+        ctx.save();
+        ctx.translate(bird.x, bird.y);
+        if (bird.launched) ctx.rotate(Math.atan2(bird.vy, bird.vx));
+        drawBird();
+        ctx.restore();
+      }
+
+      // Draw Band (Front) - only if dragging or still on slingshot
+      if (bird.dragging || (!bird.launched && !bird.dead)) {
+        drawBand(slingshotX + 20, dy - 50, bird.x, bird.y); // Attach to the right prong
+      }
+
+      // Draw Slingshot base (on top of the band)
+      drawSlingshot();
+
+      animationFrameId = requestAnimationFrame(animate);
+    }
+
+    // --- EVENT LISTENERS ---
+
+    function getMousePos(e) {
+      const rect = canvas.getBoundingClientRect();
+      const clientX = e.clientX !== undefined ? e.clientX : e.touches[0].clientX;
+      const clientY = e.clientY !== undefined ? e.clientY : e.touches[0].clientY;
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    function startDrag(e) {
+      if (bird.launched || bird.dead || paused) return;
+      const pos = getMousePos(e);
+      
+      // Check if click is near the unlaunched bird
+      const dx = pos.x - bird.x;
+      const dy = pos.y - bird.y;
+      if (Math.sqrt(dx * dx + dy * dy) < bird.radius + 10) {
+        bird.dragging = true;
+        // Prevent default touch behavior if using touch events
+        if (e.type.startsWith('touch')) e.preventDefault(); 
+      }
+    }
+
+    function drag(e) {
+      if (!bird.dragging || paused) return;
+      const pos = getMousePos(e);
+      
+      let newX = pos.x;
+      let newY = pos.y;
+      
+      // Calculate drag vector from the launch point
+      const dx = newX - bird.launchPoint.x;
+      const dy = newY - bird.launchPoint.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Limit drag distance
+      if (distance > maxDragDistance) {
+        const angle = Math.atan2(dy, dx);
+        newX = bird.launchPoint.x + maxDragDistance * Math.cos(angle);
+        newY = bird.launchPoint.y + maxDragDistance * Math.sin(angle);
+      }
+      
+      // Ensure bird stays behind the slingshot anchor point
+      if (newX > bird.launchPoint.x) newX = bird.launchPoint.x;
+
+      bird.x = newX;
+      bird.y = newY;
+    }
+
+    function launchBird() {
+      if (!bird.dragging || paused) return;
+
+      const launchX = bird.x;
+      const launchY = bird.y;
+      
+      // Calculate velocity (inverted and scaled)
+      bird.vx = (bird.launchPoint.x - launchX) * 0.2;
+      bird.vy = (bird.launchPoint.y - launchY) * 0.2;
+      
+      bird.dragging = false;
+      bird.launched = true;
+    }
+
+    // Canvas Events
+    canvas.addEventListener('mousedown', startDrag);
+    canvas.addEventListener('mousemove', drag);
+    canvas.addEventListener('mouseup', launchBird);
+
+    // Touch Events for Mobile
+    canvas.addEventListener('touchstart', startDrag, { passive: false });
+    canvas.addEventListener('touchmove', drag, { passive: true });
+    canvas.addEventListener('touchend', launchBird);
+
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Initial setup
+    window.onload = function() {
+      resizeCanvas();
+      setupDashboard(); // Initializes the fetching of questions.json
+      paused = true; // Start paused on the dashboard
+    };
+  </script>
 </body>
 </html>
-
-
-
