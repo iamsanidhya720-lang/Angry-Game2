@@ -4,13 +4,19 @@
   <meta charset="UTF-8" />
   <title>Study Slingshot - Classes 9 to 12</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    /* --- CSS STYLES --- */
+    /* Global Styles */
     * { 
       box-sizing: border-box; 
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', sans-serif;
     }
 
     body {
@@ -20,9 +26,30 @@
       position: relative;
     }
 
-    /* --- DASHBOARD STYLES --- */
+    /* Canvas Container */
+    #game-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: calc(100vh - 40px); /* Leave space for footer */
+      position: relative;
+    }
+
+    canvas {
+      background-color: #6aab32; /* Ground color */
+      display: block;
+      border: 4px solid #5d4037;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      /* Ensure canvas scales nicely on different screens */
+      max-width: 95%;
+      max-height: 95%;
+    }
+
+    /* --- DASHBOARD (Modal) STYLES --- */
     #dashboard {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
@@ -40,293 +67,263 @@
       background: white;
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      max-width: 90vw;
+      width: 450px;
       text-align: center;
-      max-width: 90%;
-      width: 400px;
     }
 
-    .dashboard-card h2 {
-      margin-bottom: 20px;
-      color: #333;
-      font-size: 1.8rem;
+    .dashboard-card h1 {
+      font-size: 2.5rem;
+      color: #D32F2F; /* Red bird color */
+      margin-bottom: 10px;
     }
 
     .dashboard-card p {
-      margin-bottom: 30px;
-      color: #555;
+      margin-bottom: 20px;
+      color: #5d4037;
     }
 
-    .start-button {
-      background: linear-gradient(90deg, #4CAF50, #8BC34A);
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
-    }
-
-    .start-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.6);
-    }
-
-    /* --- CANVAS STYLES --- */
-    #gameCanvas {
-      display: block;
-      background: linear-gradient(180deg, #add8e6 0%, #87cefa 100%);
-      border-bottom: 5px solid #5d4037;
-    }
-
-    /* --- MESSAGE BOX STYLES --- */
-    #message-box {
+    /* Question Modal (Overlay on Canvas) */
+    #question-modal {
       position: absolute;
-      top: 10px;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 1rem;
-      z-index: 1001;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-    
-    /* --- NEW CREDITS STYLES --- */
-    #credits-overlay {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;
-      padding: 5px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      border: 3px solid #333;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      z-index: 500;
+      max-width: 80%;
+      min-width: 300px;
+      display: none;
     }
 
-    .credit-link, #donate-id {
-      display: flex;
-      align-items: center;
-      color: #333; /* Darker color for visibility over light background */
-      text-decoration: none;
-      font-size: 0.8rem;
-      padding: 5px 8px;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: background 0.2s, transform 0.1s;
-      cursor: pointer;
+    .option-button {
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+      margin: 5px 0;
+      width: 100%;
+      text-align: left;
+      border-radius: 8px;
+      transition: background-color 0.2s, transform 0.1s;
     }
 
-    .credit-link:hover, #donate-id:hover {
-      background: rgba(255, 255, 255, 1);
+    .option-button:hover:not(.disabled) {
+      background-color: #e0e0e0;
       transform: translateY(-1px);
     }
 
-    .credit-link svg, #donate-id svg {
-      width: 14px;
-      height: 14px;
-      fill: #4CAF50; /* Green highlight for icons */
-      margin-right: 5px;
-      flex-shrink: 0;
+    .option-button.correct {
+      background-color: #4CAF50 !important;
+      color: white;
+    }
+
+    .option-button.incorrect {
+      background-color: #F44336 !important;
+      color: white;
+    }
+
+    .option-button.disabled {
+      cursor: default;
+    }
+
+    #feedback-message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    /* Scoreboard */
+    #score-board {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #333;
+      z-index: 10;
     }
     
-    #donate-id {
-        cursor: copy; /* Indicate copy action */
-        font-weight: bold;
+    /* Footer Links (New Requirement) */
+    #footer-links {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        padding: 5px 10px;
+        background: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        justify-content: flex-start; /* Aligned to bottom left */
+        gap: 20px;
+        z-index: 999;
     }
+
+    #footer-links a {
+        color: #333;
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+    }
+    #footer-links a:hover {
+        color: #D32F2F;
+    }
+    
+    /* Utility */
+    .btn-primary {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+
+    .btn-primary:hover {
+      background-color: #45a049;
+      transform: translateY(-1px);
+    }
+    
+    /* Tooltip/Message Box instead of alert */
+    #message-box {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #D32F2F;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 2000;
+        display: none;
+    }
+
   </style>
 </head>
 <body>
+  <div id="game-container">
+    <canvas id="gameCanvas"></canvas>
+    <div id="score-board">Score: 0</div>
 
-  <div id="dashboard">
-    <div class="dashboard-card">
-      <h2>Study Slingshot</h2>
-      <p>Master your science concepts from classes 9-12 by launching your knowledge bird! Hit the correct answer to score points and advance to the next question. Choose your subject and class below.</p>
-      
-      <div style="margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; align-items: center;">
-          <select id="class-select" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; width: 80%; max-width: 250px;">
-              <option value="">Select Class</option>
-              <option value="9">Class 9</option>
-              <option value="10">Class 10</option>
-              <option value="11">Class 11</option>
-              <option value="12">Class 12</option>
+    <!-- Dashboard/Setup Modal -->
+    <div id="dashboard">
+      <div class="dashboard-card">
+        <h1 class="text-4xl font-bold">Study Slingshot</h1>
+        <p class="text-lg">Select your class and subject to start learning and playing!</p>
+        
+        <div class="flex flex-col space-y-3 mb-4">
+          <label for="class-select" class="text-left font-medium">Select Class:</label>
+          <select id="class-select" class="p-2 border border-gray-300 rounded-lg">
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
           </select>
-          <select id="chapter-select" style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; width: 80%; max-width: 250px;" disabled>
-              <option value="">Select Chapter</option>
+        </div>
+
+        <div class="flex flex-col space-y-3 mb-6">
+          <label for="subject-select" class="text-left font-medium">Select Subject:</label>
+          <select id="subject-select" class="p-2 border border-gray-300 rounded-lg">
+            <!-- Options populated by JS -->
           </select>
+        </div>
+
+        <button id="start-game-btn" class="btn-primary w-full">Start Game</button>
+        <p class="text-sm text-gray-500 mt-4">Tip: Hit a block to answer a question and score points!</p>
       </div>
-
-      <button id="startButton" class="start-button" disabled>Start Game</button>
-      <p id="dashboard-error" style="color: red; margin-top: 10px; font-size: 0.9em; height: 1.2em;"></p>
     </div>
+
+    <!-- Question Modal -->
+    <div id="question-modal" style="display: none;">
+      <h3 id="modal-chapter" class="font-bold text-lg mb-2 text-gray-700"></h3>
+      <p id="modal-question" class="font-semibold text-xl mb-4 text-gray-900"></p>
+      <div id="options-container" class="flex flex-col space-y-2">
+        <!-- Options will be dynamically generated here -->
+      </div>
+      <div id="feedback-message" style="display: none;"></div>
+      <div class="flex justify-between mt-4 space-x-2">
+          <button id="fetch-tool-btn" class="btn-primary bg-blue-500 hover:bg-blue-600 text-sm py-2 px-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              Explain/Fetch
+          </button>
+          <button id="continue-game-btn" class="btn-primary bg-green-500 hover:bg-green-600 text-sm py-2 px-3" style="display: none;">
+              Continue Game
+          </button>
+      </div>
+    </div>
+    
+    <!-- Custom Message Box -->
+    <div id="message-box"></div>
+  </div>
+  
+  <!-- New Footer Hyperlinks -->
+  <div id="footer-links">
+      <a href="#" target="_blank">Privacy Policy</a>
+      <a href="#" target="_blank">Terms of Service</a>
+      <a href="#" target="_blank">About Us</a>
   </div>
 
-  <canvas id="gameCanvas"></canvas>
-  <div id="message-box"></div>
-
-  <!-- NEW CREDITS OVERLAY -->
-  <div id="credits-overlay">
-    <a href="https://instagram.com" target="_blank" class="credit-link" title="Instagram">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C7.582 4 4 7.582 4 12C4 16.418 7.582 20 12 20C16.418 20 20 16.418 20 12C20 7.582 16.418 4 12 4ZM12 1.5C6.159 1.5 1.5 6.159 1.5 12C1.5 17.841 6.159 22.5 12 22.5C17.841 22.5 22.5 17.841 22.5 12C22.5 6.159 17.841 1.5 12 1.5ZM12 6.5C8.962 6.5 6.5 8.962 6.5 12C6.5 15.038 8.962 17.5 12 17.5C15.038 17.5 17.5 15.038 17.5 12C17.5 8.962 15.038 6.5 12 6.5ZM12 8.5C13.933 8.5 15.5 10.067 15.5 12C15.5 13.933 13.933 15.5 12 15.5C10.067 15.5 8.5 13.933 8.5 12C8.5 10.067 10.067 8.5 12 8.5ZM18.5 6.5C19.052 6.5 19.5 6.052 19.5 5.5C19.5 4.948 19.052 4.5 18.5 4.5C17.948 4.5 17.5 4.948 17.5 5.5C17.5 6.052 17.948 6.5 18.5 6.5Z" fill="#4CAF50"/></svg>
-      Instagram
-    </a>
-    <a href="https://linkedin.com" target="_blank" class="credit-link" title="LinkedIn">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 2H4C2.9 2 2 2.9 2 4V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V4C22 2.9 21.1 2 20 2ZM8 19H5V8H8V19ZM6.5 6.7C5.534 6.7 4.75 5.916 4.75 4.95C4.75 3.984 5.534 3.2 6.5 3.2C7.466 3.2 8.25 3.984 8.25 4.95C8.25 5.916 7.466 6.7 6.5 6.7ZM19 19H16V13.8C16 12.52 15.42 11.8 14.5 11.8C13.58 11.8 13.11 12.52 13.11 13.8V19H10.11V8H13.11V9.3C13.58 8.44 14.52 7.7 15.6 7.7C17.65 7.7 19 8.97 19 11.7V19Z" fill="#4CAF50"/></svg>
-      LinkedIn
-    </a>
-    <a href="mailto:iamsanidhya.720@gmail.com" class="credit-link" title="Send Email">
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 6L12 11L4 6V8L12 13L20 8V6Z" fill="#4CAF50"/></svg>
-      Mail
-    </a>
-    <div id="donate-id" data-upi="8412982887@fam" title="Click to copy UPI ID: 8412982887@fam">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.03L12 21.35Z" fill="#FF4500"/></svg>
-        UPI ID
-    </div>
-  </div>
-
-
-  <script type="text/javascript">
-    // Global variable to hold loaded quiz data
-    let quizData = {};
-    let currentQuestions = [];
-    let currentQuestionIndex = -1;
-    let score = 0;
-    let highScore = 0; // Simple session high score
-
-    // --- Canvas and Context
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, setDoc, getDoc, onSnapshot, collection, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    
+    // --- CANVAS AND GAME SETUP ---
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
-    const dashboard = document.getElementById('dashboard');
-    const startButton = document.getElementById('startButton');
-    const messageBox = document.getElementById('message-box');
-    const classSelect = document.getElementById('class-select');
-    const chapterSelect = document.getElementById('chapter-select');
-    const dashboardError = document.getElementById('dashboard-error');
+    
+    let db, auth;
+    let userId = null;
+    let isAuthReady = false;
+    
+    const slingshotX = 100;
+    const slingshotBaseY = canvas.height - 100; 
+    let currentSlingshotY = slingshotBaseY;
+    const maxPullDistance = 80;
+    const launchScale = 0.15; // Velocity scale
+    const blockHitThreshold = 25;
+    const blockScore = 10;
 
-    // --- Game Variables
+    let score = 0;
+    let gameData = {};
+    let blocks = [];
+    let currentQuestion = null;
+    let availableQuestions = [];
+
     const bird = {
-      x: 0, y: 0, r: 15, // position, radius
-      vx: 0, vy: 0,      // velocity
+      x: slingshotX,
+      y: currentSlingshotY,
+      r: 15,
+      vx: 0,
+      vy: 0,
       dragging: false,
       launched: false,
-      maxPull: 100,
+      resting: true,
     };
-
-    const slingshotX = 100;
-    const slingshotY = 0; // Relative to canvas height
-    let currentSlingshotY; // Calculated in resize
-    let targets = [];
-
-    // --- Assets
-    const birdImg = new Image();
-    let birdLoaded = false;
-    birdImg.onload = () => { birdLoaded = true; };
-    birdImg.onerror = () => { birdLoaded = false; console.error("Failed to load bird image."); };
-    // Placeholder image URL
-    birdImg.src = "https://placehold.co/100x100/4CAF50/ffffff?text=Q"; 
-
-
-    // --- MathJax Setup for LaTeX rendering
-    // This is required to render the chemical formulas and math equations properly.
-    const mathjaxConfig = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            displayMath: [['$$', '$$'], ['\\[', '\\]']],
-            processEscapes: true,
-            processEnvironments: true,
-        },
-        svg: {
-            fontCache: 'global'
-        },
-        options: {
-            ignoreHtmlClass: 'tex2jax_ignore',
-            processHtmlClass: 'tex2jax_process'
-        }
-    };
-
-    // Load MathJax dynamically
-    function loadMathJax() {
-        if (typeof MathJax === 'undefined') {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-            script.id = 'MathJax-script';
-            script.async = true;
-            script.onload = () => {
-                MathJax.startup.promise.then(() => {
-                    console.log('MathJax loaded and initialized.');
-                });
-            };
-            document.head.appendChild(script);
-        } else {
-            MathJax.typesetPromise();
-        }
-    }
-
-
-    // --- Utility Functions ---
-
-    /**
-     * Shows a temporary message/toast on the screen.
-     * @param {string} msg 
-     */
-    function showMessage(msg) {
-      messageBox.textContent = msg;
-      messageBox.style.opacity = 1;
-      clearTimeout(messageBox.timer);
-      messageBox.timer = setTimeout(() => {
-        messageBox.style.opacity = 0;
-      }, 3000);
-    }
     
-    /**
-     * Copies text to the clipboard and shows a message.
-     * @param {string} text 
-     */
-    function copyToClipboard(text) {
-      // Use execCommand('copy') as navigator.clipboard might fail in iFrames
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed'; // Prevents scrolling to the element
-      textarea.style.top = '0';
-      textarea.style.left = '0';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.focus();
-      textarea.select();
-      
-      let successful = false;
-      try {
-        successful = document.execCommand('copy');
-      } catch (err) {
-        console.error('Failed to copy text: ', err);
-      }
-      
-      document.body.removeChild(textarea);
+    // Images
+    const birdImg = new Image();
+    const slingshotImg = new Image();
+    let birdLoaded = false;
+    let slingshotLoaded = false;
 
-      if (successful) {
-        showMessage('Copied UPI ID to clipboard!');
-      } else {
-        // Fallback or just show the ID
-        showMessage('Failed to copy ID. Please copy manually: ' + text);
-      }
-    }
+    // Use placeholder images for stability
+    birdImg.src = "https://placehold.co/30x30/D32F2F/FFFFFF?text=B"; // Red Bird
+    slingshotImg.src = "https://placehold.co/40x80/8D6E63/FFFFFF?text=S"; // Brown Slingshot
 
+    birdImg.onload = () => { birdLoaded = true; };
+    slingshotImg.onload = () => { slingshotLoaded = true; };
 
-    // --- Game Logic Functions ---
+    // --- GAME FUNCTIONS ---
 
-    /**
-     * Resets the bird position to the slingshot, ready for dragging.
-     */
     function resetBird() {
       bird.x = slingshotX;
       bird.y = currentSlingshotY;
@@ -334,263 +331,124 @@
       bird.vy = 0;
       bird.launched = false;
       bird.dragging = false;
+      bird.resting = true;
+    }
+    
+    function showMessageBox(message, isError = false) {
+        const box = document.getElementById('message-box');
+        box.textContent = message;
+        box.style.backgroundColor = isError ? '#F44336' : '#4CAF50';
+        box.style.display = 'block';
+        setTimeout(() => {
+            box.style.display = 'none';
+        }, 3000);
     }
 
-    /**
-     * Sets up the next question's targets.
-     */
-    function setupNextQuestion() {
-      currentQuestionIndex++;
-      if (currentQuestionIndex >= currentQuestions.length) {
-        showMessage(`Chapter Cleared! Final Score: ${score}. Starting over.`);
-        currentQuestionIndex = 0; // Loop back to the start of the chapter
-      }
-
-      const questionData = currentQuestions[currentQuestionIndex];
-      // Shuffle options and map to targets
-      const options = questionData.options.slice();
-      const correctAnswerIndex = questionData.answer;
-      
-      // Shuffle targets position for variability
-      const positions = [
-          {x: canvas.width * 0.75, y: canvas.height * 0.3},
-          {x: canvas.width * 0.75, y: canvas.height * 0.7},
-          {x: canvas.width * 0.9, y: canvas.height * 0.5},
-          {x: canvas.width * 0.6, y: canvas.height * 0.5},
-      ];
-      // Simple Fisher-Yates shuffle
-      for (let i = positions.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [positions[i], positions[j]] = [positions[j], positions[i]];
-      }
-
-
-      targets = options.map((option, index) => {
-        const isCorrect = index === correctAnswerIndex;
-        // Find the matching position from the shuffled list
-        const posIndex = options.indexOf(option); // This is not the original index, but the index in the current option set
-        
-        return {
-          x: positions[index].x,
-          y: positions[index].y,
-          r: 30 + option.length * 2, // Size based on option length
-          text: option,
-          isCorrect: isCorrect,
-          hit: false,
-          color: isCorrect ? '#4CAF50' : '#F44336' // Green for correct, Red for wrong
-        };
-      });
-      
-      // Rerender math in the question text.
-      if (MathJax) {
-          MathJax.tex2chtmlPromise(questionData.q)
-              .then((node) => {
-                  const tempDiv = document.createElement('div');
-                  tempDiv.appendChild(node);
-                  questionData.renderedText = tempDiv.innerHTML;
-                  MathJax.startup.document.clear(); // Clear the buffer
-                  draw(); // Redraw once question is rendered
-              })
-              .catch((err) => {
-                  console.error('MathJax rendering error:', err);
-                  questionData.renderedText = questionData.q; // Use raw text as fallback
-                  draw();
-              });
-      } else {
-          questionData.renderedText = questionData.q;
-      }
-      
-      resetBird();
-      showMessage(`Question ${currentQuestionIndex + 1}/${currentQuestions.length}: ${questionData.q}`);
-    }
-
-
-    /**
-     * Draws the current question text on the canvas.
-     */
-    function drawQuestionText() {
-        if (currentQuestionIndex < 0 || !currentQuestions[currentQuestionIndex]) return;
-
-        const questionData = currentQuestions[currentQuestionIndex];
-        const questionText = questionData.q;
-
-        ctx.fillStyle = '#333333';
-        ctx.font = '18px Arial';
-        ctx.textAlign = 'left';
-
-        // Draw Score and High Score
-        ctx.fillText(`Score: ${score}`, 10, 30);
-        ctx.fillText(`High Score: ${highScore}`, 10, 55);
-        
-        // Split the question into multiple lines if too long
-        const maxWidth = canvas.width * 0.6;
-        let words = questionText.split(' ');
-        let line = '';
-        let y = 30; // Starting Y position
-
-        ctx.font = '22px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#000000';
-        
-        const xCenter = canvas.width / 2;
-        y = 50;
-
-        // Simple text wrapping (non-MathJax part)
-        for(let n = 0; n < words.length; n++) {
-            let testLine = line + words[n] + ' ';
-            let metrics = ctx.measureText(testLine);
-            let testWidth = metrics.width;
-            if (testWidth > maxWidth && n > 0) {
-                // Check if renderedText exists (MathJax processed)
-                if (questionData.renderedText) {
-                    // If MathJax was used, the text is already handled, let's just use the raw text for this simplified demo to prevent complex canvas-math rendering issues.
-                    // For a full solution, we would need to draw the HTML/SVG content from MathJax onto the canvas, which is complex.
-                    // Sticking to simple line breaks for non-math text.
-                }
-                ctx.fillText(line, xCenter, y);
-                line = words[n] + ' ';
-                y += 30;
-            } else {
-                line = testLine;
-            }
-        }
-        ctx.fillText(line, xCenter, y);
-
-        // Optional: Draw chapter info
-        ctx.font = '14px Arial';
-        ctx.fillStyle = '#555';
-        ctx.fillText(`${currentQuestions[0].chapter}`, xCenter, 90);
-    }
-
-
-    /**
-     * Detects collision between the bird and any target.
-     */
     function detectCollision() {
-      for (let i = 0; i < targets.length; i++) {
-        const target = targets[i];
-        if (target.hit) continue;
+      if (!bird.launched) return;
 
-        const dx = bird.x - target.x;
-        const dy = bird.y - target.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+      // Wall and Ground collision
+      if (bird.y + bird.r > canvas.height - 30) {
+        bird.y = canvas.height - 30 - bird.r;
+        bird.vy *= -0.8; 
+        if (Math.abs(bird.vy) < 1) { 
+            bird.vy = 0; 
+            bird.vx *= 0.8;
+        }
+      }
+      if (bird.x + bird.r > canvas.width || bird.x - bird.r < 0) {
+        bird.vx *= -0.8;
+        bird.x = Math.max(bird.r, Math.min(canvas.width - bird.r, bird.x));
+      }
+      
+      // Stop the bird if it's slow
+      if (Math.abs(bird.vx) < 0.1 && Math.abs(bird.vy) < 0.1 && bird.y > canvas.height - 50 - bird.r) {
+        bird.launched = false;
+        bird.resting = true;
+        
+        // Wait a moment and reset for the next shot if the question modal is not open
+        setTimeout(() => {
+            if (document.getElementById('question-modal').style.display === 'none') {
+                 resetBird();
+            }
+        }, 1000);
+        
+      }
 
-        if (distance < bird.r + target.r) {
-          // Collision detected
-          target.hit = true;
-          bird.launched = false; // Stop bird movement
+      // Block collision
+      blocks.forEach((block, index) => {
+        if (block.health > 0) {
+          const dx = bird.x - block.x;
+          const dy = bird.y - block.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (target.isCorrect) {
-            score += 10;
-            highScore = Math.max(highScore, score);
-            showMessage('Correct Answer! +10 Points!');
-            // Wait briefly before moving to the next question
-            setTimeout(setupNextQuestion, 1500); 
-          } else {
-            score = Math.max(0, score - 5); // Deduct points for wrong answer
-            showMessage('Wrong Answer! -5 Points. Try again!');
-            setTimeout(resetBird, 1500); // Reset bird after a moment
+          if (distance < bird.r + block.r) {
+            // Collision detected
+            block.health -= 1;
+            block.hit = true;
+            bird.launched = false; // Stop the bird immediately
+            bird.resting = true;
+            
+            // Show question modal
+            showQuestionModal(block.qIndex);
+
+            // Simple bounce back
+            bird.vx *= -0.5;
+            bird.vy *= -0.5;
+
+            if (block.health <= 0) {
+              // Mark for removal on score/correct answer
+              block.r = 0; 
+            }
           }
-          break;
         }
-      }
-      
-      // Check if bird flew out of bounds without hitting a target
-      if (bird.launched && (bird.x > canvas.width || bird.y > canvas.height)) {
-          bird.launched = false;
-          showMessage('Miss! Resetting bird.');
-          setTimeout(resetBird, 1000);
-      }
-    }
-
-
-    /**
-     * Handles the bird launch calculation.
-     */
-    function launchBird(endX, endY) {
-      if (bird.launched) return;
-
-      const dx = slingshotX - endX;
-      const dy = currentSlingshotY - endY;
-      
-      // Calculate force multiplier (adjust this value for game difficulty)
-      const forceMultiplier = 0.2; 
-      
-      bird.vx = dx * forceMultiplier;
-      bird.vy = dy * forceMultiplier;
-      bird.launched = true;
-      bird.dragging = false;
-    }
-
-
-    /**
-     * Draws the game state on the canvas.
-     */
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Sky/Ground Effect (Simple)
-      const groundY = canvas.height - 50;
-      ctx.fillStyle = '#a0522d'; // Brown ground
-      ctx.fillRect(0, groundY, canvas.width, 50);
-
-      drawQuestionText();
-
-      // Draw Slingshot base (trunk)
-      ctx.fillStyle = '#5d4037';
-      ctx.fillRect(slingshotX - 25, groundY - 150, 10, 150);
-
-      // Draw Targets
-      targets.forEach(target => {
-        // Draw the target circle
-        ctx.fillStyle = target.hit ? '#AAAAAA' : target.color;
-        ctx.beginPath();
-        ctx.arc(target.x, target.y, target.r, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Draw the option text
-        ctx.fillStyle = 'white';
-        ctx.font = '14px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText(target.text, target.x, target.y + 5);
       });
-      
-      // Draw trajectory line if bird is being dragged
-      if (bird.dragging) {
-        ctx.strokeStyle = '#333';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([5, 5]);
-        
-        const launchX = bird.x;
-        const launchY = bird.y;
-        
-        // Calculate initial velocity based on pull
-        const dx = slingshotX - launchX;
-        const dy = currentSlingshotY - launchY;
-        const forceMultiplier = 0.2;
-        let vx = dx * forceMultiplier;
-        let vy = dy * forceMultiplier;
-        
-        // Draw dots for the next 60 frames (simulated)
-        for (let t = 0; t < 60; t += 3) {
-          const dt = t / 60; // Time step
-          const dx = launchX + vx*dt*20; // 20 is a time scale factor
-          const dy = launchY + vy*dt*20 + 0.3 * (dt*20)*(dt*20); // 0.3 is gravity
-          
-          if (dx > canvas.width || dy > canvas.height) break; // Stop drawing if out of bounds
+    }
 
-          ctx.beginPath();
-          ctx.arc(dx, dy, 2, 0, Math.PI*2);
-          ctx.fill();
-        }
-        ctx.setLineDash([]); // Reset line dash
+    // --- DRAW FUNCTIONS ---
+
+    function drawGround() {
+      ctx.fillStyle = '#5d4037'; // Dark brown base
+      ctx.fillRect(0, canvas.height - 30, canvas.width, 30);
+      ctx.fillStyle = '#8bc34a'; // Grass top
+      ctx.fillRect(0, canvas.height - 40, canvas.width, 10);
+      ctx.beginPath();
+      ctx.fillStyle = '#4CAF50';
+      for(let i = 0; i < canvas.width; i+=10) {
+        ctx.arc(i, canvas.height - 40, 5, 0, Math.PI, true);
+        ctx.fill();
       }
+    }
 
+    function drawSlingshot() {
+      const slingshotW = 40;
+      const slingshotH = 80;
+      
+      // Back post
+      ctx.fillStyle = '#5d4037'; 
+      ctx.fillRect(slingshotX - slingshotW / 2, slingshotBaseY - slingshotH, slingshotW / 2, slingshotH);
 
-      // --- Draw Slingshot Bands (Back band drawn before bird, front band drawn after) ---
-
-      // Back band (partially obscured by bird when at origin)
-      if (!bird.launched) {
+      // Back band (behind the bird)
+      if (bird.dragging || bird.resting) {
+        ctx.strokeStyle = '#5d4037';
+        ctx.lineWidth = 6;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(slingshotX - 20, currentSlingshotY);
+        ctx.lineTo(bird.x, bird.y);
+        ctx.stroke();
+      }
+      
+      // Slingshot frame (image/fallback)
+      if (slingshotLoaded) {
+        ctx.drawImage(slingshotImg, slingshotX - slingshotW/2, slingshotBaseY - slingshotH, slingshotW, slingshotH);
+      } else {
+         ctx.fillStyle = '#8D6E63'; // Fallback color
+         ctx.fillRect(slingshotX - slingshotW/2, slingshotBaseY - slingshotH, slingshotW, slingshotH);
+      }
+      
+      // Front band (in front of the bird)
+      if (bird.dragging || bird.resting) {
         ctx.strokeStyle = '#5d4037';
         ctx.lineWidth = 6;
         ctx.lineCap = 'round';
@@ -599,10 +457,9 @@
         ctx.lineTo(bird.x, bird.y);
         ctx.stroke();
       }
+    }
 
-      // Bird Physics (already updated in animate loop)
-
-      // Draw Bird
+    function drawBird() {
       ctx.save();
       ctx.translate(bird.x, bird.y);
       if(bird.launched) {
@@ -613,340 +470,563 @@
         ctx.drawImage(birdImg, -bird.r, -bird.r, bird.r*2, bird.r*2);
       } else {
         // Fallback: Draw a simple red circle
-        ctx.fillStyle = 'red';
+        ctx.fillStyle = '#D32F2F';
         ctx.beginPath();
         ctx.arc(0,0, bird.r, 0, Math.PI*2);
         ctx.fill();
       }
       ctx.restore();
+    }
+    
+    function drawBlocks() {
+      blocks.forEach(block => {
+        if (block.health > 0) {
+          ctx.fillStyle = block.color;
+          ctx.fillRect(block.x - block.r, block.y - block.r, block.r * 2, block.r * 2);
+          
+          // Draw a small chapter label on the block
+          ctx.fillStyle = 'white';
+          ctx.font = '10px Inter';
+          ctx.textAlign = 'center';
+          ctx.fillText(block.label, block.x, block.y + 4); 
+          
+          // Draw a health indicator
+          ctx.fillStyle = block.hit ? '#F44336' : '#FFEB3B';
+          ctx.fillRect(block.x - block.r, block.y - block.r - 5, block.r * 2 * (block.health / block.maxHealth), 3);
+          
+          block.hit = false;
+        }
+      });
+    }
 
-      // Front band (drawn after bird so it looks like it's holding the bird)
-      if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== currentSlingshotY))) {
-        ctx.strokeStyle = '#5d4037';
-        ctx.lineWidth = 6;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(slingshotX - 20, currentSlingshotY);
-        ctx.lineTo(bird.x, bird.y);
-        ctx.stroke();
+    function drawTrajectory() {
+      if (bird.dragging || bird.launched) {
+        const dx = bird.x - slingshotX;
+        const dy = bird.y - currentSlingshotY;
+        const vx = -dx * launchScale;
+        let vy = -dy * launchScale;
+
+        // Draw trajectory for 100 steps
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        for (let t = 0; t < 100; t += 5) {
+          const pathX = bird.x + vx * t;
+          let pathY = bird.y + vy * t + 0.3 * t * t;
+          
+          // Stop drawing past the ground
+          if (pathY > canvas.height - 30) break;
+          
+          ctx.beginPath();
+          ctx.arc(pathX, pathY, 2, 0, Math.PI*2);
+          ctx.fill();
+        }
       }
     }
 
 
-    /**
-     * Main animation loop.
-     */
     function animate() {
+      // Resize canvas on every frame (handles responsiveness)
+      const container = document.getElementById('game-container');
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight - 40; // Accounting for footer
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drawGround();
+      drawTrajectory();
+      drawSlingshot();
+      
+      if (bird.launched || bird.dragging) {
+          // Bird Physics update
+          if (bird.launched) {
+            bird.vy += 0.6; // Gravity
+            bird.x += bird.vx;
+            bird.y += bird.vy;
+            bird.vx *= 0.995; // Air resistance
+            detectCollision();
+          }
+          drawBird();
+      } else {
+           // Draw bird snapped to slingshot position
+           resetBird(); // Ensures it snaps back if not launched/dragging
+           drawBird();
+      }
+      
+      drawBlocks();
+
+
       requestAnimationFrame(animate);
-      
-      if (dashboard.style.opacity === '0' || dashboard.style.display === 'none') {
-        // Only run physics if the game is active
-        if (bird.launched) {
-          bird.vy += 0.6; // Gravity
-          bird.x += bird.vx;
-          bird.y += bird.vy;
-          bird.vx *= 0.995; // Air resistance
-          detectCollision();
-        }
-        
-        draw();
-      }
-    }
-
-
-    // --- Event Handlers ---
-
-    /**
-     * Resizes canvas and recalculates relative positions.
-     */
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      currentSlingshotY = canvas.height - 150; // Position the slingshot 150px from the bottom
-      resetBird();
-      draw();
     }
     
-    /**
-     * Loads quiz data from JSON files.
-     * @param {string} className 
-     * @param {string} subjectName 
-     */
-    async function loadQuizData(className, subjectName) {
-        const fileName = `${subjectName.toLowerCase()}class${className}.json`;
-        if (quizData[fileName]) return;
-        
-        const mockFetch = async () => {
-            // Mock fetch based on known file names from the context
-            const files = {
-                'scienceclass9.json': [/* ... quiz data ... */],
-                'scienceclass10.json': { /* ... quiz data ... */ },
-                'bilologyclass11.json': { /* ... quiz data ... */ },
-                'chemistryclass11.json': { /* ... quiz data ... */ },
-                'bilologyclass12.json': { /* ... quiz data ... */ },
-                'chemistryclass12.json': { /* ... quiz data ... */ }
-            };
-            
-            // This relies on file names and content structure being consistent with uploads.
-            // Assuming the content is accessible via contentFetchId:
-            const contentId = `${subjectName.toLowerCase()}class${className}.json`;
-            
-            // In a real environment, you'd use a real fetch. Here, we rely on the
-            // execution environment's access to the files.
-            
-            // Since this is a self-contained HTML file and I cannot run a real fetch
-            // on arbitrary uploaded files, I must assume the data will be available
-            // or use a placeholder structure mimicking the uploads.
-            // For now, I'll assume the files are available via the provided mechanism.
-            // We will use a placeholder or assume the platform handles the asset access.
-            
-            // For the purpose of this demo, we'll map the known files to their names.
-            let mockData;
-            switch(fileName) {
-              case 'scienceclass9.json':
-                mockData = [{"chapter": "Matter in Our Surroundings","questions": [{"q": "Which of the following is an example of matter?", "options": ["Light", "Heat", "Cold", "Stone"], "answer": 3},{"q": "Matter is made up of:", "options": ["Atoms", "Waves", "Energy", "Heat"], "answer": 0}]}];
-                break;
-              case 'scienceclass10.json':
-                mockData = {"Chemical Reactions and Equations": [{"q": "Which of the following is a balanced equation for: $\\text{Mg} + \\text{O}_2 \\to \\text{MgO}$?", "options": ["$\\text{Mg} + \\text{O}_2 \\to \\text{MgO}$", "$2\\text{Mg} + \\text{O}_2 \\to 2\\text{MgO}$", "$\\text{Mg} + 2\\text{O}_2 \\to 2\\text{MgO}$", "$2\\text{Mg} + 2\\text{O}_2 \\to 2\\text{MgO}$"], "answer": 1}]};
-                break;
-              case 'bilologyclass11.json':
-                mockData = {"class": "11", "subject": "Biology", "chapters": [{"chapter": "1. The Living World", "mcqs": [{"question": "The branch of biology that deals with classification is called:", "options": ["Anatomy", "Ecology", "Taxonomy", "Physiology"], "answer": "Taxonomy"}]}]};
-                break;
-              case 'chemistryclass11.json':
-                mockData = {"class": "11", "subject": "Chemistry", "chapters": [{"chapter": "1. Some Basic Concepts of Chemistry", "mcqs": [{"question": "The SI unit of amount of substance is:", "options": ["Mole", "Gram", "Litre", "Kilogram"], "answer": "Mole"}]}]};
-                break;
-              case 'bilologyclass12.json':
-                mockData = {"class": "12", "subject": "Biology", "chapters": [{"chapter": "1. Reproduction in Organisms", "mcqs": [{"question": "The mode of reproduction in yeast is:", "options": ["Binary fission", "Budding", "Fragmentation", "Spore formation"], "answer": "Budding"}]}]};
-                break;
-              case 'chemistryclass12.json':
-                 mockData = {"class_12_chemistry_mcqs": [{"chapter": "Solid State", "questions": [{"q": "The coordination number in fcc lattice is:", "options": ["4", "6", "8", "12"], "answer": "12"}]}]};
-                break;
-              default:
-                return null;
-            }
-            return mockData;
-        };
+    // --- UI/UX & QUESTION LOGIC ---
+    
+    function generateBlocks(chapters) {
+      if (!chapters || chapters.length === 0) {
+          showMessageBox("No questions found for the selected subject/class!", true);
+          return;
+      }
+      
+      blocks = [];
+      availableQuestions = [];
+      
+      // Compile all questions and assign a unique index
+      let qIndex = 0;
+      chapters.forEach(chapter => {
+          // Class 9 uses 'questions', Class 11/12 use 'mcqs'
+          const questions = chapter.questions || chapter.mcqs || [];
+          questions.forEach(q => {
+              // Normalize the question object structure
+              availableQuestions.push({
+                  chapter: chapter.chapter,
+                  q: q.q || q.question, // Handle both key names
+                  options: q.options,
+                  answer: q.answer
+              });
+          });
+      });
+      
+      if (availableQuestions.length === 0) {
+          showMessageBox("No valid questions were extracted from the data!", true);
+          return;
+      }
+      
+      const numBlocks = Math.min(10, availableQuestions.length); // Limit to 10 blocks for visual space
+      const blockRadius = 25;
+      const startX = canvas.width - (blockRadius * 2 * numBlocks + 20); // Start far right
+      const baseY = canvas.height - 40 - blockRadius;
+      
+      const colors = ['#f44336', '#ff9800', '#2196f3', '#4caf50', '#9c27b0'];
+      const maxHealth = 3;
 
-        const data = await mockFetch();
-        if (data) {
-          quizData[fileName] = data;
-        }
+      for (let i = 0; i < numBlocks; i++) {
+        // Select a random, unique question for this block
+        const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+
+        blocks.push({
+          x: startX + i * (blockRadius * 2 + 10),
+          y: baseY,
+          r: blockRadius,
+          color: colors[i % colors.length],
+          health: maxHealth,
+          maxHealth: maxHealth,
+          qIndex: randomIndex, // Index into the global availableQuestions array
+          label: `Q${i+1}`, // Simple label
+          hit: false
+        });
+      }
+      showMessageBox(`${numBlocks} blocks loaded with questions. Launch the bird!`);
     }
-
-    /**
-     * Populates the chapter select dropdown based on the chosen class/subject.
-     */
-    async function populateChapterSelect() {
-        const className = classSelect.value;
-        const subjectName = 'science'; // Assuming science covers all
+    
+    // --- Data and Firebase Management ---
+    
+    async function loadQuestionData(className, subject) {
+      const fileName = `${subject.toLowerCase()}class${className}.json`;
+      
+      try {
+        const response = await fetch(fileName);
+        if (!response.ok) {
+          throw new Error(`File not found: ${fileName}`);
+        }
+        const data = await response.json();
         
-        if (!className) {
-            chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-            chapterSelect.disabled = true;
-            startButton.disabled = true;
-            return;
+        // Handle different data structures: 
+        if (className === '9' || className === '10') {
+            // Class 9/10 is an Array of Objects (with 'chapters' or 'questions' property)
+            // Class 10 is an Object with chapter names as keys
+            
+            if (Array.isArray(data)) {
+                // Class 9 structure is an array of chapter objects
+                const chapterData = data.find(c => c.subject === subject || !c.subject); // Find by subject or use if subject-specific
+                gameData = chapterData ? (chapterData.chapters || chapterData) : data;
+            } else if (typeof data === 'object' && data !== null) {
+                // Class 10 structure is an object with chapter keys
+                // Filter to get only the selected subject's chapter data if needed,
+                // but for simplicity, we treat the object keys as chapters.
+                gameData = Object.keys(data).map(key => ({
+                    chapter: key,
+                    questions: data[key]
+                }));
+            }
+        } else if (className === '11' || className === '12') {
+            // Class 11/12 is an Object with 'chapters' property
+            gameData = data.chapters;
         }
 
-        try {
-            await loadQuizData(className, subjectName);
-            const fileName = `${subjectName.toLowerCase()}class${className}.json`;
-            const data = quizData[fileName];
-            
-            if (!data) {
-                dashboardError.textContent = "Could not load data for this class.";
-                return;
-            }
-
-            chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-            chapterSelect.disabled = false;
-            
-            let chapters = [];
-            // Handle different JSON structures from the uploads
-            if (Array.isArray(data)) { // Science 9
-                chapters = data.map(c => ({ name: c.chapter, questions: c.questions }));
-            } else if (data.chapters) { // Biology/Chemistry 11/12 (using 'mcqs' or 'question'/'answer' structure)
-                chapters = data.chapters.map(c => ({ name: c.chapter, questions: c.mcqs || c.questions }));
-            } else if (typeof data === 'object') { // Science 10 (object keys are chapters)
-                 chapters = Object.keys(data).map(key => ({ name: key, questions: data[key] }));
-            }
-
-            chapters.forEach(chapter => {
-                // Ensure questions is an array for safety
-                const questions = Array.isArray(chapter.questions) ? chapter.questions : [];
-                
-                // Normalizing the question structure for consistency
-                const normalizedQuestions = questions.map(q => ({
-                    q: q.question || q.q, // Use 'question' or 'q'
-                    options: q.options,
-                    answer: typeof q.answer === 'number' ? q.answer : q.options.indexOf(q.answer) // Normalize answer to index
-                })).filter(q => q.q && q.options && q.options.length > 0 && q.answer >= 0);
-
-                if (normalizedQuestions.length > 0) {
-                    const option = document.createElement('option');
-                    option.value = chapter.name;
-                    option.textContent = chapter.name;
-                    chapterSelect.appendChild(option);
-                    quizData[`${className}-${chapter.name}`] = normalizedQuestions; // Store normalized data by chapter key
+        // If data is still structured as an object with chapter names as keys, convert it
+        if (!Array.isArray(gameData) && typeof gameData === 'object') {
+            gameData = Object.keys(gameData).map(key => ({
+                chapter: key,
+                questions: gameData[key]
+            }));
+        }
+        
+        if (!Array.isArray(gameData) || gameData.length === 0) {
+            throw new Error("Data structure invalid or empty after parsing.");
+        }
+        
+        console.log("Loaded game data:", gameData);
+        generateBlocks(gameData);
+        document.getElementById('dashboard').style.display = 'none';
+        
+      } catch (error) {
+        console.error("Error loading question data:", error);
+        showMessageBox(`Failed to load data for ${className}/${subject}. Error: ${error.message}`, true);
+      }
+    }
+    
+    // --- Firebase/Auth Setup ---
+    function setupFirebase() {
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                userId = user.uid;
+                console.log("Firebase signed in. User ID:", userId);
+            } else {
+                try {
+                    // Sign in anonymously if no token is provided
+                    if (typeof __initial_auth_token === 'undefined') {
+                        await signInAnonymously(auth);
+                    } else {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    }
+                } catch (error) {
+                    console.error("Error signing in:", error);
+                    showMessageBox("Could not sign into Firebase. Data saving will not work.", true);
                 }
-            });
-
-            dashboardError.textContent = '';
-        } catch (error) {
-            console.error('Error loading quiz data:', error);
-            dashboardError.textContent = "Error loading data. Check console.";
-        }
-    }
-
-
-    /**
-     * Starts the game with the selected chapter.
-     */
-    function startGame() {
-      const chapterKey = `${classSelect.value}-${chapterSelect.value}`;
-      currentQuestions = quizData[chapterKey];
-      
-      if (!currentQuestions || currentQuestions.length === 0) {
-        dashboardError.textContent = 'Please select a valid chapter with questions.';
-        return;
-      }
-
-      score = 0;
-      currentQuestionIndex = -1;
-      
-      // Hide dashboard smoothly
-      dashboard.style.opacity = 0;
-      setTimeout(() => {
-        dashboard.style.display = 'none';
-        resizeCanvas(); // Ensure game elements are positioned correctly
-        setupNextQuestion();
-      }, 300);
+            }
+            isAuthReady = true;
+            // Fetch/Setup Score Data (or just rely on local score for simplicity now)
+        });
     }
     
-    // --- Initialization and Event Listeners ---
-    
-    window.onload = function() {
-      loadMathJax(); // Load MathJax for equation rendering
-      resizeCanvas();
-      window.addEventListener('resize', resizeCanvas);
-      
-      // Slingshot drag and launch logic
-      canvas.addEventListener('mousedown', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        const distance = Math.sqrt(
-          (mouseX - slingshotX) ** 2 + (mouseY - currentSlingshotY) ** 2
-        );
-
-        if (distance < bird.r * 2 && !bird.launched) {
-          bird.dragging = true;
-        }
-      });
-
-      canvas.addEventListener('mousemove', (e) => {
-        if (!bird.dragging) return;
+    function updateScore(points) {
+        score += points;
+        document.getElementById('score-board').textContent = `Score: ${score}`;
         
-        const rect = canvas.getBoundingClientRect();
-        let mouseX = e.clientX - rect.left;
-        let mouseY = e.clientY - rect.top;
-
-        // Constraint pull distance
-        const dx = mouseX - slingshotX;
-        const dy = mouseY - currentSlingshotY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance > bird.maxPull) {
-          const angle = Math.atan2(dy, dx);
-          mouseX = slingshotX + bird.maxPull * Math.cos(angle);
-          mouseY = currentSlingshotY + bird.maxPull * Math.sin(angle);
-        }
+        if (!isAuthReady || !userId) return;
         
-        // Ensure bird stays on the left side of the slingshot
-        if (mouseX > slingshotX + 10) mouseX = slingshotX + 10;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const scoreDocRef = doc(db, 'artifacts', appId, 'users', userId, 'game_state', 'score');
         
-        bird.x = mouseX;
-        bird.y = mouseY;
-        draw();
-      });
+        setDoc(scoreDocRef, { score: score, lastUpdated: new Date() }, { merge: true }).catch(err => {
+             console.error("Failed to save score:", err);
+        });
+    }
 
-      canvas.addEventListener('mouseup', (e) => {
-        if (!bird.dragging) return;
-        launchBird(bird.x, bird.y);
-      });
+    // --- Interaction Handlers ---
+
+    function setupEventListeners() {
+      canvas.addEventListener('mousedown', onMouseDown);
+      canvas.addEventListener('mousemove', onMouseMove);
+      canvas.addEventListener('mouseup', onMouseUp);
       
       // Touch events for mobile
-      canvas.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        const touchX = touch.clientX - rect.left;
-        const touchY = touch.clientY - rect.top;
+      canvas.addEventListener('touchstart', (e) => onMouseDown(e.touches[0]));
+      canvas.addEventListener('touchmove', (e) => onMouseMove(e.touches[0]));
+      canvas.addEventListener('touchend', onMouseUp);
 
-        const distance = Math.sqrt(
-          (touchX - slingshotX) ** 2 + (touchY - currentSlingshotY) ** 2
-        );
-
-        if (distance < bird.r * 3 && !bird.launched) {
-          bird.dragging = true;
-        }
+      document.getElementById('start-game-btn').addEventListener('click', () => {
+        const classValue = document.getElementById('class-select').value;
+        const subjectValue = document.getElementById('subject-select').value;
+        loadQuestionData(classValue, subjectValue);
       });
+      
+      document.getElementById('class-select').addEventListener('change', updateSubjectOptions);
+      
+      document.getElementById('continue-game-btn').addEventListener('click', () => {
+          document.getElementById('question-modal').style.display = 'none';
+          document.getElementById('feedback-message').style.display = 'none';
+          document.getElementById('continue-game-btn').style.display = 'none';
+          
+          // Re-enable input events
+          canvas.style.pointerEvents = 'auto';
+          
+          // Reset bird for next launch
+          resetBird();
+      });
+      
+      document.getElementById('fetch-tool-btn').addEventListener('click', fetchQuestionData);
+      
+      // Initialize subject options on load
+      updateSubjectOptions();
+    }
+    
+    function onMouseDown(e) {
+      const rect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
 
-      canvas.addEventListener('touchmove', (e) => {
-        if (!bird.dragging) return;
-        e.preventDefault();
-        const touch = e.touches[0];
-        const rect = canvas.getBoundingClientRect();
-        let touchX = touch.clientX - rect.left;
-        let touchY = touch.clientY - rect.top;
+      const dist = Math.sqrt((mouseX - bird.x) ** 2 + (mouseY - bird.y) ** 2);
+      
+      if (bird.resting && dist < bird.r && !bird.launched) {
+        bird.dragging = true;
+      }
+    }
 
-        // Constraint pull distance
-        const dx = touchX - slingshotX;
-        const dy = touchY - currentSlingshotY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+    function onMouseMove(e) {
+      if (!bird.dragging) return;
 
-        if (distance > bird.maxPull) {
-          const angle = Math.atan2(dy, dx);
-          touchX = slingshotX + bird.maxPull * Math.cos(angle);
-          touchY = currentSlingshotY + bird.maxPull * Math.sin(angle);
+      const rect = canvas.getBoundingClientRect();
+      let mouseX = e.clientX - rect.left;
+      let mouseY = e.clientY - rect.top;
+
+      let dx = mouseX - slingshotX;
+      let dy = mouseY - currentSlingshotY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance > maxPullDistance) {
+        const ratio = maxPullDistance / distance;
+        dx *= ratio;
+        dy *= ratio;
+      }
+      
+      // Constrain pulling to the left of the slingshot
+      if (mouseX > slingshotX) {
+         mouseX = slingshotX;
+         dx = 0;
+      }
+
+      bird.x = slingshotX + dx;
+      bird.y = currentSlingshotY + dy;
+    }
+
+    function onMouseUp() {
+      if (!bird.dragging) return;
+
+      bird.dragging = false;
+
+      const dx = slingshotX - bird.x;
+      const dy = currentSlingshotY - bird.y;
+
+      if (Math.sqrt(dx * dx + dy * dy) > 10) { 
+        bird.vx = dx * launchScale;
+        bird.vy = dy * launchScale;
+        bird.launched = true;
+        bird.resting = false;
+        showMessageBox("Bird launched!");
+      } else {
+        resetBird(); // Snap back if too short pull
+      }
+    }
+    
+    // --- Data Mapping ---
+    const subjectMap = {
+        '9': ['science', 'math'],
+        '10': ['science', 'math'],
+        '11': ['chemistry', 'biology', 'physics'],
+        '12': ['chemistry', 'biology', 'physics']
+    };
+    
+    function updateSubjectOptions() {
+        const classValue = document.getElementById('class-select').value;
+        const subjectSelect = document.getElementById('subject-select');
+        
+        // Clear existing options
+        subjectSelect.innerHTML = '';
+        
+        // Populate new options
+        const subjects = subjectMap[classValue] || [];
+        subjects.forEach(subject => {
+            const option = document.createElement('option');
+            option.value = subject;
+            option.textContent = subject.charAt(0).toUpperCase() + subject.slice(1);
+            subjectSelect.appendChild(option);
+        });
+        
+        if(subjects.length === 0) {
+             showMessageBox(`No subjects configured for Class ${classValue}`, true);
+        }
+    }
+
+    // --- Question Modal Display ---
+    function showQuestionModal(qIndex) {
+        currentQuestion = availableQuestions[qIndex];
+        if (!currentQuestion) return;
+
+        // Disable input events while modal is open
+        canvas.style.pointerEvents = 'none';
+
+        const modal = document.getElementById('question-modal');
+        document.getElementById('modal-chapter').textContent = currentQuestion.chapter;
+        document.getElementById('modal-question').textContent = currentQuestion.q;
+        const optionsContainer = document.getElementById('options-container');
+        optionsContainer.innerHTML = ''; // Clear previous options
+        
+        currentQuestion.options.forEach((optionText, index) => {
+            const button = document.createElement('button');
+            button.className = 'option-button';
+            button.textContent = `${String.fromCharCode(65 + index)}. ${optionText}`;
+            button.dataset.index = index;
+            button.addEventListener('click', handleAnswerClick);
+            optionsContainer.appendChild(button);
+        });
+        
+        document.getElementById('feedback-message').style.display = 'none';
+        document.getElementById('continue-game-btn').style.display = 'none';
+        modal.style.display = 'block';
+    }
+    
+    function handleAnswerClick(e) {
+        const selectedIndex = parseInt(e.target.dataset.index);
+        const isCorrect = selectedIndex === currentQuestion.answer;
+        const feedback = document.getElementById('feedback-message');
+        const options = document.querySelectorAll('.option-button');
+        
+        // Disable all options
+        options.forEach(btn => {
+            btn.classList.add('disabled');
+            btn.removeEventListener('click', handleAnswerClick);
+            if (parseInt(btn.dataset.index) === currentQuestion.answer) {
+                btn.classList.add('correct');
+            } else if (parseInt(btn.dataset.index) === selectedIndex) {
+                btn.classList.add('incorrect');
+            }
+        });
+
+        if (isCorrect) {
+            feedback.textContent = "Correct! +50 Points!";
+            feedback.style.color = '#4CAF50';
+            updateScore(50);
+            
+            // Clear the block that triggered the question
+            const hitBlock = blocks.find(b => b.qIndex === availableQuestions.findIndex(q => q === currentQuestion));
+            if (hitBlock) hitBlock.health = 0; 
+            
+        } else {
+            feedback.textContent = "Incorrect. Study up and try again!";
+            feedback.style.color = '#F44336';
+            updateScore(-10); // Penalty for incorrect answer
         }
         
-        // Ensure bird stays on the left side of the slingshot
-        if (touchX > slingshotX + 10) touchX = slingshotX + 10;
+        feedback.style.display = 'block';
+        document.getElementById('continue-game-btn').style.display = 'block';
+    }
+    
+    // --- Google Search Fetch Tool ---
 
-        bird.x = touchX;
-        bird.y = touchY;
-        draw();
-      });
+    async function fetchQuestionData() {
+        const questionText = currentQuestion ? currentQuestion.q : "latest science facts";
+        const systemPrompt = "Act as a helpful science tutor. Provide a concise, easy-to-understand explanation for the following question, summarizing the key concepts.";
+        const apiKey = "" // Leave empty, runtime provides it
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
 
-      canvas.addEventListener('touchend', (e) => {
-        if (!bird.dragging) return;
-        launchBird(bird.x, bird.y);
-      });
+        // Simple button loading state
+        const fetchBtn = document.getElementById('fetch-tool-btn');
+        const originalText = fetchBtn.innerHTML;
+        fetchBtn.innerHTML = 'Fetching...';
+        fetchBtn.disabled = true;
 
+        const userQuery = `Explain: ${questionText}`;
+        const payload = {
+            contents: [{ parts: [{ text: userQuery }] }],
+            tools: [{ "google_search": {} }],
+            systemInstruction: { parts: [{ text: systemPrompt }] },
+        };
 
-      // Dashboard controls
-      classSelect.addEventListener('change', populateChapterSelect);
-      chapterSelect.addEventListener('change', () => {
-          startButton.disabled = !chapterSelect.value;
-          dashboardError.textContent = '';
-      });
-      startButton.addEventListener('click', startGame);
-      
-      // Load initial chapters for class 9 (default)
-      populateChapterSelect(); 
-      
-      // NEW: Add listener for Donate ID copy
-      document.getElementById('donate-id').addEventListener('click', function() {
-        const upiId = this.getAttribute('data-upi');
-        if (upiId) {
-            copyToClipboard(upiId);
+        try {
+            let response;
+            let result;
+            let success = false;
+            let retryCount = 0;
+            const maxRetries = 3;
+
+            // Exponential backoff loop
+            while (!success && retryCount < maxRetries) {
+                try {
+                    response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (response.ok) {
+                        result = await response.json();
+                        success = true;
+                    } else if (response.status === 429) {
+                        // Too many requests (Rate Limit), implement backoff
+                        const delay = Math.pow(2, retryCount) * 1000;
+                        console.log(`Rate limit hit. Retrying in ${delay}ms...`);
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        retryCount++;
+                    } else {
+                        throw new Error(`API returned status ${response.status}`);
+                    }
+                } catch (error) {
+                    if (retryCount >= maxRetries - 1) throw error; // Re-throw on last attempt
+                    const delay = Math.pow(2, retryCount) * 1000;
+                    console.log(`Fetch error. Retrying in ${delay}ms...`);
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    retryCount++;
+                }
+            }
+            
+            if (!success) {
+                throw new Error("Maximum retries reached without success.");
+            }
+
+            const candidate = result.candidates?.[0];
+            const explanationText = candidate?.content?.parts?.[0]?.text || "Failed to generate explanation.";
+
+            // Extract sources
+            let sourcesHTML = '';
+            const groundingMetadata = candidate?.groundingMetadata;
+            if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                const sources = groundingMetadata.groundingAttributions
+                    .map(attribution => ({
+                        uri: attribution.web?.uri,
+                        title: attribution.web?.title,
+                    }))
+                    .filter(source => source.uri && source.title)
+                    .slice(0, 3); // Limit to 3 sources
+
+                if (sources.length > 0) {
+                    sourcesHTML = '<p class="text-xs mt-3 font-medium">Sources:</p><ul class="list-disc list-inside text-xs space-y-1">';
+                    sources.forEach(source => {
+                        sourcesHTML += `<li><a href="${source.uri}" target="_blank" class="text-blue-600 hover:text-blue-800">${source.title}</a></li>`;
+                    });
+                    sourcesHTML += '</ul>';
+                }
+            }
+
+            // Display the explanation in a message box
+            const modal = document.getElementById('question-modal');
+            modal.innerHTML += `
+                <div id="explanation-box" class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-left">
+                    <h4 class="font-bold text-blue-700 mb-2">Tutor Explanation:</h4>
+                    <p class="text-sm text-gray-800">${explanationText.replace(/\n/g, '<br>')}</p>
+                    ${sourcesHTML}
+                </div>`;
+            
+        } catch (error) {
+            console.error("Gemini API call failed:", error);
+            showMessageBox("Could not fetch explanation. Please check your connection or try again later.", true);
+        } finally {
+            fetchBtn.innerHTML = originalText;
+            fetchBtn.disabled = false;
+            fetchBtn.style.display = 'none'; // Hide tool after use
         }
-      });
+    }
+    
+    // --- Initialization ---
 
-      // Start the animation loop
-      animate();
-    };
+    function init() {
+      // Set initial canvas size (will be updated in animate)
+      const container = document.getElementById('game-container');
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight - 40;
+      
+      currentSlingshotY = canvas.height - 100;
+      
+      setupFirebase();
+      setupEventListeners();
+      animate(); // Start the game loop
+    }
+
+    window.onload = init;
+
   </script>
 </body>
 </html>
