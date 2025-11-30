@@ -179,8 +179,25 @@
       text-align: center; border-radius: 12px;
       transition: transform 0.2s;
     }
+    
+    /* Correct answer color */
+    .option.correct {
+      background: #27ae60; 
+      border-color: #2ecc71;
+      animation: correctPulse 0.5s 3;
+    }
+
+    /* Wrong answer color */
     .option.hit {
-      animation: shake 0.5s; background: #e74c3c; border-color: #c0392b;
+      animation: shake 0.5s; 
+      background: #e74c3c; 
+      border-color: #c0392b;
+    }
+
+    @keyframes correctPulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
     }
 
     @keyframes shake {
@@ -467,14 +484,15 @@ let birdLoaded = false;
 birdImg.onload = () => birdLoaded = true;
 
 const slingshotX = 140;
-let slingshotY = window.innerHeight - 150;
-let bird = { x: slingshotX, y: slingshotY, r: 25, vx: 0, vy: 0, launched: false, dragging: false };
+let currentSlingshotY = window.innerHeight - 150;
+let bird = { x: slingshotX, y: currentSlingshotY, r: 25, vx: 0, vy: 0, launched: false, dragging: false };
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  slingshotY = window.innerHeight - 150;
-  if (!bird.launched && !bird.dragging) bird.y = slingshotY;
+  currentSlingshotY = window.innerHeight - 150;
+  // Snap bird back to correct slingshot height on resize if not launched/dragging
+  if (!bird.launched && !bird.dragging) bird.y = currentSlingshotY;
 });
 window.dispatchEvent(new Event('resize'));
 
@@ -509,6 +527,7 @@ function handleMove(x, y) {
     const dist = Math.hypot(x - slingshotX, y - dy);
     const max = 120;
     if (dist > max) {
+      // Limit drag distance
       bird.x = slingshotX + (x - slingshotX)/dist * max;
       bird.y = dy + (y - dy)/dist * max;
     } else {
@@ -521,6 +540,7 @@ function handleEnd() {
     bird.dragging = false;
     bird.launched = true;
     const dy = window.innerHeight - 150;
+    // Calculate initial velocity based on how far the bird was pulled back
     bird.vx = (slingshotX - bird.x) * 0.35;
     bird.vy = (dy - bird.y) * 0.35;
   }
@@ -540,38 +560,88 @@ function detectCollision() {
   const opts = document.querySelectorAll('.option');
   opts.forEach(opt => {
     const rect = opt.getBoundingClientRect();
+    // Clamp bird's position to the nearest point on the option box
     const cx = Math.max(rect.left, Math.min(bird.x, rect.right));
     const cy = Math.max(rect.top, Math.min(bird.y, rect.bottom));
+    
+    // Check if distance between bird center and clamped point is less than bird radius
     if (Math.hypot(bird.x - cx, bird.y - cy) < bird.r) {
       collisionHandled = true;
-      opt.classList.add('hit');
-      bird.vx = 0; bird.vy = 0;
       
       const correct = activeQuestions[currentQIndex].answer;
       const chosen = parseInt(opt.dataset.index);
 
+      bird.vx = 0; bird.vy = 0;
+
       if (chosen === correct) {
+        // Correct Hit: Turn green and advance
+        opt.classList.add('correct');
         score += 10;
         document.getElementById('score').innerText = score;
         spawnConfetti('🎉');
         setTimeout(() => { currentQIndex++; resetBird(); loadCurrentQuestion(); }, 1500);
       } else {
+        // Wrong Hit: Shake and display wrong color (red)
+        opt.classList.add('hit');
+        // Briefly show the correct answer in green before resetting
+        const correctOpt = document.querySelector(`.option[data-index='${correct}']`);
+        if (correctOpt) correctOpt.classList.add('correct');
+
         spawnConfetti('❌');
-        setTimeout(resetBird, 1000);
+        setTimeout(() => {
+            // Remove temporary feedback classes before reset
+            opts.forEach(o => { o.classList.remove('hit'); o.classList.remove('correct'); });
+            resetBird();
+        }, 1500);
       }
     }
   });
 
-  // Out of bounds
-  if (bird.launched && !collisionHandled && (bird.y > canvas.height || bird.x > canvas.width || bird.x < -50)) {
+  // Out of bounds check (below ground or too far left/right)
+  if (bird.launched && !collisionHandled && (bird.y > canvas.height - 80 || bird.x > canvas.width || bird.x < -50)) {
     collisionHandled = true;
     setTimeout(resetBird, 500);
   }
 }
 
+// --- TRAJECTORY PATH CALCULATION ---
+function drawTrajectory() {
+    if (!bird.dragging) return;
+
+    // Calculate initial velocity based on current drag
+    const initialVx = (slingshotX - bird.x) * 0.35;
+    const initialVy = (currentSlingshotY - bird.y) * 0.35;
+
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    const totalTime = 120; // Number of dots
+    const timeStep = 1;
+
+    for (let t = 0; t < totalTime; t += timeStep) {
+        // Simplified projectile motion equations
+        const vx = initialVx;
+        const vy = initialVy + 0.6 * t; // 0.6 is the gravity used in the physics loop
+        
+        const dx = bird.x + vx * t;
+        const dy = bird.y + initialVy * t + 0.5 * 0.6 * t * t; // d = initialV*t + 0.5*a*t^2
+
+        // Stop drawing if the dot goes off-screen or below the ground
+        if (dy > canvas.height - 80 || dx > canvas.width || dx < 0) {
+            break; 
+        }
+
+        // Draw dot
+        ctx.beginPath();
+        ctx.arc(dx, dy, 3, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
 function resetBird() {
+  // Clear any temporary feedback colors before reset
+  document.querySelectorAll('.option').forEach(o => { o.classList.remove('hit'); o.classList.remove('correct'); });
+
   bird.x = slingshotX; 
-  bird.y = window.innerHeight - 150;
+  bird.y = currentSlingshotY;
   bird.vx = 0; bird.vy = 0;
   bird.launched = false; bird.dragging = false;
   collisionHandled = false;
@@ -605,7 +675,10 @@ function spawnConfetti(char) {
 function animate() {
   if (paused) return;
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  const dy = window.innerHeight - 150;
+  const dy = currentSlingshotY; // Renamed for clarity
+
+  // Draw Trajectory if dragging
+  drawTrajectory();
 
   // Draw Band (Back)
   if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
