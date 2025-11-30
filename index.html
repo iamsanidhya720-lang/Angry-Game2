@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Study Slingshot - Classes 9 to 12</title>
+  <title>Study Slingshot - Universal Loader</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     /* --- CSS STYLES --- */
@@ -102,221 +102,111 @@
       transform: translateY(-2px);
     }
 
-    .start-btn:active {
-      transform: translateY(1px);
-    }
-
     .start-btn:disabled {
-        background: #95a5a6;
-        cursor: not-allowed;
-        transform: none;
+      background: #95a5a6;
+      cursor: not-allowed;
     }
 
     /* --- GAME UI STYLES --- */
-    #game-ui {
-      display: none; /* Hidden initially */
-    }
+    #game-ui { display: none; }
 
     .top-bar {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      z-index: 10;
-      pointer-events: none; /* Let clicks pass through */
+      top: 10px; left: 10px; right: 10px;
+      display: flex; justify-content: space-between;
+      z-index: 10; pointer-events: none;
     }
-
-    .top-bar > * {
-      pointer-events: auto;
-    }
+    .top-bar > * { pointer-events: auto; }
 
     .chapter-badge {
-      background: #34495e;
-      color: #fff;
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      background: #34495e; color: #fff;
+      padding: 8px 15px; border-radius: 20px;
+      font-weight: bold; margin-bottom: 5px;
     }
 
     .instructions {
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 14px;
-      line-height: 1.5;
-      max-width: 250px;
+      background: rgba(0,0,0,0.7); color: #fff;
+      padding: 10px; border-radius: 10px; font-size: 14px;
     }
 
     .score-display {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 10px 25px;
-      border-radius: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.9);
+      padding: 10px 25px; border-radius: 15px;
+      font-size: 24px; font-weight: bold;
     }
 
     .question-area {
-      position: absolute;
-      top: 20px;
-      left: 50%;
+      position: absolute; top: 20px; left: 50%;
       transform: translateX(-50%);
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      background: rgba(255, 255, 255, 0.98);
-      padding: 20px 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      max-width: 800px;
-      width: 80%;
-      z-index: 10;
-      border-bottom: 4px solid #ddd;
+      text-align: center; font-size: 20px; font-weight: bold;
+      background: rgba(255,255,255,0.98);
+      padding: 20px 40px; border-radius: 16px;
+      width: 80%; max-width: 800px; z-index: 10;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     .ground {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 80px;
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 80px;
       background: linear-gradient(180deg, #7CFC00 0%, #32CD32 100%);
       border-top: 5px dashed #228B22;
     }
 
     .slingshot {
-      position: absolute;
-      left: 100px;
-      bottom: 80px;
-      width: 80px;
-      height: 140px;
-      z-index: 2;
+      position: absolute; left: 100px; bottom: 80px;
+      width: 80px; height: 140px; z-index: 2;
     }
-
-    .slingshot::before,
-    .slingshot::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 140px;
-      background: #8B4513;
-      bottom: 0;
+    .slingshot::before, .slingshot::after {
+      content: ''; position: absolute; width: 12px; height: 140px;
+      background: #8B4513; bottom: 0;
     }
-
     .slingshot::before { left: 0; border-radius: 6px 6px 0 0; }
     .slingshot::after { right: 0; border-radius: 6px 6px 0 0; }
 
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 5;
-      cursor: grab;
-    }
-
+    canvas { position: absolute; top: 0; left: 0; z-index: 5; cursor: grab; }
     canvas:active { cursor: grabbing; }
 
     .options {
-      position: absolute;
-      right: 5%;
-      top: 150px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      z-index: 8;
+      position: absolute; right: 5%; top: 150px;
+      display: flex; flex-direction: column; gap: 15px; z-index: 8;
     }
 
     .option {
-      width: 220px;
-      min-height: 80px;
-      background: #e67e22;
-      border: 4px solid #d35400;
-      color: #fff;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      border-radius: 12px;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-      position: relative;
+      width: 220px; min-height: 70px;
+      background: #e67e22; border: 4px solid #d35400;
+      color: #fff; font-weight: bold; padding: 10px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; border-radius: 12px;
       transition: transform 0.2s;
     }
-
-    .option:after {
-      content: '';
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      bottom: 50%;
-      background: rgba(255,255,255,0.2);
-      border-radius: 8px 8px 0 0;
-      pointer-events: none;
-    }
-
     .option.hit {
-      animation: shake 0.5s;
-      background: #e74c3c;
-      border-color: #c0392b;
+      animation: shake 0.5s; background: #e74c3c; border-color: #c0392b;
     }
 
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px) rotate(-5deg); }
-      75% { transform: translateX(10px) rotate(5deg); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
     }
 
     .controls {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 15px;
-      z-index: 10;
+      position: absolute; bottom: 30px; left: 50%;
+      transform: translateX(-50%); display: flex; gap: 15px; z-index: 10;
     }
-
     button.control-btn {
-      padding: 10px 25px;
-      border-radius: 25px;
-      border: none;
-      font-weight: bold;
-      font-size: 16px;
-      cursor: pointer;
+      padding: 10px 25px; border-radius: 25px; border: none;
+      font-weight: bold; cursor: pointer;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      transition: transform 0.1s;
     }
-
-    button.control-btn:hover { transform: translateY(-2px); }
-    button.control-btn:active { transform: translateY(0); }
-
     .reset { background: #FF6347; color: white; }
     .home { background: #3498db; color: white; }
     .pause { background: #FFD700; color: #333; }
-
-    .confetti {
-      position: absolute;
-      pointer-events: none;
-      font-size: 30px;
-      z-index: 100;
-    }
-
+    
+    .confetti { position: absolute; pointer-events: none; font-size: 30px; z-index: 100; }
     @keyframes confettiFall {
       0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
-    
     @keyframes fall {
       0% { top: 0; opacity: 1; }
       100% { top: 100%; opacity: 0; }
@@ -325,13 +215,13 @@
 </head>
 <body>
 
-<!-- DASHBOARD OVERLAY -->
+<!-- DASHBOARD -->
 <div id="dashboard">
   <div class="dashboard-card">
     <h1>📚 Study Slingshot</h1>
     
     <div class="form-group">
-      <label for="gradeSelect">Select Grade:</label>
+      <label>Select Grade:</label>
       <select id="gradeSelect" onchange="updateSubjects()">
         <option value="9">Class 9</option>
         <option value="10">Class 10</option>
@@ -340,34 +230,26 @@
       </select>
     </div>
 
-    <!-- Subject Selection -->
     <div class="form-group">
-      <label for="subjectSelect">Select Subject:</label>
-      <select id="subjectSelect" onchange="updateChapters()">
-        <!-- Populated via JS -->
-      </select>
+      <label>Select Subject:</label>
+      <select id="subjectSelect" onchange="updateChapters()"></select>
     </div>
 
     <div class="form-group">
-      <label for="chapterSelect">Select Chapter:</label>
-      <select id="chapterSelect">
-        <!-- Populated via JS -->
-      </select>
+      <label>Select Chapter:</label>
+      <select id="chapterSelect"></select>
     </div>
 
     <button class="start-btn" onclick="initializeGameSession()">Start Studying 🚀</button>
   </div>
 </div>
 
-<!-- GAME UI (Hidden initially) -->
+<!-- GAME UI -->
 <div id="game-ui">
   <div class="top-bar">
     <div class="info-panel">
-      <div class="chapter-badge" id="current-chapter-display">Select a chapter</div>
-      <div class="instructions">
-        Drag bird to aim & release!<br />
-        Hit the correct answer block!
-      </div>
+      <div class="chapter-badge" id="current-chapter-display">Chapter</div>
+      <div class="instructions">Drag & Release to Hit Answer!</div>
     </div>
     <div class="score-display">Score: <span id="score">0</span></div>
   </div>
@@ -376,7 +258,6 @@
 
   <div class="slingshot"></div>
   <canvas id="game"></canvas>
-
   <div class="options" id="options"></div>
 
   <div class="controls">
@@ -384,556 +265,378 @@
     <button class="control-btn reset" onclick="resetGame()">Reset Bird</button>
     <button class="control-btn pause" onclick="togglePause()">Pause</button>
   </div>
-
   <div class="ground"></div>
 </div>
 
 <script>
-/**
- * ==========================================
- * DATA MANAGEMENT SYSTEM
- * ==========================================
- */
-
-// Organized by Grade -> Subject -> List of Chapters
-// These lists populate the dropdowns. 
-// NOTE: These specific chapter names MUST match the "chapter" keys inside your JSON files.
+// --- SYLLABUS DATA (Dropdowns) ---
+// Note: These names match your filenames generally. 
+// "Physics" corresponds to "physicsclass11.json", etc.
 const SYLLABUS_DATA = {
   9: {
-    science: [
-      "Matter in Our Surroundings", "Is Matter Around Us Pure?", "Atoms and Molecules", 
-      "Structure of the Atom", "The Fundamental Unit of Life", "Tissues", 
-      "Diversity in Living Organisms", "Motion", "Force and Laws of Motion", 
-      "Gravitation", "Work and Energy", "Sound", "Why Do We Fall Ill?", 
-      "Natural Resources", "Improvement in Food Resources"
-    ],
-    history: [
-      "The French Revolution", "Socialism in Europe and the Russian Revolution", 
-      "Nazism and the Rise of Hitler", "Forest Society and Colonialism", 
-      "Pastoralists in the Modern World"
-    ],
-    geography: [
-      "India - Size and Location", "Physical Features of India", "Drainage", 
-      "Climate", "Natural Vegetation and Wildlife", "Population"
-    ],
-    civics: [
-      "What is Democracy? Why Democracy?", "Constitutional Design", 
-      "Electoral Politics", "Working of Institutions", "Democratic Rights"
-    ],
-    economics: [
-      "The Story of Village Palampur", "People as Resource", 
-      "Poverty as a Challenge", "Food Security in India"
-    ]
+    science: ["Matter in Our Surroundings", "Is Matter Around Us Pure?", "Atoms and Molecules", "Structure of the Atom", "The Fundamental Unit of Life", "Tissues", "Diversity in Living Organisms", "Motion", "Force and Laws of Motion", "Gravitation", "Work and Energy", "Sound", "Why Do We Fall Ill?", "Natural Resources", "Improvement in Food Resources"],
+    history: ["The French Revolution", "Socialism in Europe", "Nazism and the Rise of Hitler", "Forest Society and Colonialism", "Pastoralists in the Modern World"],
+    geography: ["India - Size and Location", "Physical Features of India", "Drainage", "Climate", "Natural Vegetation and Wildlife", "Population"],
+    civics: ["What is Democracy? Why Democracy?", "Constitutional Design", "Electoral Politics", "Working of Institutions", "Democratic Rights"],
+    economics: ["The Story of Village Palampur", "People as Resource", "Poverty as a Challenge", "Food Security in India"]
   },
   10: {
-    science: [
-      "Chemical Reactions and Equations", "Acids, Bases and Salts", "Metals and Non-metals", 
-      "Carbon and Its Compounds", "Periodic Classification of Elements", "Life Processes", 
-      "Control and Coordination", "How do Organisms Reproduce?", "Heredity and Evolution", 
-      "Light – Reflection and Refraction", "Human Eye and Colourful World", "Electricity", 
-      "Magnetic Effects of Electric Current", "Sources of Energy", "Our Environment", 
-      "Sustainable Management of Natural Resources"
-    ]
+    science: ["Chemical Reactions and Equations", "Acids, Bases and Salts", "Metals and Non-metals", "Carbon and Its Compounds", "Periodic Classification of Elements", "Life Processes", "Control and Coordination", "How do Organisms Reproduce?", "Heredity and Evolution", "Light – Reflection and Refraction", "Human Eye and Colourful World", "Electricity", "Magnetic Effects of Electric Current", "Sources of Energy", "Our Environment", "Sustainable Management of Natural Resources"]
   },
   11: {
-    physics: [
-      "Units and Measurements", "Motion in a Straight Line", "Motion in a Plane", 
-      "Laws of Motion", "Work, Energy and Power", "System of Particles and Rotational Motion", 
-      "Gravitation", "Mechanical Properties of Solids", "Mechanical Properties of Fluids", 
-      "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory", "Oscillations", "Waves"
-    ],
-    chemistry: [
-      "Some Basic Concepts of Chemistry", "Structure of Atom", "Classification of Elements and Periodicity", 
-      "Chemical Bonding and Molecular Structure", "Thermodynamics", "Equilibrium", "Redox Reactions", 
-      "Organic Chemistry: Basic Principles", "Hydrocarbons"
-    ],
-    biology: [
-      "The Living World", "Biological Classification", "Plant Kingdom", "Animal Kingdom", 
-      "Morphology of Flowering Plants", "Anatomy of Flowering Plants", "Structural Organisation in Animals", 
-      "Cell: The Unit of Life", "Biomolecules", "Cell Cycle and Cell Division", "Photosynthesis in Higher Plants", 
-      "Respiration in Plants", "Plant Growth and Development", "Breathing and Exchange of Gases", 
-      "Body Fluids and Circulation", "Excretory Products and their Elimination", "Locomotion and Movement", 
-      "Neural Control and Coordination", "Chemical Coordination and Integration"
-    ]
+    physics: ["Units and Measurements", "Motion in a Straight Line", "Motion in a Plane", "Laws of Motion", "Work, Energy and Power", "System of Particles and Rotational Motion", "Gravitation", "Mechanical Properties of Solids", "Mechanical Properties of Fluids", "Thermal Properties of Matter", "Thermodynamics", "Kinetic Theory", "Oscillations", "Waves"],
+    chemistry: ["Some Basic Concepts of Chemistry", "Structure of Atom", "Classification of Elements", "Chemical Bonding", "States of Matter", "Thermodynamics", "Equilibrium", "Redox Reactions", "Hydrogen", "s-Block Elements", "p-Block Elements", "Organic Chemistry: Basic Principles", "Hydrocarbons", "Environmental Chemistry"],
+    biology: ["The Living World", "Biological Classification", "Plant Kingdom", "Animal Kingdom", "Morphology of Flowering Plants", "Anatomy of Flowering Plants", "Structural Organisation in Animals", "Cell: The Unit of Life", "Biomolecules", "Cell Cycle and Cell Division", "Transport in Plants", "Mineral Nutrition", "Photosynthesis in Higher Plants", "Respiration in Plants", "Plant Growth and Development", "Digestion and Absorption", "Breathing and Exchange of Gases", "Body Fluids and Circulation", "Excretory Products and their Elimination", "Locomotion and Movement", "Neural Control and Coordination", "Chemical Coordination and Integration"]
   },
   12: {
-    physics: [
-      "Electric Charges and Fields", "Electrostatic Potential and Capacitance", "Current Electricity", 
-      "Moving Charges and Magnetism", "Magnetism and Matter", "Electromagnetic Induction", 
-      "Alternating Current", "Electromagnetic Waves", "Ray Optics and Optical Instruments", 
-      "Wave Optics", "Dual Nature of Radiation and Matter", "Atoms", "Nuclei", "Semiconductor Electronics"
-    ],
-    chemistry: [
-      "Solutions", "Electrochemistry", "Chemical Kinetics", "The d- and f- Block Elements", 
-      "Coordination Compounds", "Haloalkanes and Haloarenes", "Alcohols, Phenols and Ethers", 
-      "Aldehydes, Ketones and Carboxylic Acids", "Amines", "Biomolecules"
-    ],
-    biology: [
-      "Sexual Reproduction in Flowering Plants", "Human Reproduction", "Reproductive Health", 
-      "Principles of Inheritance and Variation", "Molecular Basis of Inheritance", "Evolution", 
-      "Human Health and Disease", "Microbes in Human Welfare", "Biotechnology: Principles and Processes", 
-      "Biotechnology and its Applications", "Organisms and Populations", "Ecosystem", "Biodiversity and Conservation"
-    ]
+    physics: ["Electric Charges and Fields", "Electrostatic Potential and Capacitance", "Current Electricity", "Moving Charges and Magnetism", "Magnetism and Matter", "Electromagnetic Induction", "Alternating Current", "Electromagnetic Waves", "Ray Optics and Optical Instruments", "Wave Optics", "Dual Nature of Radiation and Matter", "Atoms", "Nuclei", "Semiconductor Electronics"],
+    chemistry: ["Solid State", "Solutions", "Electrochemistry", "Chemical Kinetics", "Surface Chemistry", "Isolation of Elements", "The p-Block Elements", "The d- and f- Block Elements", "Coordination Compounds", "Haloalkanes and Haloarenes", "Alcohols, Phenols and Ethers", "Aldehydes, Ketones and Carboxylic Acids", "Organic Compounds Containing Nitrogen", "Biomolecules", "Polymers", "Chemistry in Everyday Life"],
+    biology: ["Reproduction in Organisms", "Sexual Reproduction in Flowering Plants", "Human Reproduction", "Reproductive Health", "Principles of Inheritance and Variation", "Molecular Basis of Inheritance", "Evolution", "Human Health and Disease", "Strategies for Enhancement in Food Production", "Microbes in Human Welfare", "Biotechnology: Principles and Processes", "Biotechnology and its Applications", "Organisms and Populations", "Ecosystem", "Biodiversity and Conservation", "Environmental Issues"]
   }
 };
 
-// Global Database to hold loaded questions
-const QUESTION_DATABASE = {};
-
-/**
- * ==========================================
- * DASHBOARD LOGIC
- * ==========================================
- */
-
-// Initialize Dashboard
-function initDashboard() {
-  updateSubjects();
-}
-
-function updateSubjects() {
-  const grade = document.getElementById('gradeSelect').value;
-  const subjectSelect = document.getElementById('subjectSelect');
-  const subjects = Object.keys(SYLLABUS_DATA[grade] || {});
-
-  subjectSelect.innerHTML = ""; // Clear
-  
-  if (subjects.length > 0) {
-    subjects.forEach(sub => {
-      const option = document.createElement("option");
-      option.value = sub;
-      // Capitalize first letter
-      option.text = sub.charAt(0).toUpperCase() + sub.slice(1); 
-      subjectSelect.appendChild(option);
-    });
-  } else {
-      const option = document.createElement("option");
-      option.text = "No subjects available";
-      subjectSelect.appendChild(option);
-  }
-  
-  updateChapters();
-}
-
-function updateChapters() {
-  const grade = document.getElementById('gradeSelect').value;
-  const subject = document.getElementById('subjectSelect').value;
-  const chapterSelect = document.getElementById('chapterSelect');
-  
-  // Safely get chapters
-  let chapters = [];
-  if (SYLLABUS_DATA[grade] && SYLLABUS_DATA[grade][subject]) {
-      chapters = SYLLABUS_DATA[grade][subject];
-  }
-
-  chapterSelect.innerHTML = ""; // Clear existing
-  if(chapters.length > 0) {
-    chapters.forEach(chap => {
-      const option = document.createElement("option");
-      option.value = chap;
-      option.text = chap;
-      chapterSelect.appendChild(option);
-    });
-  } else {
-    const option = document.createElement("option");
-    option.text = "Select a subject first";
-    chapterSelect.appendChild(option);
-  }
-}
-
-/**
- * CORE LOGIC: Fetches and parses the external JSON file based on selection.
- */
-async function loadExternalData(grade, subject) {
-  // Dynamic Filename Construction
-  // e.g. physicsclass11.json, chemistryclass12.json
-  const fileName = `${subject.toLowerCase()}class${grade}.json`;
-  
-  console.log(`Attempting to load: ${fileName}`);
-
-  try {
-    const response = await fetch(fileName);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
-    
-    // Clear previous data
-    for (const key in QUESTION_DATABASE) delete QUESTION_DATABASE[key];
-
-    // Handle Format 1: Array of Objects (Used in Class 9/11/12)
-    if (Array.isArray(data)) {
-      data.forEach(item => {
-        if(item.chapter && item.questions) {
-          QUESTION_DATABASE[item.chapter] = item.questions;
-        }
-      });
-    } 
-    // Handle Format 2: Object Map (Used in Class 10 science)
-    else if (typeof data === 'object') {
-      Object.keys(data).forEach(chapterName => {
-        QUESTION_DATABASE[chapterName] = data[chapterName];
-      });
-    }
-    
-    console.log(`Data loaded successfully for ${subject} Class ${grade}`);
-    return true;
-    
-  } catch (error) {
-    console.error("Error loading JSON file:", error);
-    alert(`Could not load questions for ${subject}.\n\nEnsure '${fileName}' is in the same folder.\n\nNote: If you are loading Biology, ensure the filename is spelled correctly as 'biologyclass${grade}.json'`);
-    return false;
-  }
-}
-
-function showDashboard() {
-  document.getElementById('dashboard').style.display = 'flex';
-  document.getElementById('game-ui').style.display = 'none';
-  paused = true;
-}
-
-async function initializeGameSession() {
-  const grade = document.getElementById('gradeSelect').value;
-  const subject = document.getElementById('subjectSelect').value;
-  const chapter = document.getElementById('chapterSelect').value;
-  const btn = document.querySelector('.start-btn');
-  
-  if (!subject || !chapter) {
-      alert("Please select a valid subject and chapter.");
-      return;
-  }
-
-  const originalText = btn.innerText;
-  btn.innerText = "Loading...";
-  btn.disabled = true;
-
-  // 1. Load the external file
-  const success = await loadExternalData(grade, subject);
-  
-  btn.innerText = originalText;
-  btn.disabled = false;
-  
-  if (!success) return; 
-
-  // 2. Retrieve questions
-  activeQuestions = QUESTION_DATABASE[chapter];
-  
-  if (!activeQuestions || activeQuestions.length === 0) {
-    alert(`No questions found for "${chapter}".\n\nCheck if the JSON file has this EXACT chapter name.`);
-    return;
-  }
-
-  // 3. Start Game
-  document.getElementById('current-chapter-display').innerText = `${subject.toUpperCase()}: ${chapter}`;
-  document.getElementById('dashboard').style.display = 'none';
-  document.getElementById('game-ui').style.display = 'block';
-
-  resetGameFull();
-}
-
-
-/**
- * ==========================================
- * GAME ENGINE (Angry Birds Logic)
- * ==========================================
- */
-
+let QUESTION_DATABASE = {};
 let activeQuestions = [];
 let currentQIndex = 0;
 let score = 0;
 let paused = false;
 
+// --- INITIALIZATION ---
+function initDashboard() { updateSubjects(); }
+
+function updateSubjects() {
+  const grade = document.getElementById('gradeSelect').value;
+  const subSelect = document.getElementById('subjectSelect');
+  subSelect.innerHTML = "";
+  
+  const subjects = Object.keys(SYLLABUS_DATA[grade] || {});
+  subjects.forEach(sub => {
+    const opt = document.createElement("option");
+    opt.value = sub;
+    opt.text = sub.charAt(0).toUpperCase() + sub.slice(1);
+    subSelect.appendChild(opt);
+  });
+  updateChapters();
+}
+
+function updateChapters() {
+  const grade = document.getElementById('gradeSelect').value;
+  const sub = document.getElementById('subjectSelect').value;
+  const chapSelect = document.getElementById('chapterSelect');
+  chapSelect.innerHTML = "";
+  
+  const chapters = SYLLABUS_DATA[grade]?.[sub] || [];
+  chapters.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c;
+    opt.text = c;
+    chapSelect.appendChild(opt);
+  });
+}
+
+// --- SMART DATA LOADING (The Fix) ---
+
+// Helper: Normalize names to match (Remove "1. ", "2. ", lowercase, trim)
+function normalizeName(name) {
+  if (!name) return "";
+  // Remove leading numbers like "1. ", "10. "
+  let clean = name.replace(/^\d+\.\s*/, '');
+  // Remove special chars and lowercase for comparison
+  return clean.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
+async function loadExternalData(grade, subject) {
+  // Try mapping common typo filenames if needed, otherwise standard
+  let fileName = `${subject.toLowerCase()}class${grade}.json`;
+  if (subject === 'biology' && grade == '11') fileName = 'bilologyclass11.json'; // Handling your specific typo
+  if (subject === 'biology' && grade == '12') fileName = 'bilologyclass12.json'; // Handling your specific typo
+
+  console.log(`Loading: ${fileName}`);
+
+  try {
+    const res = await fetch(fileName);
+    if (!res.ok) throw new Error("File not found");
+    const json = await res.json();
+    
+    QUESTION_DATABASE = {}; // Reset
+
+    // 1. Extract the List of Chapters from inconsistent JSON structures
+    let rawChapters = [];
+    
+    if (Array.isArray(json)) {
+      // Format: Class 9 (Root is Array)
+      rawChapters = json;
+    } else if (json.chapters) {
+      // Format: Class 11 (Root Object has 'chapters')
+      rawChapters = json.chapters;
+    } else if (json.class_12_chemistry_mcqs) {
+      // Format: Class 12 Chem specific
+      rawChapters = json.class_12_chemistry_mcqs;
+    } else {
+      // Fallback: Check keys (Class 10 Science style)
+      Object.keys(json).forEach(key => {
+        if(Array.isArray(json[key])) {
+           rawChapters.push({ chapter: key, questions: json[key] });
+        }
+      });
+    }
+
+    // 2. Process and Normalize Content
+    rawChapters.forEach(item => {
+      // Get chapter name (handles "1. Some Chapter" vs "Some Chapter")
+      const rawName = item.chapter || item.chapterName;
+      const normalizedKey = normalizeName(rawName); 
+      
+      // Get questions array (handles "questions" vs "mcqs")
+      const qArray = item.questions || item.mcqs || [];
+      
+      // Normalize Questions
+      const cleanQuestions = qArray.map(qObj => {
+        const qText = qObj.q || qObj.question;
+        const options = qObj.options || [];
+        
+        // Handle Answer: Convert String Answer to Index if needed
+        let ansIndex = -1;
+        if (typeof qObj.answer === 'number') {
+          ansIndex = qObj.answer;
+        } else if (typeof qObj.answer === 'string') {
+          // If answer is "Mole", find index of "Mole" in options
+          // Use loose comparison and trim
+          ansIndex = options.findIndex(opt => opt.trim().toLowerCase() === qObj.answer.trim().toLowerCase());
+        }
+
+        return { q: qText, options: options, answer: ansIndex };
+      });
+
+      // Store using the normalized key for fuzzy matching later
+      QUESTION_DATABASE[normalizedKey] = cleanQuestions;
+    });
+
+    console.log("Database Loaded:", Object.keys(QUESTION_DATABASE));
+    return true;
+
+  } catch (e) {
+    console.error(e);
+    alert(`Error loading ${fileName}.\nMake sure the file exists and is valid JSON.`);
+    return false;
+  }
+}
+
+async function initializeGameSession() {
+  const grade = document.getElementById('gradeSelect').value;
+  const subject = document.getElementById('subjectSelect').value;
+  const chapterName = document.getElementById('chapterSelect').value;
+  const btn = document.querySelector('.start-btn');
+  
+  if (!chapterName) return alert("Select a chapter!");
+
+  btn.innerText = "Loading...";
+  btn.disabled = true;
+
+  const loaded = await loadExternalData(grade, subject);
+  btn.innerText = "Start Studying 🚀";
+  btn.disabled = false;
+
+  if (!loaded) return;
+
+  // Fuzzy Match the selected chapter name to the loaded keys
+  const targetKey = normalizeName(chapterName);
+  activeQuestions = QUESTION_DATABASE[targetKey];
+
+  if (!activeQuestions || activeQuestions.length === 0) {
+    // Debug helper
+    console.log("Looking for:", targetKey);
+    console.log("Available keys:", Object.keys(QUESTION_DATABASE));
+    alert(`Could not find questions for "${chapterName}".\nTry checking the JSON file chapter names.`);
+    return;
+  }
+
+  // Start
+  document.getElementById('current-chapter-display').innerText = chapterName;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('game-ui').style.display = 'block';
+  resetGameFull();
+}
+
+// --- GAME ENGINE (Physics & Logic) ---
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-// Bird Setup
 let birdImg = new Image();
-let birdLoaded = false;
-birdImg.onload = () => { birdLoaded = true; };
 birdImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Angry_Birds_red.svg/512px-Angry_Birds_red.svg.png";
+let birdLoaded = false;
+birdImg.onload = () => birdLoaded = true;
 
 const slingshotX = 140;
-let slingshotY = window.innerHeight - 150; 
+let slingshotY = window.innerHeight - 150;
+let bird = { x: slingshotX, y: slingshotY, r: 25, vx: 0, vy: 0, launched: false, dragging: false };
 
 window.addEventListener('resize', () => {
-    slingshotY = window.innerHeight - 150;
-    if (!bird.launched && !bird.dragging) {
-        bird.y = slingshotY;
-    }
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  slingshotY = window.innerHeight - 150;
+  if (!bird.launched && !bird.dragging) bird.y = slingshotY;
 });
-
-let bird = { 
-  x: slingshotX, 
-  y: slingshotY, 
-  r: 25, 
-  vx: 0, 
-  vy: 0, 
-  launched: false, 
-  dragging: false 
-};
+window.dispatchEvent(new Event('resize'));
 
 function loadCurrentQuestion() {
-  document.querySelectorAll('.option.hit').forEach(el => el.classList.remove('hit'));
-
+  document.querySelectorAll('.option').forEach(e => e.remove()); // Clear old
   if (currentQIndex >= activeQuestions.length) {
-    alert(`🎉 Chapter Complete! Final Score: ${score}`);
+    alert(`🎉 Chapter Complete! Score: ${score}`);
     showDashboard();
     return;
   }
 
   const q = activeQuestions[currentQIndex];
-  document.getElementById('question').innerHTML = `<strong>Q${currentQIndex + 1}:</strong> ${q.q}`;
-
-  const optionsDiv = document.getElementById('options');
-  optionsDiv.innerHTML = '';
+  document.getElementById('question').innerHTML = `<strong>Q${currentQIndex+1}:</strong> ${q.q}`;
   
-  // Create option blocks
-  q.options.forEach((opt, i) => {
+  const cont = document.getElementById('options');
+  q.options.forEach((optText, i) => {
     const div = document.createElement('div');
     div.className = 'option';
-    div.innerHTML = opt; 
+    div.innerHTML = optText;
     div.dataset.index = i;
-    optionsDiv.appendChild(div);
+    cont.appendChild(div);
   });
 }
 
-function rainConfetti() {
-  const emojis = ['🎉', '✨', '📜', '🌍', '⚖️', '💰', 'A+', '🧪', '🧬', '⚛️'];
-  for(let i = 0; i < 40; i++) {
-    const confetti = document.createElement('div');
-    confetti.className = 'confetti';
-    confetti.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-    confetti.style.left = (Math.random() * window.innerWidth) + 'px';
-    confetti.style.top = '-50px';
-    confetti.style.animation = `confettiFall ${2 + Math.random() * 2}s linear forwards`;
-    document.body.appendChild(confetti);
-    setTimeout(() => confetti.remove(), 4000);
-  }
-}
-
-function sadRain() {
-  for(let i = 0; i < 10; i++) {
-    const sad = document.createElement('div');
-    sad.className = 'confetti';
-    sad.innerText = '❌';
-    sad.style.left = Math.random() * window.innerWidth + 'px';
-    sad.style.top = '0px';
-    sad.style.animation = 'fall 2s linear forwards';
-    document.body.appendChild(sad);
-    setTimeout(() => sad.remove(), 2000);
-  }
-}
-
-// Input Handling
-let mouseX = 0, mouseY = 0;
-
 function handleStart(x, y) {
-  const currentSlingshotY = window.innerHeight - 150;
-  const dist = Math.sqrt((x - slingshotX) ** 2 + (y - currentSlingshotY) ** 2);
-  if (dist < bird.r + 30 && !bird.launched) {
-    bird.dragging = true;
-  }
+  const dy = window.innerHeight - 150;
+  if (Math.hypot(x - slingshotX, y - dy) < 60 && !bird.launched) bird.dragging = true;
 }
-
 function handleMove(x, y) {
-  mouseX = x; 
-  mouseY = y;
-  const currentSlingshotY = window.innerHeight - 150;
-
-  if (bird.dragging && !bird.launched) {
-    const dx = x - slingshotX;
-    const dy = y - currentSlingshotY;
-    const maxDrag = 120;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    
-    if (dist > maxDrag) {
-      bird.x = slingshotX + (dx/dist) * maxDrag;
-      bird.y = currentSlingshotY + (dy/dist) * maxDrag;
+  if (bird.dragging) {
+    const dy = window.innerHeight - 150;
+    const dist = Math.hypot(x - slingshotX, y - dy);
+    const max = 120;
+    if (dist > max) {
+      bird.x = slingshotX + (x - slingshotX)/dist * max;
+      bird.y = dy + (y - dy)/dist * max;
     } else {
-      bird.x = x;
-      bird.y = y;
+      bird.x = x; bird.y = y;
     }
   }
 }
-
 function handleEnd() {
-  if (bird.dragging && !bird.launched) {
+  if (bird.dragging) {
     bird.dragging = false;
-    const currentSlingshotY = window.innerHeight - 150;
-    const power = 0.35; 
-    bird.vx = (slingshotX - bird.x) * power;
-    bird.vy = (currentSlingshotY - bird.y) * power;
     bird.launched = true;
+    const dy = window.innerHeight - 150;
+    bird.vx = (slingshotX - bird.x) * 0.35;
+    bird.vy = (dy - bird.y) * 0.35;
   }
 }
 
-// Event Listeners
+// Touch/Mouse Events
 canvas.addEventListener('mousedown', e => handleStart(e.clientX, e.clientY));
-canvas.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
+window.addEventListener('mousemove', e => handleMove(e.clientX, e.clientY));
 window.addEventListener('mouseup', handleEnd);
-
-canvas.addEventListener('touchstart', e => handleStart(e.touches[0].clientX, e.touches[0].clientY), {passive: false});
-canvas.addEventListener('touchmove', e => { e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive: false});
+canvas.addEventListener('touchstart', e => { e.preventDefault(); handleStart(e.touches[0].clientX, e.touches[0].clientY); }, {passive:false});
+window.addEventListener('touchmove', e => { if(bird.dragging) e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive:false});
 window.addEventListener('touchend', handleEnd);
 
-// Physics & Collision
 let collisionHandled = false;
-
 function detectCollision() {
   if (collisionHandled) return;
-  
   const opts = document.querySelectorAll('.option');
-  let hit = false;
-  
   opts.forEach(opt => {
     const rect = opt.getBoundingClientRect();
-    const closestX = Math.max(rect.left, Math.min(bird.x, rect.right));
-    const closestY = Math.max(rect.top, Math.min(bird.y, rect.bottom));
-    const distanceX = bird.x - closestX;
-    const distanceY = bird.y - closestY;
-    
-    if ((distanceX * distanceX) + (distanceY * distanceY) < (bird.r * bird.r)) {
-      if (!hit && !collisionHandled) {
-        hit = true;
-        collisionHandled = true;
-        opt.classList.add('hit');
-        bird.vx = 0; bird.vy = 0;
-        
-        const correctIndex = activeQuestions[currentQIndex].answer;
-        const hitIndex = parseInt(opt.dataset.index);
+    const cx = Math.max(rect.left, Math.min(bird.x, rect.right));
+    const cy = Math.max(rect.top, Math.min(bird.y, rect.bottom));
+    if (Math.hypot(bird.x - cx, bird.y - cy) < bird.r) {
+      collisionHandled = true;
+      opt.classList.add('hit');
+      bird.vx = 0; bird.vy = 0;
+      
+      const correct = activeQuestions[currentQIndex].answer;
+      const chosen = parseInt(opt.dataset.index);
 
-        if (hitIndex === correctIndex) {
-          score += 10;
-          document.getElementById('score').innerText = score;
-          rainConfetti();
-          setTimeout(() => {
-            currentQIndex++;
-            resetBird();
-            loadCurrentQuestion();
-          }, 1500);
-        } else {
-          sadRain();
-          setTimeout(() => {
-            resetBird(); 
-          }, 1000);
-        }
+      if (chosen === correct) {
+        score += 10;
+        document.getElementById('score').innerText = score;
+        spawnConfetti('🎉');
+        setTimeout(() => { currentQIndex++; resetBird(); loadCurrentQuestion(); }, 1500);
+      } else {
+        spawnConfetti('❌');
+        setTimeout(resetBird, 1000);
       }
     }
   });
 
-  if (bird.launched && !hit && !collisionHandled) {
-    if (bird.y > canvas.height - 80 - bird.r || bird.x > canvas.width + 50 || bird.x < -50) {
-      collisionHandled = true;
-      setTimeout(resetBird, 500);
-    }
+  // Out of bounds
+  if (bird.launched && !collisionHandled && (bird.y > canvas.height || bird.x > canvas.width || bird.x < -50)) {
+    collisionHandled = true;
+    setTimeout(resetBird, 500);
   }
 }
 
 function resetBird() {
-  const currentSlingshotY = window.innerHeight - 150;
-  bird.x = slingshotX;
-  bird.y = currentSlingshotY;
-  bird.vx = 0;
-  bird.vy = 0;
-  bird.launched = false;
-  bird.dragging = false;
+  bird.x = slingshotX; 
+  bird.y = window.innerHeight - 150;
+  bird.vx = 0; bird.vy = 0;
+  bird.launched = false; bird.dragging = false;
   collisionHandled = false;
 }
 
 function resetGameFull() {
-  score = 0;
-  currentQIndex = 0;
-  paused = false;
+  score = 0; currentQIndex = 0; paused = false;
   document.getElementById('score').innerText = 0;
   resetBird();
   loadCurrentQuestion();
   animate();
 }
 
-function resetGame() {
-  resetBird();
-}
+function resetGame() { resetBird(); }
+function showDashboard() { document.getElementById('dashboard').style.display = 'flex'; document.getElementById('game-ui').style.display = 'none'; paused = true; }
+function togglePause() { paused = !paused; document.querySelector('.pause').innerText = paused ? "Resume" : "Pause"; if(!paused) animate(); }
 
-function togglePause() {
-  paused = !paused;
-  document.querySelector('.pause').innerText = paused ? 'Resume' : 'Pause';
+function spawnConfetti(char) {
+  for(let i=0; i<15; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.innerText = char;
+    el.style.left = Math.random()*window.innerWidth + 'px';
+    el.style.top = '-20px';
+    el.style.animation = `fall 2s linear forwards`;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2000);
+  }
 }
 
 function animate() {
-  if (!paused) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const currentSlingshotY = window.innerHeight - 150; 
-    
-    if (bird.dragging) {
-      const power = 0.35;
-      const vx = (slingshotX - bird.x) * power;
-      const vy = (currentSlingshotY - bird.y) * power;
-      ctx.fillStyle = 'rgba(255,255,255,0.6)';
-      for(let t=0; t<40; t+=2) {
-        const dx = bird.x + vx*t;
-        const dy = bird.y + vy*t + 0.3 * t*t;
-        ctx.beginPath();
-        ctx.arc(dx, dy, 4, 0, Math.PI*2);
-        ctx.fill();
-      }
-    }
+  if (paused) return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const dy = window.innerHeight - 150;
 
-    if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== currentSlingshotY))) {
-      ctx.strokeStyle = '#5d4037';
-      ctx.lineWidth = 6;
-      ctx.lineCap = 'round';
-      ctx.beginPath();
-      ctx.moveTo(slingshotX - 20, currentSlingshotY);
-      ctx.lineTo(bird.x, bird.y);
-      ctx.stroke();
-    }
-
-    if (bird.launched) {
-      bird.vy += 0.6; 
-      bird.x += bird.vx;
-      bird.y += bird.vy;
-      bird.vx *= 0.995;
-      detectCollision();
-    }
-
-    ctx.save();
-    ctx.translate(bird.x, bird.y);
-    if(bird.launched) {
-       ctx.rotate(Math.atan2(bird.vy, bird.vx));
-    }
-    
-    if(birdLoaded) {
-      ctx.drawImage(birdImg, -bird.r, -bird.r, bird.r*2, bird.r*2);
-    } else {
-      ctx.fillStyle = 'red';
-      ctx.beginPath();
-      ctx.arc(0,0, bird.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-    ctx.restore();
-
-    if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== currentSlingshotY))) {
-      ctx.strokeStyle = '#5d4037';
-      ctx.lineWidth = 6;
-      ctx.beginPath();
-      ctx.moveTo(slingshotX + 20, currentSlingshotY);
-      ctx.lineTo(bird.x, bird.y);
-      ctx.stroke();
-    }
+  // Draw Band (Back)
+  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
+    ctx.beginPath(); ctx.lineWidth = 6; ctx.strokeStyle = '#5d4037';
+    ctx.moveTo(slingshotX - 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
   }
+
+  // Physics
+  if (bird.launched) {
+    bird.vy += 0.6; bird.x += bird.vx; bird.y += bird.vy; bird.vx *= 0.995;
+    detectCollision();
+  }
+
+  // Draw Bird
+  ctx.save();
+  ctx.translate(bird.x, bird.y);
+  if (bird.launched) ctx.rotate(Math.atan2(bird.vy, bird.vx));
+  if (birdLoaded) ctx.drawImage(birdImg, -bird.r, -bird.r, bird.r*2, bird.r*2);
+  else { ctx.fillStyle = 'red'; ctx.beginPath(); ctx.arc(0,0,bird.r,0,Math.PI*2); ctx.fill(); }
+  ctx.restore();
+
+  // Draw Band (Front)
+  if (bird.dragging || (!bird.launched && (bird.x !== slingshotX || bird.y !== dy))) {
+    ctx.beginPath(); ctx.moveTo(slingshotX + 20, dy); ctx.lineTo(bird.x, bird.y); ctx.stroke();
+  }
+
   requestAnimationFrame(animate);
 }
 
-// Initial Run
+// Start
 initDashboard();
-
 </script>
 </body>
 </html>
