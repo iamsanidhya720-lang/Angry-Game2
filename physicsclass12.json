@@ -1,0 +1,229 @@
+{
+  "class_12_physics_mcqs": [
+    {
+      "chapter": "Electric Charges and Fields",
+      "questions": [
+        {
+          "q": "Electric field inside a conductor in electrostatic equilibrium is:",
+          "options": ["Zero", "Constant", "Maximum at surface", "Depends on charge"],
+          "answer": "Zero"
+        },
+        {
+          "q": "Like charges:",
+          "options": ["Attract", "Repel", "Have no interaction", "Form dipoles"],
+          "answer": "Repel"
+        }
+      ]
+    },
+    {
+      "chapter": "Electrostatic Potential and Capacitance",
+      "questions": [
+        {
+          "q": "SI unit of capacitance is:",
+          "options": ["Coulomb", "Farad", "Henry", "Volt"],
+          "answer": "Farad"
+        },
+        {
+          "q": "Electric potential is a:",
+          "options": ["Scalar quantity", "Vector quantity", "Tensor quantity", "None"],
+          "answer": "Scalar quantity"
+        }
+      ]
+    },
+    {
+      "chapter": "Current Electricity",
+      "questions": [
+        {
+          "q": "Ohm’s law relates voltage with:",
+          "options": ["Power", "Resistance", "Current", "Energy"],
+          "answer": "Current"
+        },
+        {
+          "q": "SI unit of resistivity is:",
+          "options": ["Ohm-metre", "Ohm", "Watt", "Volt"],
+          "answer": "Ohm-metre"
+        }
+      ]
+    },
+    {
+      "chapter": "Moving Charges and Magnetism",
+      "questions": [
+        {
+          "q": "Force on a moving charge in magnetic field is maximum when angle is:",
+          "options": ["0°", "90°", "180°", "45°"],
+          "answer": "90°"
+        },
+        {
+          "q": "Magnetic force on a stationary charge is:",
+          "options": ["Maximum", "Zero", "Minimum but non-zero", "Infinite"],
+          "answer": "Zero"
+        }
+      ]
+    },
+    {
+      "chapter": "Magnetism and Matter",
+      "questions": [
+        {
+          "q": "Earth's magnetic field is due to:",
+          "options": ["Mountains", "Electric charges in clouds", "Molten iron core", "Rocks"],
+          "answer": "Molten iron core"
+        },
+        {
+          "q": "Diamagnetic substances are:",
+          "options": ["Weakly repelled by magnets", "Strongly attracted", "Ferromagnetic", "Permanent magnets"],
+          "answer": "Weakly repelled by magnets"
+        }
+      ]
+    },
+    {
+      "chapter": "Electromagnetic Induction",
+      "questions": [
+        {
+          "q": "Faraday’s law deals with generation of:",
+          "options": ["Electric field", "Magnetic field", "Induced emf", "Charge"],
+          "answer": "Induced emf"
+        },
+        {
+          "q": "Induced emf is maximum when the change in flux is:",
+          "options": ["Zero", "Minimum", "Maximum", "Constant"],
+          "answer": "Maximum"
+        }
+      ]
+    },
+    {
+      "chapter": "Alternating Current",
+      "questions": [
+        {
+          "q": "Power factor of a pure inductor is:",
+          "options": ["1", "0", "-1", "0.5"],
+          "answer": "0"
+        },
+        {
+          "q": "In AC circuits, rms value is:",
+          "options": ["Peak value", "Peak/√2", "Peak×√2", "Zero"],
+          "answer": "Peak/√2"
+        }
+      ]
+    },
+    {
+      "chapter": "Electromagnetic Waves",
+      "questions": [
+        {
+          "q": "EM waves are:",
+          "options": ["Longitudinal", "Transverse", "Random", "Both"],
+          "answer": "Transverse"
+        },
+        {
+          "q": "Speed of EM waves in vacuum is:",
+          "options": ["Depends on frequency", "Constant", "Zero", "Infinite"],
+          "answer": "Constant"
+        }
+      ]
+    },
+    {
+      "chapter": "Ray Optics and Optical Instruments",
+      "questions": [
+        {
+          "q": "Mirror formula is valid for:",
+          "options": ["Concave mirrors only", "Convex mirrors only", "All spherical mirrors", "Plane mirrors only"],
+          "answer": "All spherical mirrors"
+        },
+        {
+          "q": "The power of a lens is measured in:",
+          "options": ["Joule", "Dioptre", "Volt", "Metre"],
+          "answer": "Dioptre"
+        }
+      ]
+    },
+    {
+      "chapter": "Wave Optics",
+      "questions": [
+        {
+          "q": "Young’s double slit experiment proves:",
+          "options": ["Particle nature of light", "Wave nature of light", "Reflection of light", "Polarisation only"],
+          "answer": "Wave nature of light"
+        },
+        {
+          "q": "Bending of light around obstacles is:",
+          "options": ["Reflection", "Diffraction", "Interference", "Refraction"],
+          "answer": "Diffraction"
+        }
+      ]
+    },
+    {
+      "chapter": "Dual Nature of Radiation and Matter",
+      "questions": [
+        {
+          "q": "Photoelectric effect shows:",
+          "options": ["Wave nature of light", "Particle nature of light", "Thermal nature of light", "No nature"],
+          "answer": "Particle nature of light"
+        },
+        {
+          "q": "Electron emission occurs only if light frequency is:",
+          "options": ["Below threshold", "Above threshold", "Zero", "Equal to wavelength"],
+          "answer": "Above threshold"
+        }
+      ]
+    },
+    {
+      "chapter": "Atoms",
+      "questions": [
+        {
+          "q": "The radius of Bohr orbit is proportional to:",
+          "options": ["n²", "n", "1/n", "1/n²"],
+          "answer": "n²"
+        },
+        {
+          "q": "Most of the atom is:",
+          "options": ["Filled", "Empty space", "Solid", "Liquid"],
+          "answer": "Empty space"
+        }
+      ]
+    },
+    {
+      "chapter": "Nuclei",
+      "questions": [
+        {
+          "q": "Nuclear force is:",
+          "options": ["Long range", "Short range", "Infinite range", "Zero range"],
+          "answer": "Short range"
+        },
+        {
+          "q": "Radioactivity is a:",
+          "options": ["Chemical process", "Nuclear process", "Mechanical process", "Random choice"],
+          "answer": "Nuclear process"
+        }
+      ]
+    },
+    {
+      "chapter": "Semiconductor Electronics",
+      "questions": [
+        {
+          "q": "Diode allows current to pass in:",
+          "options": ["Both directions", "Forward direction only", "Reverse direction only", "No direction"],
+          "answer": "Forward direction only"
+        },
+        {
+          "q": "PN junction shows:",
+          "options": ["Rectification", "Amplification", "Oscillation", "None"],
+          "answer": "Rectification"
+        }
+      ]
+    },
+    {
+      "chapter": "Communication Systems",
+      "questions": [
+        {
+          "q": "The range of communication increases with:",
+          "options": ["Wavelength", "Height of antenna", "Temperature", "Resistance"],
+          "answer": "Height of antenna"
+        },
+        {
+          "q": "Which modulation varies the amplitude of carrier wave?",
+          "options": ["FM", "AM", "PM", "SM"],
+          "answer": "AM"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "class": "11",
+  "subject": "Chemistry",
+  "chapters": [
+    {
+      "chapter": "1. Some Basic Concepts of Chemistry",
+      "mcqs": [
+        {
+          "question": "The SI unit of amount of substance is:",
+          "options": ["Mole", "Gram", "Litre", "Kilogram"],
+          "answer": "Mole"
+        },
+        {
+          "question": "1 mole of any gas at STP occupies:",
+          "options": ["11.2 L", "22.4 L", "44.8 L", "1 L"],
+          "answer": "22.4 L"
+        }
+      ]
+    },
+    {
+      "chapter": "2. Structure of Atom",
+      "mcqs": [
+        {
+          "question": "Electrons revolve around the nucleus in:",
+          "options": ["Circular orbits", "Straight lines", "Random paths", "Elliptical paths only"],
+          "answer": "Circular orbits"
+        },
+        {
+          "question": "The maximum number of electrons in an orbit is given by:",
+          "options": ["2n", "2n²", "n²", "n"],
+          "answer": "2n²"
+        }
+      ]
+    },
+    {
+      "chapter": "3. Classification of Elements",
+      "mcqs": [
+        {
+          "question": "Modern periodic table is based on:",
+          "options": ["Atomic mass", "Atomic number", "Density", "Valency"],
+          "answer": "Atomic number"
+        },
+        {
+          "question": "Which group contains noble gases?",
+          "options": ["Group 1", "Group 17", "Group 18", "Group 2"],
+          "answer": "Group 18"
+        }
+      ]
+    },
+    {
+      "chapter": "4. Chemical Bonding",
+      "mcqs": [
+        {
+          "question": "The type of bond in NaCl is:",
+          "options": ["Covalent", "Ionic", "Metallic", "Hydrogen"],
+          "answer": "Ionic"
+        },
+        {
+          "question": "Hybridization in methane (CH4) is:",
+          "options": ["sp", "sp2", "sp3", "sp3d"],
+          "answer": "sp3"
+        }
+      ]
+    },
+    {
+      "chapter": "5. States of Matter",
+      "mcqs": [
+        {
+          "question": "Boyle’s law states that pressure is inversely proportional to:",
+          "options": ["Temperature", "Volume", "Mass", "Density"],
+          "answer": "Volume"
+        },
+        {
+          "question": "The constant in ideal gas equation PV = nRT is:",
+          "options": ["Planck constant", "Gas constant", "Boltzmann constant", "Avogadro constant"],
+          "answer": "Gas constant"
+        }
+      ]
+    },
+    {
+      "chapter": "6. Thermodynamics",
+      "mcqs": [
+        {
+          "question": "The first law of thermodynamics is the law of:",
+          "options": ["Entropy", "Energy conservation", "Gases", "Chemical equilibrium"],
+          "answer": "Energy conservation"
+        },
+        {
+          "question": "ΔH is equal to:",
+          "options": ["Heat at constant pressure", "Heat at constant volume", "Entropy change", "Work done"],
+          "answer": "Heat at constant pressure"
+        }
+      ]
+    },
+    {
+      "chapter": "7. Equilibrium",
+      "mcqs": [
+        {
+          "question": "The equilibrium constant is represented by:",
+          "options": ["Q", "K", "R", "P"],
+          "answer": "K"
+        },
+        {
+          "question": "pH of a neutral solution at 25°C is:",
+          "options": ["0", "7", "14", "1"],
+          "answer": "7"
+        }
+      ]
+    },
+    {
+      "chapter": "8. Redox Reactions",
+      "mcqs": [
+        {
+          "question": "Oxidation involves:",
+          "options": ["Gain of electrons", "Loss of electrons", "Loss of oxygen", "Gain of hydrogen"],
+          "answer": "Loss of electrons"
+        },
+        {
+          "question": "In H2O, oxidation number of oxygen is:",
+          "options": ["+2", "0", "-2", "+1"],
+          "answer": "-2"
+        }
+      ]
+    },
+    {
+      "chapter": "9. Hydrogen",
+      "mcqs": [
+        {
+          "question": "The most abundant element in the universe is:",
+          "options": ["Oxygen", "Hydrogen", "Nitrogen", "Carbon"],
+          "answer": "Hydrogen"
+        },
+        {
+          "question": "Hard water contains:",
+          "options": ["Ca²⁺ and Mg²⁺ ions", "Na⁺ ions", "K⁺ ions", "Cl⁻ ions"],
+          "answer": "Ca²⁺ and Mg²⁺ ions"
+        }
+      ]
+    },
+    {
+      "chapter": "10. s-Block Elements",
+      "mcqs": [
+        {
+          "question": "Alkali metals belong to:",
+          "options": ["Group 1", "Group 2", "Group 17", "Group 18"],
+          "answer": "Group 1"
+        },
+        {
+          "question": "The alkaline earth metals fall in:",
+          "options": ["Group 1", "Group 2", "Group 3", "Group 4"],
+          "answer": "Group 2"
+        }
+      ]
+    },
+    {
+      "chapter": "11. p-Block Elements",
+      "mcqs": [
+        {
+          "question": "Which element belongs to group 13?",
+          "options": ["C", "N", "B", "O"],
+          "answer": "B"
+        },
+        {
+          "question": "The most electronegative element is:",
+          "options": ["Oxygen", "Chlorine", "Fluorine", "Nitrogen"],
+          "answer": "Fluorine"
+        }
+      ]
+    },
+    {
+      "chapter": "12. Organic Chemistry – Basic Principles",
+      "mcqs": [
+        {
+          "question": "The formula of methane is:",
+          "options": ["C2H6", "CH4", "C3H8", "C2H4"],
+          "answer": "CH4"
+        },
+        {
+          "question": "The branching in organic compounds increases:",
+          "options": ["Molar mass", "Boiling point", "Stability", "Reactivity"],
+          "answer": "Stability"
+        }
+      ]
+    },
+    {
+      "chapter": "13. Hydrocarbons",
+      "mcqs": [
+        {
+          "question": "Alkanes are:",
+          "options": ["Saturated", "Unsaturated", "Aromatic", "Ionic"],
+          "answer": "Saturated"
+        },
+        {
+          "question": "Benzene is an example of:",
+          "options": ["Alkane", "Alkyne", "Aromatic compound", "Alcohol"],
+          "answer": "Aromatic compound"
+        }
+      ]
+    },
+    {
+      "chapter": "14. Environmental Chemistry",
+      "mcqs": [
+        {
+          "question": "The main gas responsible for ozone depletion is:",
+          "options": ["CO₂", "SO₂", "CFCs", "N₂"],
+          "answer": "CFCs"
+        },
+        {
+          "question": "pH of acid rain is:",
+          "options": ["7", "8", "6.5", "< 5.6"],
+          "answer": "< 5.6"
+        }
+      ]
+    }
+  ]
+}

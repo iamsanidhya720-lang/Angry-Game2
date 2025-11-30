@@ -1,0 +1,142 @@
+[
+  {
+    "chapter": "Resources and Development",
+    "questions": [
+      {
+        "q": "Resources are classified based on:",
+        "options": ["Origin, Availability, Ownership", "Color and Texture", "Weight and Size", "Height and Depth"],
+        "answer": 0
+      },
+      {
+        "q": "A resource which can be used again and again is called:",
+        "options": ["Exhaustible", "Renewable", "Non-renewable", "Limited"],
+        "answer": 1
+      },
+      {
+        "q": "Soil and water are examples of:",
+        "options": ["Biotic resources", "Abiotic resources", "Human-made resources", "Capital resources"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Forest and Wildlife Resources",
+    "questions": [
+      {
+        "q": "Deforestation leads to:",
+        "options": ["More rainfall", "Loss of biodiversity", "Increase in soil fertility", "Growth of forests"],
+        "answer": 1
+      },
+      {
+        "q": "National parks and sanctuaries are meant for:",
+        "options": ["Farming", "Industrial growth", "Wildlife protection", "Urban development"],
+        "answer": 2
+      },
+      {
+        "q": "Chipko movement was aimed at:",
+        "options": ["Water conservation", "Forest conservation", "Wildlife hunting", "Industrialization"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Water Resources",
+    "questions": [
+      {
+        "q": "The major source of freshwater is:",
+        "options": ["Oceans", "Rivers and lakes", "Saltwater lakes", "Rainwater only"],
+        "answer": 1
+      },
+      {
+        "q": "Dam construction is mainly for:",
+        "options": ["Flood control, irrigation, electricity", "Fishing", "Urban transport", "Tourism"],
+        "answer": 0
+      },
+      {
+        "q": "A major river used for inland navigation in India is:",
+        "options": ["Ganga", "Yamuna", "Godavari", "Narmada"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Agriculture",
+    "questions": [
+      {
+        "q": "Rabi crops are sown in:",
+        "options": ["Winter", "Monsoon", "Summer", "Spring"],
+        "answer": 0
+      },
+      {
+        "q": "Major crop in India is:",
+        "options": ["Rice", "Wheat", "Maize", "Cotton"],
+        "answer": 0
+      },
+      {
+        "q": "Green Revolution in India focused on:",
+        "options": ["Industrial growth", "High-yield crop production", "Forest plantation", "Water harvesting"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Minerals and Energy Resources",
+    "questions": [
+      {
+        "q": "Iron ore is used to make:",
+        "options": ["Steel", "Plastic", "Paper", "Glass"],
+        "answer": 0
+      },
+      {
+        "q": "Which energy resource is non-renewable?",
+        "options": ["Solar energy", "Wind energy", "Coal", "Hydropower"],
+        "answer": 2
+      },
+      {
+        "q": "Bauxite is the ore of:",
+        "options": ["Aluminium", "Copper", "Iron", "Zinc"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Manufacturing Industries",
+    "questions": [
+      {
+        "q": "The industry which converts raw material into finished goods is called:",
+        "options": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+        "answer": 1
+      },
+      {
+        "q": "The textile industry primarily uses:",
+        "options": ["Iron", "Cotton", "Bauxite", "Coal"],
+        "answer": 1
+      },
+      {
+        "q": "The IT industry belongs to which sector?",
+        "options": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Lifelines of National Economy",
+    "questions": [
+      {
+        "q": "Roads, railways, and ports are examples of:",
+        "options": ["Primary sector", "Secondary sector", "Infrastructure", "Human resources"],
+        "answer": 2
+      },
+      {
+        "q": "The Golden Quadrilateral connects:",
+        "options": ["Major ports", "Major cities", "Rail networks", "Rural villages"],
+        "answer": 1
+      },
+      {
+        "q": "Which transport is fastest for long distances?",
+        "options": ["Railways", "Roadways", "Airways", "Waterways"],
+        "answer": 2
+      }
+    ]
+  }
+]

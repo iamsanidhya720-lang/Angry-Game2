@@ -1,0 +1,244 @@
+{
+  "class_12_chemistry_mcqs": [
+    {
+      "chapter": "Solid State",
+      "questions": [
+        {
+          "q": "The coordination number in fcc lattice is:",
+          "options": ["4", "6", "8", "12"],
+          "answer": "12"
+        },
+        {
+          "q": "NaCl crystal is an example of:",
+          "options": ["Ionic solid", "Metallic solid", "Molecular solid", "Covalent solid"],
+          "answer": "Ionic solid"
+        }
+      ]
+    },
+    {
+      "chapter": "Solutions",
+      "questions": [
+        {
+          "q": "Which law states that solubility of a gas is proportional to its pressure?",
+          "options": ["Raoult's law", "Boyle's law", "Henry's law", "Dalton's law"],
+          "answer": "Henry's law"
+        },
+        {
+          "q": "Colligative properties depend on:",
+          "options": ["Nature of solute", "Nature of solvent", "Number of particles", "Colour of solute"],
+          "answer": "Number of particles"
+        }
+      ]
+    },
+    {
+      "chapter": "Electrochemistry",
+      "questions": [
+        {
+          "q": "Standard electrode potential of SHE is:",
+          "options": ["0 V", "1 V", "2 V", "-1 V"],
+          "answer": "0 V"
+        },
+        {
+          "q": "The unit of molar conductivity is:",
+          "options": ["S cm⁻¹", "S cm² mol⁻¹", "Ohm cm", "V cm⁻¹"],
+          "answer": "S cm² mol⁻¹"
+        }
+      ]
+    },
+    {
+      "chapter": "Chemical Kinetics",
+      "questions": [
+        {
+          "q": "Rate of reaction depends on:",
+          "options": ["Concentration only", "Temperature only", "Nature of reactants", "All of these"],
+          "answer": "All of these"
+        },
+        {
+          "q": "For zero-order reactions, rate is:",
+          "options": ["Independent of concentration", "Directly proportional to concentration", "Exponential", "Infinite"],
+          "answer": "Independent of concentration"
+        }
+      ]
+    },
+    {
+      "chapter": "Surface Chemistry",
+      "questions": [
+        {
+          "q": "The process of coating solid surface with a liquid or gas is:",
+          "options": ["Absorption", "Adsorption", "Desorption", "Coagulation"],
+          "answer": "Adsorption"
+        },
+        {
+          "q": "Which of the following is an example of a gel?",
+          "options": ["Milk", "Fog", "Butter", "Smoke"],
+          "answer": "Butter"
+        }
+      ]
+    },
+    {
+      "chapter": "Isolation of Elements",
+      "questions": [
+        {
+          "q": "Froth flotation process is used for:",
+          "options": ["Metal refining", "Concentration of ores", "Alloy formation", "Electrolysis"],
+          "answer": "Concentration of ores"
+        },
+        {
+          "q": "Purification of metals by electricity is called:",
+          "options": ["Electrowinning", "Zone refining", "Electrorefining", "Distillation"],
+          "answer": "Electrorefining"
+        }
+      ]
+    },
+    {
+      "chapter": "The p-Block Elements",
+      "questions": [
+        {
+          "q": "Ozone is an allotrope of:",
+          "options": ["Nitrogen", "Oxygen", "Fluorine", "Carbon"],
+          "answer": "Oxygen"
+        },
+        {
+          "q": "Boron family belongs to group:",
+          "options": ["13", "14", "15", "16"],
+          "answer": "13"
+        }
+      ]
+    },
+    {
+      "chapter": "The d- and f-Block Elements",
+      "questions": [
+        {
+          "q": "Transition metals generally form:",
+          "options": ["Colourless ions", "Coloured ions", "Non-metallic ions", "Noble gases"],
+          "answer": "Coloured ions"
+        },
+        {
+          "q": "Lanthanides show oxidation state mostly:",
+          "options": ["+1", "+2", "+3", "+4"],
+          "answer": "+3"
+        }
+      ]
+    },
+    {
+      "chapter": "Coordination Compounds",
+      "questions": [
+        {
+          "q": "Central atom in a coordination complex is called:",
+          "options": ["Ligand", "Coordination sphere", "Coordination entity", "Coordination centre"],
+          "answer": "Coordination centre"
+        },
+        {
+          "q": "Ligands that can form two bonds are called:",
+          "options": ["Monodentate", "Bidentate", "Ambidentate", "Polydentate"],
+          "answer": "Bidentate"
+        }
+      ]
+    },
+    {
+      "chapter": "Haloalkanes and Haloarenes",
+      "questions": [
+        {
+          "q": "C–X bond in haloalkanes is:",
+          "options": ["Polar", "Non-polar", "Ionic", "Very weak"],
+          "answer": "Polar"
+        },
+        {
+          "q": "Chloroform is:",
+          "options": ["CHCl₃", "CCl₄", "CH₂Cl₂", "CH₃Cl"],
+          "answer": "CHCl₃"
+        }
+      ]
+    },
+    {
+      "chapter": "Alcohols, Phenols and Ethers",
+      "questions": [
+        {
+          "q": "Alcohols are formed by hydration of:",
+          "options": ["Alkanes", "Alkenes", "Alkynes", "Arenes"],
+          "answer": "Alkenes"
+        },
+        {
+          "q": "Phenol reacts with bromine water to give:",
+          "options": ["Colourless solution", "2,4,6-tribromophenol", "Benzene", "Ether"],
+          "answer": "2,4,6-tribromophenol"
+        }
+      ]
+    },
+    {
+      "chapter": "Aldehydes, Ketones and Carboxylic Acids",
+      "questions": [
+        {
+          "q": "Fehling’s solution is used to test:",
+          "options": ["Ketones", "Aldehydes", "Carboxylic acids", "Alcohols"],
+          "answer": "Aldehydes"
+        },
+        {
+          "q": "The functional group –COOH represents:",
+          "options": ["Alcohol", "Aldehyde", "Ketone", "Carboxylic acid"],
+          "answer": "Carboxylic acid"
+        }
+      ]
+    },
+    {
+      "chapter": "Organic Compounds Containing Nitrogen",
+      "questions": [
+        {
+          "q": "Primary amines react with nitrous acid to form:",
+          "options": ["Alcohols", "Alkanes", "Diazonium salts", "Nitro compounds"],
+          "answer": "Alcohols"
+        },
+        {
+          "q": "Aniline is:",
+          "options": ["C₂H₅NH₂", "C₆H₅NH₂", "CH₃NH₂", "NH₃"],
+          "answer": "C₆H₅NH₂"
+        }
+      ]
+    },
+    {
+      "chapter": "Biomolecules",
+      "questions": [
+        {
+          "q": "Glucose is a:",
+          "options": ["Disaccharide", "Polysaccharide", "Monosaccharide", "Protein"],
+          "answer": "Monosaccharide"
+        },
+        {
+          "q": "The building blocks of proteins are:",
+          "options": ["Fatty acids", "Nucleotides", "Amino acids", "Monosaccharides"],
+          "answer": "Amino acids"
+        }
+      ]
+    },
+    {
+      "chapter": "Polymers",
+      "questions": [
+        {
+          "q": "PVC is formed from:",
+          "options": ["Vinyl chloride", "Ethene", "Propene", "Styrene"],
+          "answer": "Vinyl chloride"
+        },
+        {
+          "q": "Nylon-6 is a:",
+          "options": ["Natural polymer", "Semi-synthetic polymer", "Synthetic polymer", "Biodegradable polymer"],
+          "answer": "Synthetic polymer"
+        }
+      ]
+    },
+    {
+      "chapter": "Chemistry in Everyday Life",
+      "questions": [
+        {
+          "q": "Aspirin is used as a:",
+          "options": ["Antibiotic", "Analgesic", "Disinfectant", "Antiseptic"],
+          "answer": "Analgesic"
+        },
+        {
+          "q": "Detergents work best in:",
+          "options": ["Hard water", "Soft water", "Cold water", "Rainwater"],
+          "answer": "Hard water"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "chapter": "The Story of Village Palampur",
+    "questions": [
+      {
+        "q": "The main source of livelihood in Palampur is:",
+        "options": ["Farming", "Industry", "Services", "Tourism"],
+        "answer": 0
+      },
+      {
+        "q": "Green Revolution in Palampur improved:",
+        "options": ["Crop yield", "Trade only", "Livestock health", "Education"],
+        "answer": 0
+      },
+      {
+        "q": "Multiple cropping means:",
+        "options": ["Growing more than one crop on same land", "Growing only wheat", "Growing crops on different land", "Abandoning farming"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "People as Resource",
+    "questions": [
+      {
+        "q": "Skilled and educated people are called:",
+        "options": ["Human resource", "Natural resource", "Capital", "Land"],
+        "answer": 0
+      },
+      {
+        "q": "Investment in education and health improves:",
+        "options": ["Human resource quality", "Land fertility", "Machines", "Trade"],
+        "answer": 0
+      },
+      {
+        "q": "People provide ______ to the economy.",
+        "options": ["Labour and skills", "Soil only", "Water only", "Machinery"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Poverty as a Challenge",
+    "questions": [
+      {
+        "q": "Poverty means:",
+        "options": ["Lack of income and basic needs", "Wealth", "Education", "Employment only"],
+        "answer": 0
+      },
+      {
+        "q": "A major reason for poverty in India is:",
+        "options": ["Unemployment", "High literacy", "Industrial growth", "Trade expansion"],
+        "answer": 0
+      },
+      {
+        "q": "Government schemes aim to:",
+        "options": ["Reduce poverty", "Increase prices", "Increase taxes", "Limit trade"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Food Security in India",
+    "questions": [
+      {
+        "q": "Food security means:",
+        "options": ["Access to sufficient and nutritious food", "Selling food only", "Growing crops", "Storing food only"],
+        "answer": 0
+      },
+      {
+        "q": "Public Distribution System provides:",
+        "options": ["Subsidized food grains", "Luxury goods", "Only medicines", "Clothes"],
+        "answer": 0
+      },
+      {
+        "q": "Buffer stock of food grains is maintained to:",
+        "options": ["Ensure food security", "Export more", "Reduce production", "Increase prices only"],
+        "answer": 0
+      }
+    ]
+  }
+]

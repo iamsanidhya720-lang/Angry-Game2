@@ -1,0 +1,102 @@
+[
+  {
+    "chapter": "What is Democracy? Why Democracy?",
+    "questions": [
+      {
+        "q": "Democracy is a form of government where:",
+        "options": ["People rule directly or indirectly", "Only king rules", "Army rules", "Only one party rules"],
+        "answer": 0
+      },
+      {
+        "q": "Why democracy is preferred?",
+        "options": ["It ensures equality and freedom", "It increases corruption", "It reduces participation", "It concentrates power"],
+        "answer": 0
+      },
+      {
+        "q": "Democracy provides:",
+        "options": ["Political equality", "Only taxes", "Military power", "Unlimited laws"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Constitutional Design",
+    "questions": [
+      {
+        "q": "The Indian Constitution provides:",
+        "options": ["Fundamental rights and duties", "Only taxes", "Monarchy", "Unlimited power to one person"],
+        "answer": 0
+      },
+      {
+        "q": "Directive Principles aim to:",
+        "options": ["Guide government for welfare", "Punish citizens", "Reduce rights", "Control army"],
+        "answer": 0
+      },
+      {
+        "q": "The Constitution is:",
+        "options": ["Supreme law of the land", "Only suggestions", "Temporary rules", "Optional guidelines"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Electoral Politics",
+    "questions": [
+      {
+        "q": "Elections in a democracy ensure:",
+        "options": ["People choose their representatives", "Only laws are made", "Army rules", "No choice for citizens"],
+        "answer": 0
+      },
+      {
+        "q": "Voting age in India is:",
+        "options": ["18 years", "16 years", "21 years", "25 years"],
+        "answer": 0
+      },
+      {
+        "q": "Political parties contest elections to:",
+        "options": ["Form government", "Collect taxes only", "Control army", "Build schools only"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Working of Institutions",
+    "questions": [
+      {
+        "q": "Parliament in India consists of:",
+        "options": ["Lok Sabha and Rajya Sabha", "President only", "Prime Minister only", "Supreme Court only"],
+        "answer": 0
+      },
+      {
+        "q": "The Judiciary in India ensures:",
+        "options": ["Justice and Constitution protection", "Making laws only", "Collecting taxes", "Running schools"],
+        "answer": 0
+      },
+      {
+        "q": "The executive in India is headed by:",
+        "options": ["President", "Prime Minister", "Speaker", "Chief Justice"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Democratic Rights",
+    "questions": [
+      {
+        "q": "Fundamental rights ensure:",
+        "options": ["Liberty, equality, and freedom", "Monarchy", "Military control", "Unlimited taxation"],
+        "answer": 0
+      },
+      {
+        "q": "Right to equality includes:",
+        "options": ["Equal treatment before law", "Only freedom of speech", "Only religion", "Only property rights"],
+        "answer": 0
+      },
+      {
+        "q": "Right to constitutional remedies allows:",
+        "options": ["Approaching courts for violation of rights", "Ignoring laws", "Voting twice", "Forming army"],
+        "answer": 0
+      }
+    ]
+  }
+]

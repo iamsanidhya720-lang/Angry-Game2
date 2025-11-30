@@ -1,0 +1,122 @@
+[
+  {
+    "chapter": "Power Sharing",
+    "questions": [
+      {
+        "q": "Power sharing in a democracy helps to:",
+        "options": ["Prevent conflict", "Concentrate power", "Reduce participation", "Increase corruption"],
+        "answer": 0
+      },
+      {
+        "q": "Belgium has power sharing between:",
+        "options": ["States and local governments", "Communities", "Central and local government", "Political parties"],
+        "answer": 1
+      },
+      {
+        "q": "Which type of power sharing is seen in India?",
+        "options": ["Horizontal", "Vertical", "Both horizontal and vertical", "None"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Federalism",
+    "questions": [
+      {
+        "q": "Federalism divides powers between:",
+        "options": ["Central and state governments", "President and Prime Minister", "Judiciary and Legislature", "Local bodies only"],
+        "answer": 0
+      },
+      {
+        "q": "Which is an exclusive subject for central government in India?",
+        "options": ["Police", "Defence", "Agriculture", "Education"],
+        "answer": 1
+      },
+      {
+        "q": "A federal government has:",
+        "options": ["One level of government", "Multiple levels of government", "Only state government", "Only local government"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Gender, Religion and Caste",
+    "questions": [
+      {
+        "q": "Discrimination on the basis of gender is called:",
+        "options": ["Racism", "Sexism", "Casteism", "Communalism"],
+        "answer": 1
+      },
+      {
+        "q": "Communalism refers to conflict between:",
+        "options": ["Genders", "Religions", "Caste groups", "Political parties"],
+        "answer": 1
+      },
+      {
+        "q": "Reservation in jobs and education in India is based on:",
+        "options": ["Religion only", "Caste and backwardness", "Gender only", "Wealth only"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Political Parties",
+    "questions": [
+      {
+        "q": "Political parties contest elections to:",
+        "options": ["Win power and form government", "Provide loans", "Run schools", "Manage factories"],
+        "answer": 0
+      },
+      {
+        "q": "The symbol of a political party helps in:",
+        "options": ["Recognizing the party", "Managing the party", "Running campaigns", "Writing laws"],
+        "answer": 0
+      },
+      {
+        "q": "Multi-party system means:",
+        "options": ["Only one party", "Two parties only", "Many parties compete", "No parties exist"],
+        "answer": 2
+      }
+    ]
+  },
+  {
+    "chapter": "Outcomes of Democracy",
+    "questions": [
+      {
+        "q": "A good democracy ensures:",
+        "options": ["Equality, liberty, and accountability", "Monopoly", "Centralization", "Dictatorship"],
+        "answer": 0
+      },
+      {
+        "q": "Participation of citizens in decision-making leads to:",
+        "options": ["Empowerment", "Corruption", "Conflicts", "Inequality"],
+        "answer": 0
+      },
+      {
+        "q": "Free and fair elections are important for:",
+        "options": ["Democracy", "Monarchy", "Dictatorship", "Colonial rule"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Challenges to Democracy",
+    "questions": [
+      {
+        "q": "Which is a major challenge to democracy?",
+        "options": ["Corruption", "Illiteracy", "Poverty", "All of these"],
+        "answer": 3
+      },
+      {
+        "q": "Communalism and casteism can lead to:",
+        "options": ["Conflict and tension", "Economic growth", "Better governance", "Peaceful coexistence"],
+        "answer": 0
+      },
+      {
+        "q": "Strengthening democracy requires:",
+        "options": ["Active citizen participation", "Restricting voting", "Ignoring inequality", "Weak institutions"],
+        "answer": 0
+      }
+    ]
+  }
+]

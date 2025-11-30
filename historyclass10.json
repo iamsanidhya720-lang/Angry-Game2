@@ -1,0 +1,102 @@
+[
+  {
+    "chapter": "The Rise of Nationalism in Europe",
+    "questions": [
+      {
+        "q": "The main aim of the 1848 Revolutions in Europe was:",
+        "options": ["Increase trade", "National unification", "Industrial growth", "Colonial expansion"],
+        "answer": 1
+      },
+      {
+        "q": "Mazzini was associated with the unification of:",
+        "options": ["Germany", "Italy", "France", "Spain"],
+        "answer": 1
+      },
+      {
+        "q": "The term 'Nation' refers to:",
+        "options": ["A group with common language, culture, and history", "A group of villages", "A single family", "A religious sect"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Nationalism in India",
+    "questions": [
+      {
+        "q": "The formation of the Indian National Congress took place in:",
+        "options": ["1885", "1905", "1919", "1920"],
+        "answer": 0
+      },
+      {
+        "q": "Partition of Bengal happened in:",
+        "options": ["1905", "1911", "1920", "1930"],
+        "answer": 0
+      },
+      {
+        "q": "The non-cooperation movement was led by:",
+        "options": ["Subhash Chandra Bose", "Mahatma Gandhi", "Bal Gangadhar Tilak", "Lala Lajpat Rai"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "The Making of a Global World",
+    "questions": [
+      {
+        "q": "Which invention greatly promoted global trade in the 19th century?",
+        "options": ["Printing press", "Steam engine", "Cotton gin", "Television"],
+        "answer": 1
+      },
+      {
+        "q": "Colonialism primarily helped Europe to:",
+        "options": ["Expand territory", "Grow economically", "Spread democracy", "Learn farming techniques"],
+        "answer": 1
+      },
+      {
+        "q": "Industrialization began first in:",
+        "options": ["Germany", "Britain", "USA", "France"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "The Age of Industrialisation",
+    "questions": [
+      {
+        "q": "The first country to industrialize was:",
+        "options": ["Germany", "France", "Britain", "USA"],
+        "answer": 2
+      },
+      {
+        "q": "Industrialization led to the growth of:",
+        "options": ["Rural population", "Urban population", "Forest areas", "Small villages"],
+        "answer": 1
+      },
+      {
+        "q": "Factory system replaced:",
+        "options": ["Handicrafts", "Machines", "Railways", "Banking"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Print Culture and the Modern World",
+    "questions": [
+      {
+        "q": "The printing press was invented by:",
+        "options": ["Gutenberg", "Newton", "Darwin", "Marconi"],
+        "answer": 0
+      },
+      {
+        "q": "Print media helped in:",
+        "options": ["Colonial exploitation", "Spreading ideas of nationalism", "Increasing taxes", "Trade expansion"],
+        "answer": 1
+      },
+      {
+        "q": "Which language newspapers first appeared in India?",
+        "options": ["English", "Hindi", "Tamil", "Urdu"],
+        "answer": 0
+      }
+    ]
+  }
+]

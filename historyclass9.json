@@ -1,0 +1,162 @@
+[
+  {
+    "chapter": "The French Revolution",
+    "questions": [
+      {
+        "q": "The French Revolution began in:",
+        "options": ["1789", "1776", "1799", "1800"],
+        "answer": 0
+      },
+      {
+        "q": "The common people of France were called:",
+        "options": ["Clergy", "Nobility", "Third Estate", "Monarchs"],
+        "answer": 2
+      },
+      {
+        "q": "The famous French prison stormed during the revolution was:",
+        "options": ["Bastille", "Louvre", "Versailles", "Notre Dame"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Socialism in Europe and the Russian Revolution",
+    "questions": [
+      {
+        "q": "Karl Marx is associated with:",
+        "options": ["Capitalism", "Socialism", "Fascism", "Monarchy"],
+        "answer": 1
+      },
+      {
+        "q": "The Russian Revolution occurred in:",
+        "options": ["1917", "1905", "1920", "1930"],
+        "answer": 0
+      },
+      {
+        "q": "Bolsheviks were led by:",
+        "options": ["Lenin", "Marx", "Trotsky", "Stalin"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Nazism and the Rise of Hitler",
+    "questions": [
+      {
+        "q": "Hitler was the leader of:",
+        "options": ["Italy", "Germany", "France", "Spain"],
+        "answer": 1
+      },
+      {
+        "q": "Nazism promoted:",
+        "options": ["Democracy", "Racial superiority", "Equality", "Socialism"],
+        "answer": 1
+      },
+      {
+        "q": "Hitler came to power in Germany in:",
+        "options": ["1920", "1933", "1945", "1919"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Forest Society and Colonialism",
+    "questions": [
+      {
+        "q": "British forests were used for:",
+        "options": ["Industries and timber", "Agriculture only", "Hunting only", "Housing"],
+        "answer": 0
+      },
+      {
+        "q": "Tribes dependent on forests were called:",
+        "options": ["Nomads", "Forest dwellers", "Soldiers", "Merchants"],
+        "answer": 1
+      },
+      {
+        "q": "Colonialism led to:",
+        "options": ["Exploitation of resources", "Better wages", "Forest protection", "Free trade for tribals"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Pastoralists in the Modern World",
+    "questions": [
+      {
+        "q": "Pastoralists primarily depend on:",
+        "options": ["Farming", "Animal rearing", "Fishing", "Trade"],
+        "answer": 1
+      },
+      {
+        "q": "Pastoralists often move from one place to another, which is called:",
+        "options": ["Migration", "Sedentary life", "Nomadism", "Urbanization"],
+        "answer": 2
+      },
+      {
+        "q": "Colonial policies affected pastoralists by:",
+        "options": ["Restricting grazing lands", "Providing more animals", "Encouraging trade", "Giving them forests"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Peasants & Farmers (Optional)",
+    "questions": [
+      {
+        "q": "Zamindars were:",
+        "options": ["Landowners", "Farmers", "Soldiers", "Merchants"],
+        "answer": 0
+      },
+      {
+        "q": "Indigo plantations in India were controlled by:",
+        "options": ["British", "Mughals", "French", "Dutch"],
+        "answer": 0
+      },
+      {
+        "q": "Peasants protested due to:",
+        "options": ["High taxes", "Fair wages", "Good irrigation", "Free land"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "History and Sport: The Story of Cricket (Optional)",
+    "questions": [
+      {
+        "q": "Cricket was introduced in India by:",
+        "options": ["Portuguese", "British", "French", "Dutch"],
+        "answer": 1
+      },
+      {
+        "q": "The first international cricket match in India was played in:",
+        "options": ["1932", "1928", "1911", "1947"],
+        "answer": 0
+      },
+      {
+        "q": "Cricket became popular due to:",
+        "options": ["British influence", "Radio broadcasts", "Television", "All of these"],
+        "answer": 3
+      }
+    ]
+  },
+  {
+    "chapter": "Clothing: A Social History (Optional)",
+    "questions": [
+      {
+        "q": "Clothing in India was influenced by:",
+        "options": ["Climate, culture, and tradition", "Only climate", "Only trade", "Only royalty"],
+        "answer": 0
+      },
+      {
+        "q": "Khadi became popular during:",
+        "options": ["Freedom struggle", "Industrial revolution", "Colonial rule", "Post-independence"],
+        "answer": 0
+      },
+      {
+        "q": "Clothing also indicates:",
+        "options": ["Social status", "Occupation", "Religion", "All of these"],
+        "answer": 3
+      }
+    ]
+  }
+]

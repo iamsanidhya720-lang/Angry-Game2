@@ -1,0 +1,229 @@
+{
+  "class_11_physics_mcqs": [
+    {
+      "chapter": "Physical World",
+      "questions": [
+        {
+          "q": "Which branch of physics deals with the study of motion without considering its causes?",
+          "options": ["Dynamics", "Kinematics", "Optics", "Thermodynamics"],
+          "answer": "Kinematics"
+        },
+        {
+          "q": "Which of the following is NOT a fundamental force of nature?",
+          "options": ["Gravitational force", "Electromagnetic force", "Frictional force", "Nuclear force"],
+          "answer": "Frictional force"
+        }
+      ]
+    },
+    {
+      "chapter": "Units and Measurement",
+      "questions": [
+        {
+          "q": "Which of the following is a derived unit?",
+          "options": ["Meter", "Second", "Kilogram", "Newton"],
+          "answer": "Newton"
+        },
+        {
+          "q": "The least count of a measuring instrument tells us:",
+          "options": ["Maximum reading", "Minimum reading", "Smallest measurement possible", "Zero error"],
+          "answer": "Smallest measurement possible"
+        }
+      ]
+    },
+    {
+      "chapter": "Motion in a Straight Line",
+      "questions": [
+        {
+          "q": "Area under velocity–time graph represents:",
+          "options": ["Acceleration", "Displacement", "Speed", "Force"],
+          "answer": "Displacement"
+        },
+        {
+          "q": "If velocity is constant, acceleration is:",
+          "options": ["Zero", "Constant", "Increasing", "Negative"],
+          "answer": "Zero"
+        }
+      ]
+    },
+    {
+      "chapter": "Motion in a Plane",
+      "questions": [
+        {
+          "q": "Projectile motion is a combination of:",
+          "options": ["Uniform motion only", "Uniform acceleration only", "Uniform + uniformly accelerated motion", "Circular motion"],
+          "answer": "Uniform + uniformly accelerated motion"
+        },
+        {
+          "q": "For a vector A, its magnitude is always:",
+          "options": ["Positive", "Negative", "Zero or positive", "Any value"],
+          "answer": "Zero or positive"
+        }
+      ]
+    },
+    {
+      "chapter": "Laws of Motion",
+      "questions": [
+        {
+          "q": "Which law explains inertia?",
+          "options": ["Newton’s First Law", "Newton’s Second Law", "Newton’s Third Law", "Kepler’s Law"],
+          "answer": "Newton’s First Law"
+        },
+        {
+          "q": "Action and reaction forces act:",
+          "options": ["On same body", "On different bodies", "In same direction", "Only when objects move"],
+          "answer": "On different bodies"
+        }
+      ]
+    },
+    {
+      "chapter": "Work, Energy and Power",
+      "questions": [
+        {
+          "q": "Work done is zero when force is:",
+          "options": ["Perpendicular to displacement", "Parallel to displacement", "Opposite to displacement", "Greater than displacement"],
+          "answer": "Perpendicular to displacement"
+        },
+        {
+          "q": "SI unit of power is:",
+          "options": ["Joule", "Watt", "Newton", "Pascal"],
+          "answer": "Watt"
+        }
+      ]
+    },
+    {
+      "chapter": "System of Particles and Rotational Motion",
+      "questions": [
+        {
+          "q": "Center of mass of a uniform rod lies at:",
+          "options": ["One end", "Midpoint", "Three-fourth length", "Varies with speed"],
+          "answer": "Midpoint"
+        },
+        {
+          "q": "Rotational analogue of force is:",
+          "options": ["Momentum", "Torque", "Energy", "Power"],
+          "answer": "Torque"
+        }
+      ]
+    },
+    {
+      "chapter": "Gravitation",
+      "questions": [
+        {
+          "q": "Value of acceleration due to gravity (g) is maximum at:",
+          "options": ["Equator", "Poles", "Center of Earth", "Everywhere same"],
+          "answer": "Poles"
+        },
+        {
+          "q": "Universal gravitational constant (G) depends on:",
+          "options": ["Medium", "Temperature", "Mass", "None"],
+          "answer": "None"
+        }
+      ]
+    },
+    {
+      "chapter": "Mechanical Properties of Solids",
+      "questions": [
+        {
+          "q": "The ratio of stress to strain is:",
+          "options": ["Modulus of rigidity", "Young’s modulus", "Bulk modulus", "Surface tension"],
+          "answer": "Young’s modulus"
+        },
+        {
+          "q": "A perfectly elastic body has:",
+          "options": ["Zero stress", "Infinite elastic limit", "Zero strain", "Zero modulus"],
+          "answer": "Infinite elastic limit"
+        }
+      ]
+    },
+    {
+      "chapter": "Mechanical Properties of Fluids",
+      "questions": [
+        {
+          "q": "Pressure in a fluid increases with:",
+          "options": ["Height", "Depth", "Temperature", "Velocity"],
+          "answer": "Depth"
+        },
+        {
+          "q": "SI unit of viscosity is:",
+          "options": ["N/m", "Pa·s", "J/kg", "Nm"],
+          "answer": "Pa·s"
+        }
+      ]
+    },
+    {
+      "chapter": "Thermal Properties of Matter",
+      "questions": [
+        {
+          "q": "The device used to measure temperature is:",
+          "options": ["Barometer", "Thermometer", "Hygrometer", "Manometer"],
+          "answer": "Thermometer"
+        },
+        {
+          "q": "Expansion of solids with heat is due to:",
+          "options": ["Decrease in kinetic energy", "Increase in kinetic energy", "Change in mass", "Change in force"],
+          "answer": "Increase in kinetic energy"
+        }
+      ]
+    },
+    {
+      "chapter": "Thermodynamics",
+      "questions": [
+        {
+          "q": "First law of thermodynamics is based on:",
+          "options": ["Entropy", "Conservation of energy", "Conservation of momentum", "Heat transfer"],
+          "answer": "Conservation of energy"
+        },
+        {
+          "q": "A process with no heat exchange is:",
+          "options": ["Isothermal", "Adiabatic", "Isochoric", "Isobaric"],
+          "answer": "Adiabatic"
+        }
+      ]
+    },
+    {
+      "chapter": "Kinetic Theory",
+      "questions": [
+        {
+          "q": "According to kinetic theory, pressure of gas is due to:",
+          "options": ["Gravity", "Molecular collisions", "Temperature only", "Volume only"],
+          "answer": "Molecular collisions"
+        },
+        {
+          "q": "At absolute zero, volume of an ideal gas becomes:",
+          "options": ["Zero", "Infinite", "Constant", "Undefined"],
+          "answer": "Zero"
+        }
+      ]
+    },
+    {
+      "chapter": "Oscillations",
+      "questions": [
+        {
+          "q": "Time period of simple pendulum depends on:",
+          "options": ["Mass", "Length", "Bob size", "String thickness"],
+          "answer": "Length"
+        },
+        {
+          "q": "The maximum displacement from mean position is:",
+          "options": ["Velocity", "Frequency", "Amplitude", "Phase"],
+          "answer": "Amplitude"
+        }
+      ]
+    },
+    {
+      "chapter": "Waves",
+      "questions": [
+        {
+          "q": "Sound waves are:",
+          "options": ["Transverse", "Longitudinal", "Electromagnetic", "Surface waves"],
+          "answer": "Longitudinal"
+        },
+        {
+          "q": "Speed of wave =",
+          "options": ["Frequency × Amplitude", "Wavelength × Frequency", "Amplitude × Time", "Frequency / Time"],
+          "answer": "Wavelength × Frequency"
+        }
+      ]
+    }
+  ]
+}

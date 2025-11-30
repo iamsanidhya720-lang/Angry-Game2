@@ -1,0 +1,102 @@
+[
+  {
+    "chapter": "Development",
+    "questions": [
+      {
+        "q": "Human Development Index (HDI) measures:",
+        "options": ["Economic growth only", "Health, education, and income", "Population growth", "Agricultural output"],
+        "answer": 1
+      },
+      {
+        "q": "Which of the following is an indicator of development?",
+        "options": ["Life expectancy", "Illiteracy rate", "GDP per capita", "All of these"],
+        "answer": 3
+      },
+      {
+        "q": "Sustainable development aims at:",
+        "options": ["Rapid industrialization", "Meeting present needs without harming future generations", "Increasing population", "Exploiting natural resources quickly"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Sectors of the Indian Economy",
+    "questions": [
+      {
+        "q": "Which sector deals with agriculture and mining?",
+        "options": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+        "answer": 0
+      },
+      {
+        "q": "Which sector provides services like banking and education?",
+        "options": ["Primary", "Secondary", "Tertiary", "None"],
+        "answer": 2
+      },
+      {
+        "q": "Manufacturing belongs to which sector?",
+        "options": ["Primary", "Secondary", "Tertiary", "Quaternary"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Money and Credit",
+    "questions": [
+      {
+        "q": "Commercial banks give loans to:",
+        "options": ["Individuals", "Businesses", "Government", "All of these"],
+        "answer": 3
+      },
+      {
+        "q": "Money serves as a:",
+        "options": ["Medium of exchange", "Store of value", "Unit of account", "All of these"],
+        "answer": 3
+      },
+      {
+        "q": "Cheques and demand drafts are examples of:",
+        "options": ["Paper money", "Plastic money", "Digital money", "Credit instruments"],
+        "answer": 3
+      }
+    ]
+  },
+  {
+    "chapter": "Globalisation and the Indian Economy",
+    "questions": [
+      {
+        "q": "Globalisation is the process of:",
+        "options": ["Increasing self-reliance", "Interconnection of economies worldwide", "Restricting imports", "Isolation of countries"],
+        "answer": 1
+      },
+      {
+        "q": "Which sector has expanded due to globalisation in India?",
+        "options": ["IT and services", "Agriculture only", "Primary sector only", "Textiles only"],
+        "answer": 0
+      },
+      {
+        "q": "Multinational companies operate in:",
+        "options": ["One country", "Multiple countries", "Villages only", "Cities only"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Consumer Rights",
+    "questions": [
+      {
+        "q": "Consumer rights protect:",
+        "options": ["Only producers", "Only shops", "Buyers from exploitation", "Banks only"],
+        "answer": 2
+      },
+      {
+        "q": "Which is a consumer right in India?",
+        "options": ["Right to information", "Right to choose", "Right to safety", "All of these"],
+        "answer": 3
+      },
+      {
+        "q": "Consumer grievances can be addressed through:",
+        "options": ["Consumer courts", "Police", "Factories", "Schools"],
+        "answer": 0
+      }
+    ]
+  }
+]

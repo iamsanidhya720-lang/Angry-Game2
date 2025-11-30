@@ -1,0 +1,246 @@
+{
+  "class": "12",
+  "subject": "Biology",
+  "chapters": [
+    {
+      "chapter": "1. Reproduction in Organisms",
+      "mcqs": [
+        {
+          "question": "The mode of reproduction in yeast is:",
+          "options": ["Binary fission", "Budding", "Fragmentation", "Spore formation"],
+          "answer": "Budding"
+        },
+        {
+          "question": "Lifespan of mayfly is approximately:",
+          "options": ["1 day", "1 month", "1 year", "10 days"],
+          "answer": "1 day"
+        }
+      ]
+    },
+    {
+      "chapter": "2. Sexual Reproduction in Flowering Plants",
+      "mcqs": [
+        {
+          "question": "Double fertilisation occurs in:",
+          "options": ["Algae", "Bryophytes", "Angiosperms", "Gymnosperms"],
+          "answer": "Angiosperms"
+        },
+        {
+          "question": "The male gametophyte in angiosperms is:",
+          "options": ["Ovule", "Microspore", "Pollen grain", "Anther"],
+          "answer": "Pollen grain"
+        }
+      ]
+    },
+    {
+      "chapter": "3. Human Reproduction",
+      "mcqs": [
+        {
+          "question": "Fertilisation in humans occurs in:",
+          "options": ["Uterus", "Ovary", "Fimbriae", "Fallopian tube"],
+          "answer": "Fallopian tube"
+        },
+        {
+          "question": "The gestation period in humans is:",
+          "options": ["180 days", "210 days", "280 days", "300 days"],
+          "answer": "280 days"
+        }
+      ]
+    },
+    {
+      "chapter": "4. Reproductive Health",
+      "mcqs": [
+        {
+          "question": "The first test tube baby was:",
+          "options": ["Dolly", "Louis Brown", "Marie Curie", "Mendel"],
+          "answer": "Louis Brown"
+        },
+        {
+          "question": "MTP stands for:",
+          "options": ["Male Tubectomy Procedure", "Medical Termination of Pregnancy", "Matured Tissue Production", "Monitored Treatment Program"],
+          "answer": "Medical Termination of Pregnancy"
+        }
+      ]
+    },
+    {
+      "chapter": "5. Principles of Inheritance and Variation",
+      "mcqs": [
+        {
+          "question": "Law of segregation was proposed by:",
+          "options": ["Darwin", "Morgan", "Mendel", "Linnaeus"],
+          "answer": "Mendel"
+        },
+        {
+          "question": "Colour blindness is a:",
+          "options": ["Autosomal disorder", "Y-linked disorder", "X-linked disorder", "Mitochondrial disorder"],
+          "answer": "X-linked disorder"
+        }
+      ]
+    },
+    {
+      "chapter": "6. Molecular Basis of Inheritance",
+      "mcqs": [
+        {
+          "question": "The genetic material in most organisms is:",
+          "options": ["Protein", "RNA", "DNA", "Lipid"],
+          "answer": "DNA"
+        },
+        {
+          "question": "The Okazaki fragments are found in:",
+          "options": ["Leading strand", "Lagging strand", "Both strands", "RNA"],
+          "answer": "Lagging strand"
+        }
+      ]
+    },
+    {
+      "chapter": "7. Evolution",
+      "mcqs": [
+        {
+          "question": "The concept of natural selection was proposed by:",
+          "options": ["Darwin", "Lamarck", "Mendel", "Wallace"],
+          "answer": "Darwin"
+        },
+        {
+          "question": "The evolution of horse is an example of:",
+          "options": ["Saltation", "Speciation", "Phylogenetic evolution", "Convergent evolution"],
+          "answer": "Phylogenetic evolution"
+        }
+      ]
+    },
+    {
+      "chapter": "8. Human Health and Disease",
+      "mcqs": [
+        {
+          "question": "Malaria is caused by:",
+          "options": ["Virus", "Bacteria", "Protozoa", "Fungus"],
+          "answer": "Protozoa"
+        },
+        {
+          "question": "The vaccine for tuberculosis is:",
+          "options": ["BCG", "MMR", "DPT", "OPV"],
+          "answer": "BCG"
+        }
+      ]
+    },
+    {
+      "chapter": "9. Strategies for Enhancement in Food Production",
+      "mcqs": [
+        {
+          "question": "MOET technology is used in:",
+          "options": ["Fish production", "Dairy industry", "Poultry", "Bee keeping"],
+          "answer": "Dairy industry"
+        },
+        {
+          "question": "Green Revolution began in:",
+          "options": ["India", "USA", "China", "Japan"],
+          "answer": "India"
+        }
+      ]
+    },
+    {
+      "chapter": "10. Microbes in Human Welfare",
+      "mcqs": [
+        {
+          "question": "Roquefort cheese is ripened by:",
+          "options": ["Yeast", "Penicillium", "Rhizobium", "Lactobacillus"],
+          "answer": "Penicillium"
+        },
+        {
+          "question": "Methanogens are present in:",
+          "options": ["Human intestine", "Biogas plant", "Pond water", "Soil only"],
+          "answer": "Biogas plant"
+        }
+      ]
+    },
+    {
+      "chapter": "11. Biotechnology: Principles and Processes",
+      "mcqs": [
+        {
+          "question": "The enzyme used to cut DNA is:",
+          "options": ["Ligase", "Polymerase", "Restriction endonuclease", "Transcriptase"],
+          "answer": "Restriction endonuclease"
+        },
+        {
+          "question": "Taq polymerase is obtained from:",
+          "options": ["E. coli", "Thermus aquaticus", "Virus", "Yeast"],
+          "answer": "Thermus aquaticus"
+        }
+      ]
+    },
+    {
+      "chapter": "12. Biotechnology and Its Applications",
+      "mcqs": [
+        {
+          "question": "Bt cotton is resistant to:",
+          "options": ["Fungal diseases", "Insects", "Drought", "Herbicides"],
+          "answer": "Insects"
+        },
+        {
+          "question": "Golden rice is rich in:",
+          "options": ["Vitamin C", "Vitamin D", "Vitamin A", "Vitamin K"],
+          "answer": "Vitamin A"
+        }
+      ]
+    },
+    {
+      "chapter": "13. Organisms and Populations",
+      "mcqs": [
+        {
+          "question": "A group of individuals of the same species in a given area is called:",
+          "options": ["Community", "Ecosystem", "Population", "Biome"],
+          "answer": "Population"
+        },
+        {
+          "question": "Mutualism is a type of interaction where:",
+          "options": ["Both partners benefit", "One benefits, one harmed", "Both harmed", "One benefits, other unaffected"],
+          "answer": "Both partners benefit"
+        }
+      ]
+    },
+    {
+      "chapter": "14. Ecosystem",
+      "mcqs": [
+        {
+          "question": "Primary producers are mainly:",
+          "options": ["Animals", "Plants and algae", "Fungi", "Bacteria only"],
+          "answer": "Plants and algae"
+        },
+        {
+          "question": "The functional unit of nature is:",
+          "options": ["Population", "Species", "Ecosystem", "Biome"],
+          "answer": "Ecosystem"
+        }
+      ]
+    },
+    {
+      "chapter": "15. Biodiversity and Conservation",
+      "mcqs": [
+        {
+          "question": "Hot spots are regions of:",
+          "options": ["Low biodiversity", "High biodiversity", "No endemic species", "Only marine species"],
+          "answer": "High biodiversity"
+        },
+        {
+          "question": "Ex situ conservation includes:",
+          "options": ["National parks", "Wildlife sanctuaries", "Zoo", "Biosphere reserves"],
+          "answer": "Zoo"
+        }
+      ]
+    },
+    {
+      "chapter": "16. Environmental Issues",
+      "mcqs": [
+        {
+          "question": "The gas mainly responsible for greenhouse effect is:",
+          "options": ["O2", "N2", "CO2", "H2"],
+          "answer": "CO2"
+        },
+        {
+          "question": "The thinning of ozone layer is mainly due to:",
+          "options": ["NOx", "CFCs", "CO", "SO2"],
+          "answer": "CFCs"
+        }
+      ]
+    }
+  ]
+}

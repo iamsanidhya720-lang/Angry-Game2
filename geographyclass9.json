@@ -1,0 +1,122 @@
+[
+  {
+    "chapter": "India – Size and Location",
+    "questions": [
+      {
+        "q": "India lies in which hemisphere?",
+        "options": ["Northern and Eastern", "Southern and Western", "Northern and Western", "Southern and Eastern"],
+        "answer": 0
+      },
+      {
+        "q": "The Tropic of Cancer passes through India at:",
+        "options": ["23.5° N", "66.5° N", "0°", "23.5° S"],
+        "answer": 0
+      },
+      {
+        "q": "India shares its northern border with:",
+        "options": ["Pakistan, China, Nepal, Bhutan", "Sri Lanka, Maldives", "Bangladesh, Myanmar only", "Afghanistan only"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Physical Features of India",
+    "questions": [
+      {
+        "q": "The Himalayas are located in:",
+        "options": ["North", "South", "East", "West"],
+        "answer": 0
+      },
+      {
+        "q": "The largest plateau in India is:",
+        "options": ["Deccan Plateau", "Chota Nagpur Plateau", "Malwa Plateau", "Eastern Ghats"],
+        "answer": 0
+      },
+      {
+        "q": "The Western Ghats run along the:",
+        "options": ["West coast", "East coast", "North border", "Central India"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Drainage",
+    "questions": [
+      {
+        "q": "The Ganga river originates from:",
+        "options": ["Gangotri Glacier", "Himalayas", "Vindhya", "Aravalli"],
+        "answer": 0
+      },
+      {
+        "q": "The Brahmaputra flows mainly through:",
+        "options": ["Arunachal Pradesh, Assam", "Rajasthan", "Madhya Pradesh", "Tamil Nadu"],
+        "answer": 0
+      },
+      {
+        "q": "The peninsular rivers are mostly:",
+        "options": ["Perennial", "Seasonal", "Underground", "Artificial"],
+        "answer": 1
+      }
+    ]
+  },
+  {
+    "chapter": "Climate",
+    "questions": [
+      {
+        "q": "The monsoon winds bring rainfall to India in:",
+        "options": ["June to September", "December to March", "April to May", "October to November"],
+        "answer": 0
+      },
+      {
+        "q": "India has which type of climate?",
+        "options": ["Tropical monsoon", "Desert", "Temperate", "Polar"],
+        "answer": 0
+      },
+      {
+        "q": "The Western Disturbances bring rain to:",
+        "options": ["North-western India in winter", "South India in summer", "East India in monsoon", "Central India in winter"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Natural Vegetation and Wildlife",
+    "questions": [
+      {
+        "q": "Tropical rainforests are found in:",
+        "options": ["Andaman and Nicobar Islands", "Rajasthan", "Himalayas", "Punjab"],
+        "answer": 0
+      },
+      {
+        "q": "Deciduous trees shed their leaves in:",
+        "options": ["Dry season", "Rainy season", "Winter only", "All year"],
+        "answer": 0
+      },
+      {
+        "q": "National parks and sanctuaries protect:",
+        "options": ["Wildlife", "Farms", "Roads", "Industries"],
+        "answer": 0
+      }
+    ]
+  },
+  {
+    "chapter": "Population",
+    "questions": [
+      {
+        "q": "Population density is measured as:",
+        "options": ["People per sq km", "People per sq meter", "Total population", "Number of villages"],
+        "answer": 0
+      },
+      {
+        "q": "The highest population density is in:",
+        "options": ["Bihar and West Bengal", "Rajasthan", "Ladakh", "Arunachal Pradesh"],
+        "answer": 0
+      },
+      {
+        "q": "The factors affecting population distribution include:",
+        "options": ["Physical, economic, social factors", "Only climate", "Only rivers", "Only urbanization"],
+        "answer": 0
+      }
+    ]
+  }
+]

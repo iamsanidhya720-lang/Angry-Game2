@@ -1,0 +1,336 @@
+{
+  "class": "11",
+  "subject": "Biology",
+  "chapters": [
+    {
+      "chapter": "1. The Living World",
+      "mcqs": [
+        {
+          "question": "The branch of biology that deals with classification is called:",
+          "options": ["Anatomy", "Ecology", "Taxonomy", "Physiology"],
+          "answer": "Taxonomy"
+        },
+        {
+          "question": "The scientific name of an organism has:",
+          "options": ["One word", "Two words", "Three words", "Four words"],
+          "answer": "Two words"
+        }
+      ]
+    },
+    {
+      "chapter": "2. Biological Classification",
+      "mcqs": [
+        {
+          "question": "Kingdom Monera includes:",
+          "options": ["Fungi", "Bacteria", "Protists", "Algae"],
+          "answer": "Bacteria"
+        },
+        {
+          "question": "Which group includes unicellular eukaryotes?",
+          "options": ["Monera", "Protista", "Plantae", "Animalia"],
+          "answer": "Protista"
+        }
+      ]
+    },
+    {
+      "chapter": "3. Plant Kingdom",
+      "mcqs": [
+        {
+          "question": "Bryophytes are also called:",
+          "options": ["Amphibians of the plant kingdom", "Flowering plants", "Seed plants", "Water plants"],
+          "answer": "Amphibians of the plant kingdom"
+        },
+        {
+          "question": "Gymnosperms produce:",
+          "options": ["Covered seeds", "Naked seeds", "No seeds", "Fruits"],
+          "answer": "Naked seeds"
+        }
+      ]
+    },
+    {
+      "chapter": "4. Animal Kingdom",
+      "mcqs": [
+        {
+          "question": "The simplest animals are:",
+          "options": ["Mammals", "Arthropods", "Coelenterates", "Poriferans"],
+          "answer": "Poriferans"
+        },
+        {
+          "question": "Notochord is present in:",
+          "options": ["Non-chordates", "Chordates", "Arthropods", "Molluscs"],
+          "answer": "Chordates"
+        }
+      ]
+    },
+    {
+      "chapter": "5. Morphology of Flowering Plants",
+      "mcqs": [
+        {
+          "question": "The outermost whorl of a flower is:",
+          "options": ["Petals", "Sepals", "Stamens", "Carpels"],
+          "answer": "Sepals"
+        },
+        {
+          "question": "Primary root originates from:",
+          "options": ["Radicle", "Plumule", "Cotyledon", "Leaf base"],
+          "answer": "Radicle"
+        }
+      ]
+    },
+    {
+      "chapter": "6. Anatomy of Flowering Plants",
+      "mcqs": [
+        {
+          "question": "The tissue responsible for growth in plants is:",
+          "options": ["Parenchyma", "Meristematic tissue", "Sclerenchyma", "Xylem"],
+          "answer": "Meristematic tissue"
+        },
+        {
+          "question": "Xylem is responsible for transport of:",
+          "options": ["Food", "Water and minerals", "Hormones", "Waste"],
+          "answer": "Water and minerals"
+        }
+      ]
+    },
+    {
+      "chapter": "7. Structural Organisation in Animals",
+      "mcqs": [
+        {
+          "question": "The structural and functional unit of life is:",
+          "options": ["Tissue", "Cell", "Organ", "System"],
+          "answer": "Cell"
+        },
+        {
+          "question": "Which epithelial tissue lines blood vessels?",
+          "options": ["Cuboidal", "Columnar", "Squamous", "Glandular"],
+          "answer": "Squamous"
+        }
+      ]
+    },
+    {
+      "chapter": "8. Cell: The Unit of Life",
+      "mcqs": [
+        {
+          "question": "Powerhouse of the cell is:",
+          "options": ["Golgi body", "Mitochondria", "Nucleus", "Ribosome"],
+          "answer": "Mitochondria"
+        },
+        {
+          "question": "Ribosomes are responsible for:",
+          "options": ["Respiration", "Protein synthesis", "Excretion", "Photosynthesis"],
+          "answer": "Protein synthesis"
+        }
+      ]
+    },
+    {
+      "chapter": "9. Biomolecules",
+      "mcqs": [
+        {
+          "question": "The building blocks of proteins are:",
+          "options": ["Sugars", "Amino acids", "Nucleotides", "Fatty acids"],
+          "answer": "Amino acids"
+        },
+        {
+          "question": "The energy currency of the cell is:",
+          "options": ["DNA", "ATP", "Glucose", "NADH"],
+          "answer": "ATP"
+        }
+      ]
+    },
+    {
+      "chapter": "10. Cell Cycle and Cell Division",
+      "mcqs": [
+        {
+          "question": "Mitosis results in:",
+          "options": ["4 cells", "2 identical cells", "2 different cells", "1 cell"],
+          "answer": "2 identical cells"
+        },
+        {
+          "question": "Crossing over occurs during:",
+          "options": ["Prophase I", "Metaphase", "Anaphase", "Telophase"],
+          "answer": "Prophase I"
+        }
+      ]
+    },
+    {
+      "chapter": "11. Transport in Plants",
+      "mcqs": [
+        {
+          "question": "Transpiration occurs through:",
+          "options": ["Stomata", "Fruit", "Seeds", "Roots"],
+          "answer": "Stomata"
+        },
+        {
+          "question": "The pressure flow hypothesis explains:",
+          "options": ["Water transport", "Transpiration", "Food transport", "Respiration"],
+          "answer": "Food transport"
+        }
+      ]
+    },
+    {
+      "chapter": "12. Mineral Nutrition",
+      "mcqs": [
+        {
+          "question": "Nitrogen is absorbed by plants mainly as:",
+          "options": ["N2 gas", "Nitrate", "Ammonia gas", "Urea"],
+          "answer": "Nitrate"
+        },
+        {
+          "question": "The element required in very small quantities is called:",
+          "options": ["Macronutrient", "Micronutrient", "Heavy metal", "Ion"],
+          "answer": "Micronutrient"
+        }
+      ]
+    },
+    {
+      "chapter": "13. Photosynthesis in Higher Plants",
+      "mcqs": [
+        {
+          "question": "The green pigment involved in photosynthesis is:",
+          "options": ["Carotene", "Chlorophyll", "Xanthophyll", "Anthocyanin"],
+          "answer": "Chlorophyll"
+        },
+        {
+          "question": "Calvin cycle occurs in:",
+          "options": ["Thylakoid", "Stroma", "Mitochondria", "Cytoplasm"],
+          "answer": "Stroma"
+        }
+      ]
+    },
+    {
+      "chapter": "14. Respiration in Plants",
+      "mcqs": [
+        {
+          "question": "Cristae are present in:",
+          "options": ["Golgi bodies", "Mitochondria", "Chloroplasts", "ER"],
+          "answer": "Mitochondria"
+        },
+        {
+          "question": "Respiratory quotient (RQ) of carbohydrates is:",
+          "options": ["1", "0.7", "0.5", "2"],
+          "answer": "1"
+        }
+      ]
+    },
+    {
+      "chapter": "15. Plant Growth and Development",
+      "mcqs": [
+        {
+          "question": "The hormone responsible for cell elongation is:",
+          "options": ["Cytokinin", "Auxin", "Ethylene", "ABA"],
+          "answer": "Auxin"
+        },
+        {
+          "question": "Vernalisation promotes:",
+          "options": ["Seed dormancy", "Early flowering", "Leaf fall", "Root growth"],
+          "answer": "Early flowering"
+        }
+      ]
+    },
+    {
+      "chapter": "16. Digestion and Absorption",
+      "mcqs": [
+        {
+          "question": "The enzyme that digests protein in the stomach is:",
+          "options": ["Amylase", "Lipase", "Pepsin", "Trypsin"],
+          "answer": "Pepsin"
+        },
+        {
+          "question": "Bile is produced by:",
+          "options": ["Pancreas", "Liver", "Gall bladder", "Stomach"],
+          "answer": "Liver"
+        }
+      ]
+    },
+    {
+      "chapter": "17. Breathing and Exchange of Gases",
+      "mcqs": [
+        {
+          "question": "The main respiratory pigment in humans is:",
+          "options": ["Chlorophyll", "Haemoglobin", "Myoglobin", "Cytochrome"],
+          "answer": "Haemoglobin"
+        },
+        {
+          "question": "The normal breathing rate in humans is:",
+          "options": ["5–10/min", "12–16/min", "20–30/min", "40–50/min"],
+          "answer": "12–16/min"
+        }
+      ]
+    },
+    {
+      "chapter": "18. Body Fluids and Circulation",
+      "mcqs": [
+        {
+          "question": "Which blood group is universal donor?",
+          "options": ["A", "B", "AB", "O"],
+          "answer": "O"
+        },
+        {
+          "question": "The heart chamber that pumps oxygenated blood is:",
+          "options": ["Right atrium", "Left ventricle", "Right ventricle", "Left atrium"],
+          "answer": "Left ventricle"
+        }
+      ]
+    },
+    {
+      "chapter": "19. Excretory Products and Their Elimination",
+      "mcqs": [
+        {
+          "question": "The functional unit of kidney is:",
+          "options": ["Neuron", "Nephron", "Glomerulus", "Tubule"],
+          "answer": "Nephron"
+        },
+        {
+          "question": "The main nitrogenous waste in humans is:",
+          "options": ["Urea", "Ammonia", "Uric acid", "Creatinine"],
+          "answer": "Urea"
+        }
+      ]
+    },
+    {
+      "chapter": "20. Locomotion and Movement",
+      "mcqs": [
+        {
+          "question": "The contractile proteins in muscle are:",
+          "options": ["Actin and myosin", "Tubulin and actin", "Keratin and myosin", "Collagen and elastin"],
+          "answer": "Actin and myosin"
+        },
+        {
+          "question": "The smallest functional unit of a muscle is:",
+          "options": ["Neuron", "Osteon", "Sarcomere", "Myofibril"],
+          "answer": "Sarcomere"
+        }
+      ]
+    },
+    {
+      "chapter": "21. Neural Control and Coordination",
+      "mcqs": [
+        {
+          "question": "The functional unit of the nervous system is:",
+          "options": ["Neuron", "Axon", "Dendrite", "Muscle"],
+          "answer": "Neuron"
+        },
+        {
+          "question": "The largest part of the human brain is:",
+          "options": ["Cerebellum", "Cerebrum", "Medulla", "Pons"],
+          "answer": "Cerebrum"
+        }
+      ]
+    },
+    {
+      "chapter": "22. Chemical Coordination and Integration",
+      "mcqs": [
+        {
+          "question": "Insulin is secreted by:",
+          "options": ["Liver", "Thyroid", "Pancreas", "Adrenal gland"],
+          "answer": "Pancreas"
+        },
+        {
+          "question": "Thyroxine regulates:",
+          "options": ["Blood sugar", "Metabolism", "Calcium level", "Digestion"],
+          "answer": "Metabolism"
+        }
+      ]
+    }
+  ]
+}
